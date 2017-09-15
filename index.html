@@ -45,15 +45,15 @@
 
     <h2 class="text-center">Application Domain</h2>
 
-    <p>Description of the application domain of your choice. State as clearly as possible what you want to do.</p>
+    <p>The goal of the project is to create a database system that lawyers can use to retrieve legal information based on a set of attributes (e.g. publication year, type or section of legal document, etc). The database will only include Rwandan laws. In additional to retrieving information, lawyers will be able to manage cases using the web application. That is, they will be able to create a topic (i.e. legal case) and add links to the laws and/or sections of the laws that are relevant to the legal case.</p>
 
     <h2 class="text-center">Usefulness</h2>
 
-    <p>Usefulness. State as clearly as possible why your chosen application is useful. Make sure to answer the following questions: Are there any similar or equivalent web sites/applications out here? If so, what are they and how is yours different?</p>
+    <p>As of now, Rwandan laws are only available as PDF documents and hard copies (unstructured data). As such, our project will be the first effort to turn Rwandan laws into structured data that can be queried using a set of attributes. We hope that this will reduce the amount of time lawyers spend on legal research. In addition, by showing additional information such as amended and repealed laws, we hope to increase the accuracy of legal information.</p>
 
     <h2 class="text-center">Realness</h2>
 
-    <p>Realness. Describe what your data is and where you will get it.</p>
+    <p>We downloaded the data from the Office of the Prime Minister of Rwanda’s website (https://goo.gl/gxEvnc). The data was downloaded PDF documents, which were later converted into text files. The raw files have been cleaned and converted into structured data.</p>
 
     <h2 class="text-center">Functionality</h2>
 
@@ -61,16 +61,18 @@
 
     <h3 class="text-center">Basic</h3>
 
-    <p>Show how to insert/update/delete records to the database</p>
-    <p>Show how to search the database and list or print returned results. You need to show a few different interesting queries over your database. *One of the queries must involve join of multiple tables.*</p>
+    <p>Users will be able search laws based on a set of attributes including law name, publication date, law number, type of law, etc.</p>
+    <p>Users will be able to create, update, and delete legal cases and associated information (“insert”, “update”, and “delete” functionalities).</p>
+
     <h3 class="text-center">Advanced</h3>
 
-    <p>Remember to include at least two creative things (advanced functions), i.e., something that doesn't exist in equivalent web sites/applications. The advanced functions should go beyond the basic functions listed above; in addition, an advanced function should also be something that is technically challenging, meaning you would need to spend some significant time (at least a few days work) to implement it. Of course, such functions should be relevant and therefore useful for your application. Remember that you have to define a challenging problem at the time of your final demo and show that how you solved it. To have an idea about our expectations, a team of 4 with average programming skill will spend 3-4 days programming each of the advanced functions. It has to have programming involved. this is 3-4 days of useful work so it doesn't include the time spent on learning the material or debugging the code. Please have a look at previous semester's projects to have an idea about expectations.
-    </p>
-    <p>Make clear what the features are, and explain why you think it is cool to have them. If you are unclear, please check the project overview lecture or talk to TA.</p>
+    <p>Showing laws that are no longer up-date specifically laws that have been repealed or amended. This feature will attempt to facilitate lawyers to know which laws have been invalidated. Sometimes the language is explicit when repealing previous laws (e.g. “law # 090 of 2005 is hereby repealed…”) and sometimes the language is vague (e.g. “alls previous laws that contradict this law are hereby repealed…”). So, we will try to use NLP techniques to (at least) point out which previous law are referenced (or significantly related) to a subsequent/more recent law.</p>
+    <p>Advanced keyword search: we will implement n-gram and tf-idf algorithms to enable users to search using natural language queries.</p>
+    <p>We also aim to implement a user authentication system.</p>
+    <p>Lastly, we would like to add a feature for laws auto-querying. That is, if a law is referenced in the text, a user should be able to click on and go to the page with that law.</p>
 
     <h2 class="text-center">Entity Relationship Diagram</h2>
-    <img src="" alt="ERD Graphic">
+    <img src="imgs/erdv1" alt="ERD Graphic">
 
     <h3>Assumptions</h3>
 
