@@ -90,6 +90,7 @@ tables['publications'] = (
     var_num varchar(10) NOT NULL,
     name varchar(55) NOT NULL,
     pub_date date NOT NULL,
+    INDEX (var_num, pub_date),
     PRIMARY KEY (pub_id)
     ) ENGINE=InnoDB
   """
