@@ -33,7 +33,7 @@ tables['articles']=(
     article_num int NOT NULL,
     text varchar(5000) NOT NULL,
     name varchar(500) NOT NULL,
-    PRIMARY KEY (law,article_num),
+    PRIMARY KEY (law_id, article_num),
     FOREIGN KEY (law_id)
     REFERENCES laws (law_id)
     )
