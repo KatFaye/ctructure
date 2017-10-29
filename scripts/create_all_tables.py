@@ -31,7 +31,7 @@ tables['articles']=(
     CREATE TABLE articles (
     law_id int(10) NOT NULL,
     article_num int NOT NULL,
-    text varchar(5000) NOT NULL,
+    article_text varchar(5000) NOT NULL,
     name varchar(500) NOT NULL,
     PRIMARY KEY (law_id, article_num),
     FOREIGN KEY (law_id)
