@@ -68,12 +68,14 @@ tables['laws'] = (
     CREATE TABLE laws (
     law_id int(10) NOT NULL AUTO_INCREMENT,
     law_num varchar(35),
+    exact_date date NOT NULL,
     name varchar(500) NOT NULL,
     ending varchar(1000) ,
     intro varchar(5000) NOT NULL,
     content_type varchar(35) NOT NULL REFERENCES contents(content_type),
     pub_id int(10) NOT NULL,
     agency varchar(15) NOT NULL REFERENCES agencies(abbrev),
+    INDEX (law_num, exact_date),
     FOREIGN KEY (pub_id)
     REFERENCES publications(pub_id),
     PRIMARY KEY (law_id)
