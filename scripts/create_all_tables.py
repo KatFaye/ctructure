@@ -45,7 +45,7 @@ tables['cites'] = (
     CREATE TABLE cites (
     parent_law int(10) NOT NULL,
     cited_law int(10) NOT NULL,
-    INDEX (parent_law, cited_law),
+    PRIMARY KEY (parent_law, cited_law),
     FOREIGN KEY (parent_law)
     REFERENCES laws(law_id),
     FOREIGN KEY (cited_law)
@@ -88,7 +88,7 @@ tables['publications'] = (
     var_num varchar(10) NOT NULL,
     name varchar(55) NOT NULL,
     pub_date date NOT NULL,
-    PRIMARY KEY(var_num, pub_date)
+    PRIMARY KEY (pub_id)
     ) ENGINE=InnoDB
   """
   )
