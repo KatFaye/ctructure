@@ -63,6 +63,20 @@ tables['content_type'] = (
     """
     )
 
+tables['drafted_by'] = (
+    """
+    CREATE TABLE drafted_by (
+    law_id int(10) NOT NULL,
+    agency int(10) NOT NULL,
+    PRIMARY KEY (law_id, cited_law),
+    FOREIGN KEY (law_id)
+    REFERENCES laws(law_id),
+    FOREIGN KEY (agency)
+    REFERENCES agencies(abbrev)
+    )
+    """
+)
+
 tables['laws'] = (
     """
     CREATE TABLE laws (
@@ -74,7 +88,6 @@ tables['laws'] = (
     intro varchar(5000) NOT NULL,
     content_type varchar(35) NOT NULL REFERENCES contents(content_type),
     pub_id int(10) NOT NULL,
-    agency varchar(15) NOT NULL REFERENCES agencies(abbrev),
     INDEX (law_num, exact_date),
     FOREIGN KEY (pub_id)
     REFERENCES publications(pub_id),
