@@ -29,8 +29,8 @@
           <li><a href="/cse30246/rwandanlaw/ctructure/">Home</a></li>
           <li><a href="plan.html">Plan</a></li>
           <li><a href="demo.html">Demo</a></li>
-          <li class="active"><a href="login.html">Login</a></li>
-          <li><a href="search.html">Search</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li class="active"><a href="search.html">Search</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -38,40 +38,17 @@
   </nav>
 
   <div class="container theme-showcase" role="main">
-    <div class="form-wrapper">
-        <div class="form-header">
-          Ctructure
-        </div>
-        <form name="newuser" action="scripts/insert.py" method="POST">
-        <div class="form-content">
-          <div class="form-content-row">
-            <span class="field-title">User Name</span>
-            <input class="form-input" type="text" name="username">
-          </div>
-          <div class="form-content-row">
-            <span class="field-title">First Name</span>
-            <input class="form-input" type="text" name="first_name">
-          </div>
-          <div class="form-content-row">
-            <span class="field-title">Last Name</span>
-            <input class="form-input" type="text" name="last_name">
-          </div>
-          <div class="form-content-row">
-            <span class="field-title">Email</span>
-            <input class="form-input" type="text" name="email">
-          </div>
-          <div class="form-content-row">
-            <span class="field-title">Password</span>
-            <input class="form-input" type="text" name="password">
-          </div>
-          <div class="form-content-row">
-            <span class="field-title">Repeat Password</span>
-            <input class="form-input" type="text" name="repeated_password">
-          </div>
-        </div>
-        <input type="submit" value="submit">Submit</button>
-      </form>
-    </div>
+      <div class="form-header">
+        Ctructure
+      </div>
+      <div class="input_field">
+        <span>Please enter the keywords in law name:</span>
+        <input class="law_search_bar" type="text" name="law_seach_bar">
+        <br>
+        <span>Please enter the publication year:</span>
+        <input class="date_bar" type="text" name="date_bar">
+      </div>
+      <button>Submit</button>
   </div>
 
 
