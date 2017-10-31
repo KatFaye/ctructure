@@ -1,4 +1,4 @@
-# import content agencies
+# import content type
 
 from __future__ import print_function
 from datetime import date, datetime, timedelta
@@ -10,19 +10,19 @@ cnx = mysql.connector.connect(user='amucungu', password='m90753',
 
 cursor = cnx.cursor()
 
-add_agency = ("INSERT INTO agencies "
-                    "(abbrev, long_name) "
+add_content_type = ("INSERT INTO content_type "
+                    "(name, authority) "
                     "VALUES (%s, %s)")
 
-f = open("agencies.txt", "r")
+f = open("content_type.txt", "r")
 contents = f.read().split('\n')
 
-for agency in contents:
-  if agency:
-    agency = agency.split()
-    abbrev, long_name = agency[0], ' '.join(agency[1:])
-    cont_tuple = (abbrev, long_name)
-    cursor.execute(add_agency, cont_tuple)
+for cont_type in contents:
+  if cont_type:
+    cont_type = cont_type.split()
+    cont_name, cont_autho = ' '.join(cont_type[1:]), cont_type[0]
+    cont_tuple = (cont_name, cont_autho)
+    cursor.execute(add_content_type, cont_tuple)
  
 cnx.commit()
 cursor.close()
