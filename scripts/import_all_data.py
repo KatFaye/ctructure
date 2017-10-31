@@ -218,4 +218,4 @@ cnx.commit()
 cursor.close()
 cnx.close()
 
-
+print "Successfully imported all the data!" 
