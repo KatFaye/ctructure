@@ -1,0 +1,9 @@
+drop table articles;
+drop table agencies;
+drop table cites;
+drop table users;
+drop table content_type;
+drop table drafted_by;
+drop table repeals;
+drop table laws;
+drop tables publications;
