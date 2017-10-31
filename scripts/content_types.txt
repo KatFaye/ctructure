@@ -1,0 +1,9 @@
+1 Constitution 
+2 Law
+2 Organic Law
+3 Presidential Order
+4 Prime Minister Order
+4 Ministerial Order
+4 Rule
+4 Instruction
+4 Policy

@@ -67,8 +67,8 @@ tables['drafted_by'] = (
     """
     CREATE TABLE drafted_by (
     law_id int(10) NOT NULL,
-    agency int(10) NOT NULL,
-    PRIMARY KEY (law_id, cited_law),
+    agency varchar(15) NOT NULL,
+    PRIMARY KEY (law_id, agency),
     FOREIGN KEY (law_id)
     REFERENCES laws(law_id),
     FOREIGN KEY (agency)
