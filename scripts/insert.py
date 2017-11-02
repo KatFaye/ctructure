@@ -6,10 +6,12 @@
 import mysql.connector as mc
 from mysql.connector import errorcode
 import sys
-import cgi,cgitb
+from flask import Flask, flash, request, redirect, url_for
+app = Flask(__name__)
 
-if __name__ == '__main__':
-    #define user connection
+@app.route('../login',methods = ['POST'])
+def hello_world():
+   #define user connection
     config = {
         'user': 'kherring',
         'password': '12faye',
@@ -17,25 +19,22 @@ if __name__ == '__main__':
         'database': 'rwandanlaw'
     }
 
-    form = cgi.FieldStorage()
-
     data = {
-     'username': form.getvalue('username')
-     'first_name': form.getvalue('first_name')
-     'last_name': form.getvalue('last_name')
-     'email': form.getvalue('email')
-     'password': form.getvalue('password')
-     'repeated_password': form.getvalue('repeated_password')
+     'username': request.form('username')
+     'first_name': request.form('first_name')
+     'last_name': request.form('last_name')
+     'email': request.form('email')
+     'password': request.form('password')
+     'repeated_password': request.form('repeated_password')
     }
 
     print(date)
 
-"""
+
     # build query
     placeholders = ', '.join(['%s'] * len(data))
     cols = ', '.join(data.keys())
     sql = "INSERT INTO %s ( %s ) VALUES ( %s%s )" % ('users', cols, data.values(), placeholders)
-
 
     try:
         cnx = mc.connect(**config)
@@ -50,4 +49,10 @@ if __name__ == '__main__':
         else:
             print err
         sys.exit(1)
- """
+
+if __name__ == '__main__':
+   app.run()
+
+
+    
+

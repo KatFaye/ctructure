@@ -16,5 +16,4 @@ $( document ).ready(function() {
 
     $(".main.container").trigger('change_tab')
 
-
 });
