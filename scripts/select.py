@@ -1,4 +1,5 @@
 import mysql.connector as mc
+import cgi
 
 
 config = {
@@ -7,17 +8,24 @@ config = {
     'host': '127.0.0.1',
     'database': 'rwandanlaw'
 }
-cnx = mc.connect(**config)
-cursor = cnx.cursor()
 
-query = ("SELECT law_num FROM laws "
-         "WHERE law_id<50")
+form=cgi.FieldStorage()
 
+data = {
+ 'law_search_bar': form.getvalue('law_search_bar')
+ 'date_bar': form.getvalue('date_bar')
+}
 
-cursor.execute(query)
+sql= "SELECT name FROM laws l, publications p inner join l.pub_id=p.pub_id "
+         "WHERE name like '%s%' and month(p.pub_date)=%s")%(data['law_search_bar'],data['date_bar'])
 
-for (law_num) in cursor:
-  print("law_num is {}").format(law_num)
+try:
+    cnx = mc.connect(**config)
+    cursor = cnx.cursor()
+    cursor.execute(sql)
+
+print(name)
 
 cursor.close()
 cnx.close()
+
