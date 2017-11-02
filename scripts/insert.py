@@ -6,7 +6,7 @@
 import mysql.connector as mc
 from mysql.connector import errorcode
 import sys
-import cgi
+import cgi,cgitb
 
 if __name__ == '__main__':
     #define user connection
@@ -28,6 +28,9 @@ if __name__ == '__main__':
      'repeated_password': form.getvalue('repeated_password')
     }
 
+    print(date)
+
+"""
     # build query
     placeholders = ', '.join(['%s'] * len(data))
     cols = ', '.join(data.keys())
@@ -47,3 +50,4 @@ if __name__ == '__main__':
         else:
             print err
         sys.exit(1)
+ """
