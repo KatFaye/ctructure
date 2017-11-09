@@ -15,8 +15,8 @@ app.config['MYSQL_DATABASE_HOST'] = '0.0.0.0'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
 
-@app.route('/signUp', methods=['POST'])
-def signUp():
+@app.route('/signup', methods=['POST'])
+def signup():
   val_status = False
   try:
     # read the posted values from the UI
@@ -56,8 +56,8 @@ def signUp():
   conn.close()
   return redirect('/search')
 
-@app.route('/changeInfo', methods=['POST'])
-def updateUserInfo():
+@app.route('/updateinfo', methods=['POST'])
+def updateinfo():
   val_status = False
   try:
     # read the posted values from the UI
@@ -96,7 +96,7 @@ def updateUserInfo():
 
 
 @app.route('/search', methods=['POST'])
-def getLaws():
+def search():
   val_status = False
   print("We're in here")
   try:
