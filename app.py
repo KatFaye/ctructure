@@ -58,7 +58,7 @@ def signup():
       return render_template('/signup.html', **kwargs)
 
   except Exception as e:
-    kwargs['message'] = str(e)
+    kwargs['message'] = "Error %s: %s" % e[0], e[1]
     kwargs['messageType'] = "danger"
     return render_template('/signup.html', **kwargs)
 
