@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request,redirect
 from flaskext.mysql import MySQL
 
 app = Flask(__name__)
@@ -62,25 +62,86 @@ def signUp():
     
   cursor.close()
   conn.close()
+  return redirect('/search')
 
 # Update: change user info 
 @app.route('/changeInfo')
 def showChangeInfo():
-  return render_template('signup.html')
+  return render_template('changeInfo.html')
 
 @app.route('/changeInfo', methods=['POST'])
 def updateUserInfo():
-  #TODO
+  val_status = False
+  try:
+    # read the posted values from the UI
+    _email = request.form['input_email']
+    _password = request.form['input_password']
+
+    # validate the received values
+    if  _email and _password:
+      # all fields are filled
+      try:
+        conn = mysql.connect()
+      except Exception as e:
+        return json.dumps({'debugging':str(e)})
+
+      cursor = conn.cursor()
+      query_string="UPDATE users SET email= '" +_email +"', password= '" + _password +"' WHERE username='SampleUser'"
+      cursor.execute(query_string)
+
+      data = cursor.fetchall()
+
+      if len(data) is 0:
+        conn.commit()
+        return json.dumps({'message':'User created successfully !'})
+      else:
+        return json.dumps({'error':'err'})
+
+    else:
+      return json.dumps({'html':'<span>Enter the required fields</span>'})
+  
+  except Exception as e:
+    print e
+    return json.dumps({'error': 'exception thrown' })
+    
+  cursor.close()
+  conn.close()
 
 
 # Query: query for law
 @app.route('/search')
-def showChangeInfo():
+def showSearch():
   return render_template('query.html')
 
-@app.route('/search', methods=['GET'])
+@app.route('/search', methods=['POST'])
 def getLaws():
-  #TODO: YUN
+  val_status = False
+  print("We're in here")
+  try:
+    _search = request.form['search']
+    _year=request.form['year']
+    # validate the received values
+    if _search and _year:
+      # all fields are filled
+      try:
+        conn = mysql.connect()
+      except Exception as e:
+        return json.dumps({'debugging':str(e)})
+      
+      cursor = conn.cursor()
+      query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
+      cursor.execute(query_string)
+
+      data = cursor.fetchall()
+
+  except Exception as e:
+    print e
+    return json.dumps({'error': 'exception thrown' })
+    
+  cursor.close()
+  conn.close()
+  return str(data)
+
 
 if __name__=="__main__":
-  app.run(port=5008, host='0.0.0.0')
+  app.run(port=5009, host='0.0.0.0')

@@ -15,30 +15,27 @@
     <div class="container">
       <div class="header">
         <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" ><a href="main">Home</a></li>
-            <li role="presentation"><a href="#">Sign In</a></li>
-            <li role="presentation" class="active"><a href="#">Sign Up</a></li>
-          </ul>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" ><a href="search">Search Law</a>
+                </li>
+                <li role="presentation" class="active"><a href="changeInfo">Change User Info</a>
+                </li>
+                <li role="presentation"><a href="showSignUp">Sign Up</a>
+                </li>
+            </ul>
         </nav>
         <h3 class="text-muted">Ctructure</h3>
       </div>
  
       <div class="jumbotron">
         <h1>Change your user infomation</h1>
-        <form method='POST' class="form-signin">
-        <label for="inputName" class="sr-only">First name</label>
-        <input type="name" name="input_firstname" id="input_firstname" class="form-control" placeholder="User Name" required autofocus>
-        <label for="inputName" class="sr-only">Last name</label>
-        <input type="name" name="input_lastname" id="input_lastname" class="form-control" placeholder="First Name" required autofocus>
-        <label for="inputName" class="sr-only">Username</label>
-        <input type="name" name="input_username" id="input_username" class="form-control" placeholder="Last Name" required autofocus>
+        <form class="change-info">
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="input_email" id="input_email" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" name="input_email" id="input_email" class="form-control" placeholder="Email address"  autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="input_password" id="input_password" class="form-control" placeholder="Password" required>
+        <input type="password" name="input_password" id="input_password" class="form-control" placeholder="Password" >
          
-        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+        <button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="button">Submit</button>
       </form>
       </div>
 
