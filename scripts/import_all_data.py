@@ -27,7 +27,6 @@ cnx = mysql.connector.connect(user='amucungu', password='m90753',
 
 cursor = cnx.cursor()
 
-
 ### Defined functions
 def get_pub_attrs(pub_name):
   # lenght should be above 3
@@ -218,4 +217,4 @@ cnx.commit()
 cursor.close()
 cnx.close()
 
-print "Successfully imported all the data!" 
+print "Successfully imported all the data!"

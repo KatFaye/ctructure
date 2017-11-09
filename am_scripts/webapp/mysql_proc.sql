@@ -1,5 +1,5 @@
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createUser`(
+CREATE DEFINER=`kherring`@`localhost` PROCEDURE `sp_createUser`(
 IN _firstname VARCHAR(30),
 IN _lastname VARCHAR(30),
 IN _username VARCHAR(30),
@@ -9,8 +9,8 @@ IN _password VARCHAR(30)
 BEGIN
   insert into users
   (
-   firstname,
-   lastname,
+   first_name,
+   last_name,
    username,
    email,
    password

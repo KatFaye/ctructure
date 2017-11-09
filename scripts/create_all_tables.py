@@ -11,7 +11,7 @@ import sys
 config = {
     'user': 'kherring',
     'password': '12faye',
-    'host': '127.0.0.1',
+    'host': '129.74.250.99',
     'database': 'rwandanlaw'
 }
 
@@ -138,7 +138,7 @@ tables['users']=(
 try:
     cnx = mc.connect(**config)
     cursor = cnx.cursor()
-
+    exit()
 except mc.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print "Err: Access Denied (Verify user and password)"
