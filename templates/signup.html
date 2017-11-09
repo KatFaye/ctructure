@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h1 class="text-center">Create New Account</h1>
+
 <div class="alert alert-{{ messageType }}" >
   {{ message }}
 </div>
-
-<h1 class="text-center">Create New Account</h1>
 <form style="width=50%" action="/signup" method='POST' class="form-signin">
   <label for="inputName" class="sr-only">First name</label>
   <input type="name" name="input_firstname" id="input_firstname" class="form-control" placeholder="User Name" required autofocus>

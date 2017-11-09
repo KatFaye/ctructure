@@ -30,12 +30,7 @@ def signup():
     # validate the received values
     if _firstname and _lastname and _username and _username and _email and _password:
       # all fields are filled
-      try:
-        conn = mysql.connect()
-      except Exception as e:
-        kwargs['message'] = str(e)
-        kwargs['messageType'] = "danger"
-        return render_template('/signup.html', **kwargs)
+      conn = mysql.connect()
 
       cursor = conn.cursor()
       cursor.callproc('sp_createUser', (_firstname, _lastname, _username, _email, _password))
@@ -48,14 +43,9 @@ def signup():
         kwargs['messageType'] = "success"
         return render_template('/signup.html', **kwargs)
       else:
-            kwargs['message'] = "Data Lost/Empty"
+            kwargs['message'] = "Error: Unknown Error"
             kwargs['messageType'] = "danger"
             return render_template('/signup.html', **kwargs)
-
-    else:
-      kwargs['message'] = "Please fill out all fields"
-      kwargs['messageType'] = "danger"
-      return render_template('/signup.html', **kwargs)
 
   except Exception as e:
     kwargs['message'] = "Error %s: %s" % e[0], e[1]
