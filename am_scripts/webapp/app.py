@@ -18,6 +18,7 @@ mysql.init_app(app)
 def main():
   return render_template('index.html')
 
+# Insert: User Sign up
 @app.route('/showSignUp')
 def showSignUp():
   return render_template('signup.html')
@@ -61,6 +62,25 @@ def signUp():
     
   cursor.close()
   conn.close()
+
+# Update: change user info 
+@app.route('/changeInfo')
+def showChangeInfo():
+  return render_template('signup.html')
+
+@app.route('/changeInfo', methods=['POST'])
+def updateUserInfo():
+  #TODO
+
+
+# Query: query for law
+@app.route('/search')
+def showChangeInfo():
+  return render_template('query.html')
+
+@app.route('/search', methods=['GET'])
+def getLaws():
+  #TODO: YUN
 
 if __name__=="__main__":
   app.run(port=5008, host='0.0.0.0')
