@@ -134,7 +134,7 @@ def getLaws():
 
       data = cursor.fetchall()
 
-   except Exception as e:
+  except Exception as e:
     print e
     return json.dumps({'error': 'exception thrown' })
     
