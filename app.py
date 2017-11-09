@@ -33,7 +33,9 @@ def signup():
       try:
         conn = mysql.connect()
       except Exception as e:
-        return json.dumps({'debugging':str(e)})
+        kwargs['message'] = str(e)
+        kwargs['message-type'] = "danger"
+        return render_template('/signup.html', **kwargs)
 
       cursor = conn.cursor()
       cursor.callproc('sp_createUser', (_firstname, _lastname, _username, _email, _password))
@@ -44,16 +46,21 @@ def signup():
         conn.commit()
         kwargs['message'] = "User Created Successfully!"
         kwargs['message-type'] = "success"
-        return render_template('/signup.html' **kwargs)
+        return render_template('/signup.html', **kwargs)
       else:
-        return json.dumps({'error':'err'})
+            kwargs['message'] = "Data Lost/Empty"
+            kwargs['message-type'] = "danger"
+            return render_template('/signup.html', **kwargs)
 
     else:
-      return json.dumps({'html':'<span>Enter the required fields</span>'})
+      kwargs['message'] = "Please fill out all fields"
+      kwargs['message-type'] = "danger"
+      return render_template('/signup.html', **kwargs)
 
   except Exception as e:
-    print e
-    return json.dumps({'error': 'exception thrown' })
+    kwargs['message'] = str(e)
+    kwargs['message-type'] = "danger"
+    return render_template('/signup.html', **kwargs)
 
   cursor.close()
   conn.close()
