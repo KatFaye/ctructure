@@ -1,3 +1,7 @@
+{% macro title %}
+    {% block title %}{% endblock %}
+{% endmacro %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +10,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Ctructure {% block title %}{% endblock %}</title>
+  <title>Ctructure {% usemacro title %}</title>
   <!-- Bootstrap CSS -->
   <link href="../static/css/paper.css" rel="stylesheet">
   <!-- JQuery -->
@@ -43,7 +47,7 @@
   {% endblock %}
 
   <div class="container theme-showcase main" role="main">
-    <h1 class="text-center">{% block title %}{% endblock %}</h1>
+    <h1 class="text-center">{% usemacro title %}</h1>
   {% block content %}{% endblock %}
   </div>
 
