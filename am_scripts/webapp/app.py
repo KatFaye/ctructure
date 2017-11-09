@@ -66,7 +66,7 @@ def signUp():
 # Update: change user info 
 @app.route('/changeInfo')
 def showChangeInfo():
-  return render_template('signup.html')
+  return render_template('changeInfo.html')
 
 @app.route('/changeInfo', methods=['POST'])
 def updateUserInfo():
