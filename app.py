@@ -106,7 +106,7 @@ def query():
             kwargs['data'] = cursor.fetchall()
 
     except Exception as e:
-        kwargs['message'] = "Error %s: %s" % (e[0], e[1])
+        kwargs['message'] = "Error: %s" % (str(e))
         kwargs['messageType'] = "danger"
         return render_template('query.html', **kwargs)
 
