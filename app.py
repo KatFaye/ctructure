@@ -55,16 +55,16 @@ def signUp():
 
     else:
       return json.dumps({'html':'<span>Enter the required fields</span>'})
-  
+
   except Exception as e:
     print e
     return json.dumps({'error': 'exception thrown' })
-    
+
   cursor.close()
   conn.close()
   return redirect('/search')
 
-# Update: change user info 
+# Update: change user info
 @app.route('/changeInfo')
 def showChangeInfo():
   return render_template('changeInfo.html')
@@ -99,11 +99,11 @@ def updateUserInfo():
 
     else:
       return json.dumps({'html':'<span>Enter the required fields</span>'})
-  
+
   except Exception as e:
     print e
     return json.dumps({'error': 'exception thrown' })
-    
+
   cursor.close()
   conn.close()
 
@@ -127,7 +127,7 @@ def getLaws():
         conn = mysql.connect()
       except Exception as e:
         return json.dumps({'debugging':str(e)})
-      
+
       cursor = conn.cursor()
       query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
       cursor.execute(query_string)
@@ -137,11 +137,14 @@ def getLaws():
   except Exception as e:
     print e
     return json.dumps({'error': 'exception thrown' })
-    
+
   cursor.close()
   conn.close()
   return str(data)
 
+@app.route('/plan')
+def showChangeInfo():
+  return render_template('plan.html')
 
 if __name__=="__main__":
   app.run(port=5009, host='0.0.0.0')
