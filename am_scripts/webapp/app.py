@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request,redirect
 from flaskext.mysql import MySQL
 
 app = Flask(__name__)
