@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% with "Index" as title %}
+{% with title="Index" %}
 {% block head %}
     {{ super() }}
 {% endblock %}
@@ -42,3 +42,4 @@
 <p>Currently, this database only implements storage for statutory laws, but we note the type of law in that table, because in the future case law would likely be included as reference material. Similarly, though our database currently only will store the English version of laws, many are written in multiple languages so that could potentially be stored in the future as well (especially since case law is not available in English).</p>
 </div>
 {% endblock %}
+{% endwith %}
