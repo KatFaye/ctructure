@@ -115,6 +115,7 @@ def showSearch():
 @app.route('/getLaw', methods=['GET'])
 def getLaws():
   val_status = False
+  print("We're in here")
   try:
     _search = request.form['search']
     _year=request.form['year']
