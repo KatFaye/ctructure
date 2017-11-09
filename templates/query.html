@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block content %}
+
+<h1 class="text-center">Search</h1>
+
+<div class="alert alert-{{ messageType }}">
+  {{ message }}
+</div>
+
+<div class="form-wrapper">
+  <div class="form-header">
+    New Search
+  </div>
+  <form name="query" action="/query" method="POST">
+    <div class="form-content">
+      <div class="form-group">
+        <label for="search" class="sr-only" required>Enter a search term.</label>
+        <input class="form-control" type="search" name="search" placeholder="Enter a search term..." autofocus>
+      </div>
+      <div class="form-group">
+        <span class="field-title">Filter by:</span><br>
+        <span class="field-title">Year: </span>
+        <input type="radio" name="year" value="2008" required>2008
+        <input type="radio" name="year" value="2009" required>2009
+      </div>
+      <input type="submit" value="Submit" class="bth btn-primary">
+    </div>
+
+  </form>
+</div>
+
+<h2>Results</h2>
+
+<div id="results">
+  <p>{{ data }}</p>
+</div>
+
+{% endblock %}
