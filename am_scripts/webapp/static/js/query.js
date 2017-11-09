@@ -5,7 +5,7 @@ $(function(){
             data: $('form').serialize(),
             type: 'GET',
             success: function(response){
-                $("#result").html(response)
+                $("#results").html(response)
             },
             error: function(error){
                 console.log(error);
