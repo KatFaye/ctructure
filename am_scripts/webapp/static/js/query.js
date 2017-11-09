@@ -1,9 +1,9 @@
 $(function(){
     $('#searchBtn').click(function(){
         $.ajax({
-            url: '/getLaw',
+            url: '/search',
             data: $('form').serialize(),
-            type: 'GET',
+            type: 'POST',
             success: function(response){
                 $("#results").html(response)
             },

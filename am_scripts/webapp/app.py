@@ -112,7 +112,7 @@ def updateUserInfo():
 def showSearch():
   return render_template('query.html')
 
-@app.route('/getLaw', methods=['GET'])
+@app.route('/search', methods=['POST'])
 def getLaws():
   val_status = False
   print("We're in here")
