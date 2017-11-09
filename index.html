@@ -8,10 +8,11 @@
   <title>Ctructure</title>
   <!-- Bootstrap CSS -->
   <link href="css/paper.css" rel="stylesheet">
+  <!-- JQuery -->
 </head>
 
 <body>
-
+  
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -19,69 +20,26 @@
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
       </button>
         <a class="navbar-brand" href="/cse30246/rwandanlaw/ctructure">Ctructure</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/cse30246/rwandanlaw/ctructure/">Home</a></li>
-          <li><a href="plan.html">Plan</a></li>
-          <li><a href="demo.html">Demo</a></li>
-          <li ><a href="login.html">Login</a></li>
+          <li class="active" id="home"><a  href="#">Home</a></li>
+          <li id="plan"><a href="#">Plan</a></li>
+          <li id="demo"><a href="#">Demo</a></li>
+          <li id="templates/login"><a href="#">Login</a></li>
+          <li id="templates/search"><a href="#">Search</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
     </div>
   </nav>
 
-
-  <div class="container theme-showcase" role="main">
-    <div class="page-header text-center">
-      <h1>Project Details</h1>
-
-    </div>
-
-
-
-    <h2 class="text-center">Application Domain</h2>
-
-    <p>The goal of the project is to create a database system that lawyers can use to retrieve legal information based on a set of attributes (e.g. publication year, type or section of legal document, etc). The database will only include Rwandan laws. In additional to retrieving information, lawyers will be able to manage cases using the web application. That is, they will be able to create a topic (i.e. legal case) and add links to the laws and/or sections of the laws that are relevant to the legal case.</p>
-
-    <h2 class="text-center">Usefulness</h2>
-
-    <p>As of now, Rwandan laws are only available as PDF documents and hard copies (unstructured data). As such, our project will be the first effort to turn Rwandan laws into structured data that can be queried using a set of attributes. We hope that this will reduce the amount of time lawyers spend on legal research. In addition, by showing additional information such as amended and repealed laws, we hope to increase the accuracy of legal information.</p>
-
-    <h2 class="text-center">Realness</h2>
-
-    <p>We downloaded the data from the Office of the Prime Minister of Rwanda’s website (https://goo.gl/gxEvnc). The data was downloaded PDF documents, which were later converted into text files. The raw files have been cleaned and converted into structured data.</p>
-
-    <h2 class="text-center">Functionality</h2>
-
-    <p>Description of the functionality that you plan to offer. This is where you talk about how to meet the functionality requirements. There are two types of functions you need to offer:</p>
-
-    <h3 class="text-center">Basic</h3>
-
-    <p>Users will be able search laws based on a set of attributes including law name, publication date, law number, type of law, etc.</p>
-    <p>Users will be able to create, update, and delete legal cases and associated information (“insert”, “update”, and “delete” functionalities).</p>
-
-    <h3 class="text-center">Advanced</h3>
-
-    <p>Showing laws that are no longer up-date specifically laws that have been repealed or amended. This feature will attempt to facilitate lawyers to know which laws have been invalidated. Sometimes the language is explicit when repealing previous laws (e.g. “law # 090 of 2005 is hereby repealed…”) and sometimes the language is vague (e.g. “alls previous laws that contradict this law are hereby repealed…”). So, we will try to use NLP techniques to (at least) point out which previous law are referenced (or significantly related) to a subsequent/more recent law.</p>
-    <p>Advanced keyword search: we will implement n-gram and tf-idf algorithms to enable users to search using natural language queries.</p>
-    <p>We also aim to implement a user authentication system.</p>
-    <p>Lastly, we would like to add a feature for laws auto-querying. That is, if a law is referenced in the text, a user should be able to click on and go to the page with that law.</p>
-
-    <h2 class="text-center">Entity Relationship Diagram</h2>
-    <img src="imgs/erdv3.png" alt="ERD Graphic" style="width: 100%">
-
-    <h3>Assumptions</h3>
-
-    <p>We made the assumption that for each case, if the user adds a law or an article from a law, they can only have one note/comment associated with it. Additionally, tags are private to the user's cases. We decided to give each account a type, as in the future, additional account types (beyond legal professionals) might be implemented.</p>
-
-    <p>Currently, this database only implements storage for statutory laws, but we note the type of law in that table, because in the future case law would likely be included as reference material. Similarly, though our database currently only will store the English version of laws, many are written in multiple languages so that could potentially be stored in the future as well (especially since case law is not available in English).</p>
-    </div>
+  <div class="container theme-showcase main" role="main">
+    <!-- Filled by jQuery-->
   </div>
+
   <br>
   <footer class="panel-footer text-center">
     <div class="container-fluid">
@@ -91,7 +49,8 @@
   </footer>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </body>

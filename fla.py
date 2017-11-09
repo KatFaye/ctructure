@@ -6,10 +6,19 @@
 import mysql.connector as mc
 from mysql.connector import errorcode
 import sys
+from flask import Flask,render_template, json, request
+app = Flask(__name__)
+ 
+@app.route("/")
+def hello():
+    return "Hello World!"
+ 
+if __name__ == "__main__":
+    app.run()
 
 
-@app.route('../login',methods = ['POST'])
-def hello_world():
+@app.route('/login',methods = ['GET'])
+def get_login():
    #define user connection
     config = {
         'user': 'kherring',
@@ -27,7 +36,7 @@ def hello_world():
      'repeated_password': request.form('repeated_password')
     }
 
-    return(data)
+    return json.dumps(data)
 
 
     # build query
@@ -51,7 +60,3 @@ def hello_world():
 
 if __name__ == '__main__':
    app.run()
-
-
-    
-

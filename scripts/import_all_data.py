@@ -129,8 +129,8 @@ cnx.commit()
 
 ### IMPORT DATA into the "laws" TABLE
 add_law = ("INSERT INTO laws "
-           "(law_num, exact_date, name, ending, pub_id, intro, content_type, agency) "
-           "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)")
+           "(law_num, exact_date, name, ending, pub_id, intro, content_type) "
+           "VALUES (%s, %s, %s, %s, %s, %s, %s)")
 
 for law in law_files:
   # open law file and file with references
@@ -148,7 +148,6 @@ for law in law_files:
     content_type = law_doc[1] 
     law_name = law_doc[2] 
     law_num = law_name.split()[1]
-    agency = law_doc[4]
     publication = law_doc[3]
     # get publication attributes
     pub_var_num, pub_date = get_pub_attrs(publication)
@@ -169,7 +168,7 @@ for law in law_files:
     # fetchall() returns list of tuples (each tuple is a result)
     pub_id = cursor.fetchall()[0][0]
     cont_tuple = (law_num, date(e_year, e_month, e_day), law_name, \
-                  ending, pub_id, intro, content_type, agency)
+                  ending, pub_id, intro, content_type)
 
     # insert into the "laws" table
     cursor.execute(add_law, cont_tuple)
@@ -219,4 +218,4 @@ cnx.commit()
 cursor.close()
 cnx.close()
 
-
+print "Successfully imported all the data!" 

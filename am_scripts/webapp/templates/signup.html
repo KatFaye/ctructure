@@ -1,0 +1,57 @@
+<!DOCCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ctructure - Rwandan Legal Research</title>
+    
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="main">Home</a></li>
+            <li role="presentation"><a href="#">Sign In</a></li>
+            <li role="presentation" class="active"><a href="#">Sign Up</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Ctructure</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <h1>Create your accout today!</h1>
+        <form method='POST' class="form-signin">
+        <label for="inputName" class="sr-only">First name</label>
+        <input type="name" name="input_firstname" id="input_firstname" class="form-control" placeholder="Name" required autofocus>
+        <label for="inputName" class="sr-only">Last name</label>
+        <input type="name" name="input_lastname" id="input_lastname" class="form-control" placeholder="Name" required autofocus>
+        <label for="inputName" class="sr-only">Username</label>
+        <input type="name" name="input_username" id="input_username" class="form-control" placeholder="Name" required autofocus>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="input_email" id="input_email" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="input_password" id="input_password" class="form-control" placeholder="Password" required>
+         
+        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+      </form>
+      </div>
+ 
+       
+ 
+      <footer class="footer">
+        <p>&copy; Ctructure 2017</p>
+      </footer>
+ 
+    </div>
+  </body>
+</html>
+<script src="../static/js/signUp.js"></script>
+ 
