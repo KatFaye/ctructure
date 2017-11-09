@@ -100,7 +100,7 @@ def query():
         if _year and _search:
             conn = mysql.connect()
             cursor = conn.cursor()
-            query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
+            query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and EXTRACT(YEAR FROM p.pub_date) =" + _year + ""
             cursor.execute(query_string)
 
             kwargs['data'] = cursor.fetchall()
