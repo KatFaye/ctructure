@@ -80,6 +80,35 @@ def showChangeInfo():
 
 @app.route('/search', methods=['GET'])
 def getLaws():
+  val_status = False
+  try:
+    _search = request.form['search']
+    _year=request.form['year']
+    # validate the received values
+    if _search and _year:
+      # all fields are filled
+      try:
+        conn = mysql.connect()
+      except Exception as e:
+        return json.dumps({'debugging':str(e)})
+      
+      cursor = conn.cursor()
+      query_string="SELECT name FROM laws l, publications p inner join l.pub_id=p.pub_id WHERE name like '{%_search%}' and year(p.pub_date) ='{_year}'"
+      cursor.execute(query_string)
+      cursor.callproc('sp_selectFunction',(_search,_name))
+
+      data = cursor.fetchall()
+
+   except Exception as e:
+    print e
+    return json.dumps({'error': 'exception thrown' })
+    
+  cursor.close()
+  conn.close()
+  return render_template('select.html', data=data)
+
+
+
   #TODO: YUN
 
 if __name__=="__main__":
