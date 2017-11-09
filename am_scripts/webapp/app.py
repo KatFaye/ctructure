@@ -110,7 +110,7 @@ def updateUserInfo():
 
 # Query: query for law
 @app.route('/search')
-def showChangeInfo():
+def showSearch():
   return render_template('query.html')
 
 @app.route('/search', methods=['GET'])
