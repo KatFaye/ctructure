@@ -17,6 +17,7 @@ mysql.init_app(app)
 
 @app.route('/signup', methods=['POST'])
 def signup():
+  kwargs = {}
   val_status = False
   try:
     # read the posted values from the UI
@@ -41,7 +42,9 @@ def signup():
 
       if len(data) is 0:
         conn.commit()
-        return json.dumps({'message':'User created successfully !'})
+        kwargs['message'] = "User Created Successfully!"
+        kwargs['message-type'] = "success"
+        return render_template('/signup.html' **kwargs)
       else:
         return json.dumps({'error':'err'})
 
