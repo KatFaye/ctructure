@@ -6,7 +6,7 @@
 <div class="alert alert-{{ messageType }}" >
   {{ message }}
 </div>
-<form style="width=50%;" action="/signup" method='POST' id="signup">
+<form style="width=50%;" action="/signup" method='POST' name="signup">
   <label for="inputName" class="sr-only">First name</label>
   <input type="name" name="input_firstname" id="input_firstname" class="form-control" placeholder="User Name" required autofocus>
   <label for="inputName" class="sr-only">Last name</label>
@@ -18,7 +18,7 @@
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" name="input_password" id="input_password" class="form-control" placeholder="Password" required>
 
-  <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+  <input type="submit" value="Create Account!" class="btn-primary">
 </form>
 
 {% endblock %}

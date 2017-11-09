@@ -7,13 +7,12 @@
   {{ message }}
 </div>
 
-<form style="width=50%;" action="/updateinfo" method='POST' id="updateinfo">
+<form style="width=50%;" action="/updateinfo" method='POST' name="updateinfo">
   <label for="inputEmail" class="sr-only">Email address</label>
   <input type="email" name="input_email" id="input_email" class="form-control" placeholder="Email address" autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" name="input_password" id="input_password" class="form-control" placeholder="Password">
-
-  <button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="button">Submit</button>
+  <input type="submit" value="Update Info" class="btn-primary">
 </form>
 
 {% endblock %}
