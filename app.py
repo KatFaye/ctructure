@@ -97,14 +97,13 @@ def query():
         _search = request.form['search']
         _year=request.form['year']
         # validate the received values
-        conn = mysql.connect()
+        if _year and _search:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
+            cursor.execute(query_string)
 
-
-        cursor = conn.cursor()
-        query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
-        cursor.execute(query_string)
-
-        kwargs['data'] = cursor.fetchall()
+            kwargs['data'] = cursor.fetchall()
 
     except Exception as e:
         kwargs['message'] = "Error %s: %s" % (e[0], e[1])
