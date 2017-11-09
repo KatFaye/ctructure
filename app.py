@@ -143,7 +143,7 @@ def getLaws():
   return str(data)
 
 @app.route('/plan')
-def showChangeInfo():
+def plan():
   return render_template('plan.html')
 
 if __name__=="__main__":
