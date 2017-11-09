@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h1 class="text-center">Index</h1>
 <h2 class="text-center">Application Domain</h2>
 
 <p>The goal of the project is to create a database system that lawyers can use to retrieve legal information based on a set of attributes (e.g. publication year, type or section of legal document, etc). The database will only include Rwandan laws. In additional to retrieving information, lawyers will be able to manage cases using the web application. That is, they will be able to create a topic (i.e. legal case) and add links to the laws and/or sections of the laws that are relevant to the legal case.</p>
@@ -32,7 +33,7 @@
 <h2 class="text-center">Entity Relationship Diagram</h2>
 <img src="../static/imgs/erdv3.png" alt="ERD Graphic" style="width: 100%">
 
-<h3>Assumptions</h3>
+<h2>Assumptions</h2>
 
 <p>We made the assumption that for each case, if the user adds a law or an article from a law, they can only have one note/comment associated with it. Additionally, tags are private to the user's cases. We decided to give each account a type, as in the future, additional account types (beyond legal professionals) might be implemented.</p>
 
