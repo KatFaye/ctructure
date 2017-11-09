@@ -62,6 +62,7 @@ def signUp():
     
   cursor.close()
   conn.close()
+  return redirect('/search')
 
 # Update: change user info 
 @app.route('/changeInfo')
