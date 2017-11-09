@@ -105,7 +105,7 @@ def query():
             if cursor.fetchall(): #results exit
                 kwargs['data'] = cursor.fetchall()
             else:
-                kwargs['data'] = "No Results Matching Criteria Found"
+                kwargs['data'] = "No results found matching inputted criteria"
 
     except Exception as e:
         kwargs['message'] = "Error %s: %s" % (e[0], e[1])
