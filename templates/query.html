@@ -1,34 +1,37 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <h1 class="text-center">Search</h1>
+
+<div class="alert alert-{{ messageType }}">
+  {{ message }}
+</div>
 
 <div class="form-wrapper">
   <div class="form-header">
     New Search
   </div>
-<form name="query" action="/query" method="POST">
-  <div class="form-content">
-    <div class="form-content-row">
-      <span class="field-title">Query:</span>
-      <input class="form-input" type="search" name="search" placeholder="Enter a search term...">
+  <form name="query" action="/query" method="POST">
+    <div class="form-content">
+      <div class="form-content-row">
+        <span class="field-title">Query:</span>
+        <input class="form-input" type="search" name="search" placeholder="Enter a search term...">
+      </div>
+      <div class="form-content-row">
+        <span class="field-title">Filter by:</span><br>
+        <span class="field-title">Year: </span>
+        <input class="form-input" type="radio" name="year" value="2008">2008
+        <input class="form-input" type="radio" name="year" value="2009">2009<br>
+      </div>
+      <input type="submit" value="Submit" class="bth btn-primary">
     </div>
-    <div class="form-content-row">
-      <span class="field-title">Filter by:</span><br>
-      <span class="field-title">Year: </span>
-      <input class="form-input" type="radio" name="year" value="2008">2008
-      <input class="form-input" type="radio" name="year" value="2009">2009<br>
-    </div>
-    <input type="submit" value="Submit">
-  </div>
 
-</form>
+  </form>
 </div>
 
 <h2>Results</h2>
 
 <div id="results">
-<p>{{ data }}</p>
+  <p>{{ data }}</p>
 </div>
 
 {% endblock %}

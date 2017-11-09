@@ -107,8 +107,9 @@ def query():
         kwargs['data'] = cursor.fetchall()
 
     except Exception as e:
-        print e
-        return json.dumps({'error': 'exception thrown' })
+        kwargs['message'] = "Error %s: %s" % (e[0], e[1])
+        kwargs['messageType'] = "danger"
+        return render_template('query.html', **kwargs)
 
     cursor.close()
     conn.close()
