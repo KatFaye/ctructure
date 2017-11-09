@@ -12,15 +12,15 @@
   </div>
   <form name="query" action="/query" method="POST">
     <div class="form-content">
-      <div class="form-content-row">
-        <span class="field-title">Query:</span>
-        <input class="form-input" type="search" name="search" placeholder="Enter a search term...">
+      <div class="form-group">
+        <label for="search" class="sr-only">Enter a search term.</label>
+        <input class="form-control" type="search" name="search" placeholder="Enter a search term..." required autofocus>
       </div>
-      <div class="form-content-row">
+      <div class="form-group">
         <span class="field-title">Filter by:</span><br>
         <span class="field-title">Year: </span>
-        <input class="form-input" type="radio" name="year" value="2008">2008
-        <input class="form-input" type="radio" name="year" value="2009">2009<br>
+        <input type="radio" name="year" value="2008">2008
+        <input type="radio" name="year" value="2009">2009
       </div>
       <input type="submit" value="Submit" class="bth btn-primary">
     </div>
