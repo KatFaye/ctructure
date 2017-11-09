@@ -70,7 +70,42 @@ def showChangeInfo():
 
 @app.route('/changeInfo', methods=['POST'])
 def updateUserInfo():
-  #TODO
+  val_status = False
+  try:
+    # read the posted values from the UI
+    _email = request.form['input_email']
+    _password = request.form['input_password']
+
+    # validate the received values
+    if  _email and _password:
+      # all fields are filled
+      try:
+        conn = mysql.connect()
+      except Exception as e:
+        return json.dumps({'debugging':str(e)})
+
+      cursor = conn.cursor()
+      query_string="UPDATE users SET email={%_email%}, password= {%_password%} WHERE username='SampleUser'"
+      cursor.execute(query_string)
+      cursor.callproc('sp_updateUserInfo',(_email, _password))
+
+      data = cursor.fetchall()
+
+      if len(data) is 0:
+        conn.commit()
+        return json.dumps({'message':'User created successfully !'})
+      else:
+        return json.dumps({'error':'err'})
+
+    else:
+      return json.dumps({'html':'<span>Enter the required fields</span>'})
+  
+  except Exception as e:
+    print e
+    return json.dumps({'error': 'exception thrown' })
+    
+  cursor.close()
+  conn.close()
 
 
 # Query: query for law
@@ -107,9 +142,6 @@ def getLaws():
   conn.close()
   return render_template('select.html', data=data)
 
-
-
-  #TODO: YUN
 
 if __name__=="__main__":
   app.run(port=5008, host='0.0.0.0')
