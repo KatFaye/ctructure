@@ -85,7 +85,7 @@ def updateUserInfo():
         return json.dumps({'debugging':str(e)})
 
       cursor = conn.cursor()
-      query_string="UPDATE users SET email=" +_email +", password= " + _password +"WHERE username='SampleUser'"
+      query_string="UPDATE users SET email= '" +_email +"', password= '" + _password +"' WHERE username='SampleUser'"
       cursor.execute(query_string)
       cursor.callproc('sp_updateUserInfo',(_email, _password))
 
