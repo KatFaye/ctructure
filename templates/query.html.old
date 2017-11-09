@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Ctructure - Rwandan Legal Research</title>
+    
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+  <link href="../static/css/signup.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+      <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="search">Search Law</a>
+                </li>
+                <li role="presentation"><a href="changeInfo">Change User Info</a>
+                </li>
+                <li role="presentation"><a href="showSignUp">Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">Ctructure</h3>
+      </div>
+
+
+      <div class="container theme-showcase" role="main">
+        <div class="page-header text-center">
+          <h1>Search Page</h1>
+
+          <form name="query">
+            <div class="form-content">
+              <div class="form-content-row">
+                <span class="field-title">Query:</span>
+                  <input class="form-input" type="search" name="search" placeholder="Enter a search term...">
+              </div>
+              <div class="form-content-row">
+              <span class="field-title">Filter by:</span><br>
+              <span class="field-title">Year: </span>
+              <input class="form-input" type="radio" name="year" value="2008" checked>2008
+              <input class="form-input" type="radio" name="year" value="2009">2009<br>
+              </div>
+              <button id="searchBtn" class="btn btn-lg btn-primary btn-block" type="button">Search</button>
+            </div>
+          </form>
+
+          <h2>Results</h2>
+          <div id="results">
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <br>
+  <footer class="panel-footer text-center">
+    <p>&copy; Ctructure 2017</p>
+  </footer>
+</body>
+</html>
+<script src="../static/js/query.js"></script>

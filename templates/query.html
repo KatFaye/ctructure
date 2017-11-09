@@ -2,64 +2,86 @@
 <html lang="en">
 
 <head>
-  <title>Ctructure - Rwandan Legal Research</title>
-    
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-  <link href="../static/css/signup.css" rel="stylesheet">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Ctructure</title>
+  <!-- Bootstrap CSS -->
+  <link href="css/paper.css" rel="stylesheet">
 </head>
 
 <body>
-  <div class="container">
-      <div class="header">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="search">Search Law</a>
-                </li>
-                <li role="presentation"><a href="changeInfo">Change User Info</a>
-                </li>
-                <li role="presentation"><a href="showSignUp">Sign Up</a>
-                </li>
-            </ul>
-        </nav>
-        <h3 class="text-muted">Ctructure</h3>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="/cse30246/rwandanlaw/ctructure">Ctructure</a>
       </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/cse30246/rwandanlaw/ctructure/">Home</a></li>
+          <li><a href="plan.html">Plan</a></li>
+          <li class="active"><a href="demo.html">Demo</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
 
 
-      <div class="container theme-showcase" role="main">
-        <div class="page-header text-center">
-          <h1>Search Page</h1>
+  <div class="container theme-showcase" role="main">
+    <div class="page-header text-center">
+      <h1>Search Page</h1>
 
-          <form name="query">
-            <div class="form-content">
-              <div class="form-content-row">
-                <span class="field-title">Query:</span>
-                  <input class="form-input" type="search" name="search" placeholder="Enter a search term...">
-              </div>
-              <div class="form-content-row">
-              <span class="field-title">Filter by:</span><br>
-              <span class="field-title">Year: </span>
-              <input class="form-input" type="radio" name="year" value="2008" checked>2008
-              <input class="form-input" type="radio" name="year" value="2009">2009<br>
-              </div>
-              <button id="searchBtn" class="btn btn-lg btn-primary btn-block" type="button">Search</button>
-            </div>
-          </form>
-
-          <h2>Results</h2>
-          <div id="results">
-
+      <form name="query" action="" method="GET">
+        <div class="form-content">
+          <div class="form-content-row">
+            <span class="field-title">Query:</span>
+              <input class="form-input" type="search" name="search" placeholder="Enter a search term...">
           </div>
-        </div>
-      </div>
-  </div>
+          <div class="form-content-row">
+          <span class="field-title">Filter by:</span><br>
+          <span class="field-title">Year: </span>
+  <input class="form-input" type="radio" name="year" value="2008">2008
+<input class="form-input" type="radio" name="year" value="2009">2009<br>
+</div>
+  <input type="submit" value="Submit">
+    </div>
 
+</form>
+
+
+<h2>Results</h2>
+
+<div id="results">
+
+</div>
+</div>
+    </div>
+
+
+
+
+  </div>
   <br>
   <footer class="panel-footer text-center">
-    <p>&copy; Ctructure 2017</p>
+    <div class="container-fluid">
+
+      <div class="footer-copyright">Made Using <a href="https://v4-alpha.getbootstrap.com/">Bootstrap</a>. Theme via <a href="https://bootswatch.com/">Bootswatch</a>.<br> Last updated 2017.</div>
+    </div>
   </footer>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </body>
+
 </html>
-<script src="../static/js/query.js"></script>
