@@ -140,7 +140,7 @@ def getLaws():
     
   cursor.close()
   conn.close()
-  return render_template('select.html', data=data)
+  return str(data)
 
 
 if __name__=="__main__":
