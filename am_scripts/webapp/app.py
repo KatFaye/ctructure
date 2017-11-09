@@ -112,7 +112,7 @@ def updateUserInfo():
 def showSearch():
   return render_template('query.html')
 
-@app.route('/search', methods=['GET'])
+@app.route('/getLaw', methods=['GET'])
 def getLaws():
   val_status = False
   try:
