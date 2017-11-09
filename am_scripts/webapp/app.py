@@ -85,7 +85,7 @@ def updateUserInfo():
         return json.dumps({'debugging':str(e)})
 
       cursor = conn.cursor()
-      query_string="UPDATE users SET email={%_email%}, password= {%_password%} WHERE username='SampleUser'"
+      query_string="UPDATE users SET email=" +_email +", password= " + _password +"WHERE username='SampleUser'"
       cursor.execute(query_string)
       cursor.callproc('sp_updateUserInfo',(_email, _password))
 
@@ -128,7 +128,7 @@ def getLaws():
         return json.dumps({'debugging':str(e)})
       
       cursor = conn.cursor()
-      query_string="SELECT name FROM laws l, publications p inner join l.pub_id=p.pub_id WHERE name like '{%_search%}' and year(p.pub_date) ='{_year}'"
+      query_string="SELECT name FROM laws l, publications p inner join l.pub_id=p.pub_id WHERE name like '" + _search + "' and year(p.pub_date) ='"+_year+"'"
       cursor.execute(query_string)
       cursor.callproc('sp_selectFunction',(_search,_name))
 
