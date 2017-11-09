@@ -128,7 +128,7 @@ def getLaws():
         return json.dumps({'debugging':str(e)})
       
       cursor = conn.cursor()
-      query_string="SELECT name FROM laws l, publications p inner join l.pub_id=p.pub_id WHERE name like '" + _search + "' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
+      query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
       cursor.execute(query_string)
 
       data = cursor.fetchall()
