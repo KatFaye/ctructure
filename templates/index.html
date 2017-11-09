@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% with title="Index" %}
 {% block content %}
+
 <h2 class="text-center">Application Domain</h2>
 
 <p>The goal of the project is to create a database system that lawyers can use to retrieve legal information based on a set of attributes (e.g. publication year, type or section of legal document, etc). The database will only include Rwandan laws. In additional to retrieving information, lawyers will be able to manage cases using the web application. That is, they will be able to create a topic (i.e. legal case) and add links to the laws and/or sections of the laws that are relevant to the legal case.</p>
@@ -39,4 +39,3 @@
 <p>Currently, this database only implements storage for statutory laws, but we note the type of law in that table, because in the future case law would likely be included as reference material. Similarly, though our database currently only will store the English version of laws, many are written in multiple languages so that could potentially be stored in the future as well (especially since case law is not available in English).</p>
 </div>
 {% endblock %}
-{% endwith %}
