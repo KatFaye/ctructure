@@ -34,7 +34,7 @@ def signup():
         conn = mysql.connect()
       except Exception as e:
         kwargs['message'] = str(e)
-        kwargs['message-type'] = "danger"
+        kwargs['messageType'] = "danger"
         return render_template('/signup.html', **kwargs)
 
       cursor = conn.cursor()
@@ -45,21 +45,21 @@ def signup():
       if len(data) is 0:
         conn.commit()
         kwargs['message'] = "User Created Successfully!"
-        kwargs['message-type'] = "success"
+        kwargs['messageType'] = "success"
         return render_template('/signup.html', **kwargs)
       else:
             kwargs['message'] = "Data Lost/Empty"
-            kwargs['message-type'] = "danger"
+            kwargs['messageType'] = "danger"
             return render_template('/signup.html', **kwargs)
 
     else:
       kwargs['message'] = "Please fill out all fields"
-      kwargs['message-type'] = "danger"
+      kwargs['messageType'] = "danger"
       return render_template('/signup.html', **kwargs)
 
   except Exception as e:
     kwargs['message'] = str(e)
-    kwargs['message-type'] = "danger"
+    kwargs['messageType'] = "danger"
     return render_template('/signup.html', **kwargs)
 
   cursor.close()
