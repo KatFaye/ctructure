@@ -42,11 +42,9 @@
   {% endblock %}
 
   <div class="container theme-showcase main" role="main">
-    {% if message %}
       <div class="alert alert-{{ messageType }}" >
         {{ message }}
       </div>
-    {% endif %}
     {% block content %} {% endblock %}
   </div>
 
