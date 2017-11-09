@@ -1,9 +1,9 @@
-MINICOM Ministry of Trade and Industry
-MINECOFIN Ministry of Finance and Economic Planning
-RURA Rwanda Utilities Regulatory Authority
-BNR National Bank of Rwanda
-RDB Rwanda Development Board
-MYICT Ministry of Youth & ICT
-RRA Rwanda Revenue Authority
-REMA Rwanda Environment Management Authority
-MINEACOM Ministry of Trade, Industry, and East African Community Affairs
+1 Constitution 
+2 Law
+2 Organic Law
+3 Presidential Order
+4 Prime Minister Order
+4 Ministerial Order
+4 Rule
+4 Instruction
+4 Policy
