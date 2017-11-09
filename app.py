@@ -1,6 +1,6 @@
 from flask import Flask, render_template, json, request, redirect
 from flaskext.mysql import MySQL
-from ctructure.base import base_page
+from base import base_page
 
 app = Flask(__name__)
 app.register_blueprint(base_page)
