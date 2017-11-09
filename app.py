@@ -21,29 +21,29 @@ def signup():
     val_status = False
     try:
     # read the posted values from the UI
-    _firstname = request.form['input_firstname']
-    _lastname = request.form['input_lastname']
-    _username = request.form['input_username']
-    _email = request.form['input_email']
-    _password = request.form['input_password']
+        _firstname = request.form['input_firstname']
+        _lastname = request.form['input_lastname']
+        _username = request.form['input_username']
+        _email = request.form['input_email']
+        _password = request.form['input_password']
 
-      # all fields are filled
-    conn = mysql.connect()
+          # all fields are filled
+        conn = mysql.connect()
 
-    cursor = conn.cursor()
-    cursor.callproc('sp_createUser', (_firstname, _lastname, _username, _email, _password))
+        cursor = conn.cursor()
+        cursor.callproc('sp_createUser', (_firstname, _lastname, _username, _email, _password))
 
-    data = cursor.fetchall()
+        data = cursor.fetchall()
 
-    if len(data) is 0:
-        conn.commit()
-        kwargs['message'] = "User Created Successfully!"
-        kwargs['messageType'] = "success"
-        return render_template('/signup.html', **kwargs)
-    else:
-        kwargs['message'] = "Error: Unknown Error"
-        kwargs['messageType'] = "danger"
-        return render_template('/signup.html', **kwargs)
+        if len(data) is 0:
+            conn.commit()
+            kwargs['message'] = "User Created Successfully!"
+            kwargs['messageType'] = "success"
+            return render_template('/signup.html', **kwargs)
+        else:
+            kwargs['message'] = "Error: Unknown Error"
+            kwargs['messageType'] = "danger"
+            return render_template('/signup.html', **kwargs)
 
     except Exception as e:
         kwargs['message'] = "Error %s: %s" % (e[0], e[1])
