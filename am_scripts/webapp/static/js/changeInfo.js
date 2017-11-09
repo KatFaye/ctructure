@@ -1,5 +1,6 @@
 $(function(){
     $('#submitBtn').click(function(){
+        alert
         $.ajax({
             url: '/changeInfo',
             data: $('form').serialize(),
