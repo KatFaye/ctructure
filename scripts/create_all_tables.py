@@ -112,12 +112,12 @@ tables['publications'] = (
 tables['repeals'] = (
     """
     CREATE TABLE repeals (
-    parent_law int(10) NOT NULL,
-    impacted_law int(10) NOT NULL,
-    INDEX (parent_law, impacted_law),
-    FOREIGN KEY (parent_law)
+    past_law int(10) NOT NULL,
+    repealing_law int(10) NOT NULL,
+    INDEX (repealing_law, past_law),
+    FOREIGN KEY (repealing_law)
     REFERENCES laws(law_id),
-    FOREIGN KEY (impacted_law)
+    FOREIGN KEY (past_law)
     REFERENCES laws(law_id)
     )
     """
