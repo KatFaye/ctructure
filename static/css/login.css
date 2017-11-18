@@ -1,0 +1,32 @@
+.form-wrapper{
+    max-width: 560px;
+    margin: auto;
+    padding: 30px 50px;
+}
+
+
+.form-header{
+    color: #0c84e4;
+    font-size: x-large;
+}
+
+.form-content{
+    padding: 20px 0px;
+}
+
+.form-content-row{
+
+
+}
+
+.field-title{
+    color: black;
+    font-size: smaller;
+    display: inline-block;
+    width: 150px;
+}
+
+.form-input{
+
+
+}
