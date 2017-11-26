@@ -5,11 +5,10 @@
 
 import os, os.path
 import datetime
-import get_law_fields
 from whoosh import index
 from whoosh.fields import Schema, TEXT, ID, STORED, DATETIME 
 from whoosh.analysis import StemmingAnalyzer
-
+from get_law_fields import list_from_file, get_fields
 
 # import stopwords
 with open("search_static/stopwords.txt", 'r') as f:
@@ -34,9 +33,10 @@ schema = Schema(
                 law_name = TEXT(analyzer=lang_ana, stored=True),
                 law_body = TEXT(analyzer=lang_ana),
                 law_num_date = ID(stored=True),
-                # content type
-                pud_date = DATETIME(sortable=True, stored=True),
-                article_one = STORED
+                # content type & agency
+                pub_date = DATETIME(sortable=True, stored=True),
+                article_one_title = STORED,
+                article_one_str = STORED
                )
 
 # CREATE AN INDEX
@@ -54,8 +54,39 @@ else:
   os.mkdir("indexdir")
   ix = index.create_in("indexdir", schema)
 
+# start indexing documents
+file_list = os.listdir("demo_laws")
+
 writer = ix.writer()
 
+def get_unicode(string):
+  return unicode(string, 'utf-8')
+
+for doc in file_list:
+  if os.path.isfile("demo_laws/" + doc):
+    file_lines = list_from_file("demo_laws/"+doc)
+    file_fields = get_fields(file_lines)
+  
+    law_name = file_fields["law_name"]
+    law_body = file_fields["law_body"]
+    law_num_date = file_fields["law_num_date"]
+  
+    pub_date = file_fields["pub_date"]
+    article_one_title = file_fields["article_one_title"]
+    article_one_str = file_fields["article_one_str"]  
+    
+    writer.add_document(law_name = get_unicode(law_name),
+                        law_body = get_unicode(law_body),
+                        law_num_date = get_unicode(law_num_date),
+  
+                        pub_date = pub_date,
+                        article_one_title = article_one_title,
+                        article_one_str = article_one_str
+                       )
+
+writer.commit()
+
+  
 
 
 
