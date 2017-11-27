@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="text-center">Login</h1>
+<div class="alert alert-{{ messageType }}" >
+  {{ message }}
+</div>
+
+<form style="width=50%" action="/login" method="POST" name="login">
+  <label for="username" class="sr-only">Username</label>
+  <input type="name" name="username" placeholder="Username" class="form-control" required autofocus>
+  <label for="password" class="sr-only">Password</label>
+  <input type="password" name="password" placeholder="Password" class="form-control" required autofocus>
+  <input type="submit" value="Log in!" class="btn btn-primary">
+</form>
+
+{% endblock %}

@@ -1,6 +1,7 @@
-from flask import Flask, render_template, json, request, redirect
+from flask import Flask, render_template, json, request, redirect, flash, session, abort
 from flaskext.mysql import MySQL
 from base import base_page
+from os import urandom
 
 app = Flask(__name__)
 app.register_blueprint(base_page)
@@ -14,6 +15,30 @@ app.config['MYSQL_DATABASE_DB'] = 'rwandanlaw'
 app.config['MYSQL_DATABASE_HOST'] = '0.0.0.0'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
+
+@app.route('/')
+def home():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        return render_template('index.html')
+
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+    kwargs = {}
+    user = request.form['username']
+    password = request.form['password']
+    if session.get('logged_in') == True:
+        kwargs['message'] = "You're logged in already!"
+        kwargs['messageType'] = "warning"
+    elif password == 'password' and user == 'admin':
+        session['logged_in'] = True
+        kwargs['message'] = "%s Logged In Successfully!" % user
+        kwargs['messageType'] = "success"
+    else:
+        kwargs['message'] = "Error: Bad Password!"
+        kwargs['messageType'] = "danger"
+    return render_template('login.html', **kwargs)
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -113,4 +138,5 @@ def query():
     return render_template('query.html', **kwargs)
 
 if __name__=="__main__":
-  app.run(port=5009, host='0.0.0.0')
+    app.secret_key = urandom(12)
+    app.run(port=5009, host='0.0.0.0')
