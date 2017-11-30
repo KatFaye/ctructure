@@ -1,4 +1,4 @@
-# advanced_search.py
+# advanced_indexing.py
 # Implementing Boolean retrieval model using Whoosh python module
 # Group: Ctructure
 # Date: Nov 25, 2017
@@ -9,6 +9,7 @@ from whoosh import index
 from whoosh.fields import Schema, TEXT, ID, STORED, DATETIME 
 from whoosh.analysis import StemmingAnalyzer
 from get_law_fields import list_from_file, get_fields
+from whoosh.qparser import QueryParser
 
 # import stopwords
 with open("search_static/stopwords.txt", 'r') as f:
@@ -44,20 +45,20 @@ schema = Schema(
 The documents will be stored according to the defined schema.
 Fields that are indexed can be "searched." Some fields can be 
 stored without being indexed... just to show up search results.
-"""
+"""  
 
 # To create (or open existing) index directory
 if os.path.exists("indexdir"):
-  ix = index.open_dir("indexdir")
+  index = index.open_dir("indexdir")
 
 else:
   os.mkdir("indexdir")
-  ix = index.create_in("indexdir", schema)
+  index = index.create_in("indexdir", schema)
 
 # start indexing documents
 file_list = os.listdir("demo_laws")
 
-writer = ix.writer()
+writer = index.writer()
 
 def get_unicode(string):
   return unicode(string, 'utf-8')
@@ -83,11 +84,15 @@ for doc in file_list:
                         article_one_title = article_one_title,
                         article_one_str = article_one_str
                        )
-
 writer.commit()
 
-  
+# define fields to search
+qp = QueryParser("law_body", schema=index.schema)  
 
+with index.searcher() as searcher:
+  query = qp.parse("law")
+  results = searcher.search(query)
+  print(len(results))
 
 
 
