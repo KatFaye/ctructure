@@ -28,7 +28,12 @@ class FixLawName:
       self.original_list.append(line)
    
     return self.original_list
-
+  
+  def line_exists(self, doc_file, line_i):
+    # check if line exits in a list
+    if len(doc_file) >= line_i + 1: return True
+    return false
+ 
   def get_next_token(self, doc_file, line_i, token_i):
     """
     Get the next token in the doc_file (list)
@@ -36,20 +41,26 @@ class FixLawName:
     token_i -- current token index
     """
     doc_file = [' '.join(line) for line in doc_file]
-
+    
+    # check if next line in file exits. Not elegant implementation
+    if not self.line_exists(doc_file, line_i):
+      return "$$$END$$$", 0, 0 # indicating end of file.
+    
     if len(doc_file[line_i].split()) > token_i + 1:
       return doc_file[line_i].split()[token_i + 1], line_i, token_i + 1
-
+    
     else:
       if len(doc_file) > line_i + 1:
         if len(doc_file[line_i + 1].split()) > 0:
           return doc_file[line_i + 1].split()[0], line_i + 1, 0
         else:
           # if the next line is empty, we run the function recursively. 
-          return get_next_token(doc_file, line_i + 1, 0)
-      # if we have reached the last token of the document.
-      if len(doc_file) == line_i + 1 and len(doc_file[line_i].split()) == token_i + 1:
-        return
+          return self.get_next_token(doc_file, line_i + 1, 0)
+
+      # if we have reached the last token of the document. 
+      # There is a bug on the right side of the AND operator (because of Zero in recursive call).
+      else:
+        return "$$$END$$$", 0, 0
 
   def is_law_name(self, copy, i, j):
     """
@@ -105,6 +116,7 @@ class FixLawName:
           
       """Get next token - see if starts with a digit - date"""
       next_token, next_i, next_j = self.get_next_token(copy, next_i, next_j)
+
       if next_token and next_token[0].isdigit():
         has_date = True
       
