@@ -58,33 +58,45 @@ else:
 # start indexing documents
 file_list = os.listdir("demo_laws")
 
-writer = index.writer()
-
 def get_unicode(string):
   return unicode(string, 'utf-8')
 
-for doc in file_list:
-  if os.path.isfile("demo_laws/" + doc):
-    file_lines = list_from_file("demo_laws/"+doc)
-    file_fields = get_fields(file_lines)
-  
-    law_name = file_fields["law_name"]
-    law_body = file_fields["law_body"]
-    law_num_date = file_fields["law_num_date"]
-  
-    pub_date = file_fields["pub_date"]
-    article_one_title = file_fields["article_one_title"]
-    article_one_str = file_fields["article_one_str"]  
+# MAIN_WRITELOCK file gets created after initiating the writer object (below)
+# it's a simple way to know that we have already indexed documents
+
+if not os.path.exists("indexdir/MAIN_WRITELOCK"):
+
+  writer = index.writer()
+
+  print("If stat")
+  # almost self explanatory below but will add comments latter
+  for doc in file_list:
+    if os.path.isfile("demo_laws/" + doc):
+      file_lines = list_from_file("demo_laws/"+doc)
+      file_fields = get_fields(file_lines)
     
-    writer.add_document(law_name = get_unicode(law_name),
-                        law_body = get_unicode(law_body),
-                        law_num_date = get_unicode(law_num_date),
-  
-                        pub_date = pub_date,
-                        article_one_title = article_one_title,
-                        article_one_str = article_one_str
-                       )
-writer.commit()
+      law_name = file_fields["law_name"]
+      law_body = file_fields["law_body"]
+      law_num_date = file_fields["law_num_date"]
+    
+      pub_date = file_fields["pub_date"]
+      article_one_title = file_fields["article_one_title"]
+      article_one_str = file_fields["article_one_str"]  
+      
+      writer.add_document(law_name = get_unicode(law_name),
+                          law_body = get_unicode(law_body),
+                          law_num_date = get_unicode(law_num_date),
+    
+                          pub_date = pub_date,
+                          article_one_title = article_one_title,
+                          article_one_str = article_one_str
+                         )
+  print("committed")
+  writer.commit()
+
+else: 
+  pass # No need to index documents again (i.e. duplicates)
+
 
 # define fields to search
 qp = QueryParser("law_body", schema=index.schema)  
