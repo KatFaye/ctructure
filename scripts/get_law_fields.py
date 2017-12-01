@@ -21,8 +21,8 @@ def get_fields(file_lines):
       file_lines - list of lines in the file
   """
   fields = {}  
-
-  fields["content_type"] = file_lines[1]
+ 
+  fields["content_type_tag"] = file_lines[1]
   law_name = file_lines[2]
   fields["law_name"] = law_name
 
@@ -38,7 +38,7 @@ def get_fields(file_lines):
   pub_date = datetime.datetime(year, month, day)
   fields["pub_date"] = pub_date
   
-  fields["agency"] = file_lines[4]
+  fields["agency_tag"] = file_lines[4]
 
   # Get first few lines of article-one
   """ The lines below save the title of article-one

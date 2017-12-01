@@ -6,7 +6,7 @@
 import os, os.path
 import datetime
 from whoosh import index
-from whoosh.fields import Schema, TEXT, ID, STORED, DATETIME 
+from whoosh.fields import Schema, TEXT, ID, STORED, DATETIME, KEYWORD 
 from whoosh.analysis import StemmingAnalyzer
 from get_law_fields import list_from_file, get_fields
 from whoosh.qparser import QueryParser
@@ -34,7 +34,11 @@ schema = Schema(
                 law_name = TEXT(analyzer=lang_ana, stored=True),
                 law_body = TEXT(analyzer=lang_ana),
                 law_num_date = ID(stored=True),
-                # content type & agency
+                                 
+                # A doc can have multiple 
+                agency_tag = KEYWORD(stored=True),
+                content_type_tag = KEYWORD(stored=True), 
+
                 pub_date = DATETIME(sortable=True, stored=True),
                 article_one_title = STORED,
                 article_one_str = STORED
@@ -68,16 +72,23 @@ if not os.path.exists("indexdir/MAIN_WRITELOCK"):
 
   writer = index.writer()
 
-  print("If stat")
-  # almost self explanatory below but will add comments latter
   for doc in file_list:
+    if doc[0] == '.': continue # skip hidden files
     if os.path.isfile("demo_laws/" + doc):
+      """
+      The list_from_file function returns the raw file as 
+      a list of lines. 
+      The get_fields func returns a dictionary with field values
+      """
       file_lines = list_from_file("demo_laws/"+doc)
       file_fields = get_fields(file_lines)
     
       law_name = file_fields["law_name"]
       law_body = file_fields["law_body"]
       law_num_date = file_fields["law_num_date"]
+
+      agency_tag = file_fields["agency_tag"]
+      content_type_type = file_fields["content_type_tag"]
     
       pub_date = file_fields["pub_date"]
       article_one_title = file_fields["article_one_title"]
@@ -91,7 +102,6 @@ if not os.path.exists("indexdir/MAIN_WRITELOCK"):
                           article_one_title = article_one_title,
                           article_one_str = article_one_str
                          )
-  print("committed")
   writer.commit()
 
 else: 
