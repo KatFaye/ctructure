@@ -137,9 +137,9 @@ try:
     exit()
 except mc.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-        print "Err: Access Denied (Verify user and password)"
+        print ("Err: Access Denied (Verify user and password)")
     elif err.errno == errorcode.ER_BAD_DB_ERROR:
-        print "Database not found"
+        print ("Database not found")
     else:
         print err
     sys.exit(1)
@@ -149,13 +149,13 @@ while needed:
     for name, cmd in tables.iteritems():
         if name in needed: # not already successfully created in loop
             try: #create table
-        	print "Creating table {}:".format(name)
+        	print ("Creating table {}:".format(name))
                 cursor.execute(cmd)
                 print "OK"
                 del needed[name] #success
             except mc.Error as err:
                 if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
-                    print "ALREADY EXISTS"
+                    print ("ALREADY EXISTS")
                     del needed[name]
                 else:
                     print err.msg
