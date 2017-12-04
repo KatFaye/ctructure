@@ -11,7 +11,7 @@ import sys
 config = {
     'user': 'amucungu',
     'password': 'm90753',
-    'host': '129.74.250.99',
+    'host': '0.0.0.0',
     'database': 'rwandanlaw'
 }
 
