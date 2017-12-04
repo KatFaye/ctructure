@@ -112,9 +112,12 @@ tables['publications'] = (
 tables['repeals'] = (
     """
     CREATE TABLE repeals (
-    parent_law int(10) NOT NULL,
-    impacted_law int(10) NOT NULL,
-    INDEX (parent_law, impacted_law)
+    repeal_id int(10) NOT NULL AUTO_INCREMENT,
+    parent_law_num varchar(35) NOT NULL,
+    parent_law_date date NOT NULL,
+    impacted_law_num varchar(35) NOT NULL,
+    impacted_law_date date NOT NULL,
+    PRIMARY KEY (repeal_id)
     )
     """
 )
