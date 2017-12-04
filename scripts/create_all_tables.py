@@ -149,7 +149,7 @@ while needed:
     for name, cmd in tables.iteritems():
         if name in needed: # not already successfully created in loop
             try: #create table
-        	print ("Creating table {}:".format(name))
+        	    print("Creating table {}:".format(name))
                 cursor.execute(cmd)
                 print ("OK")
                 del needed[name] #success
