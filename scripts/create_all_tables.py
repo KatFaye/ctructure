@@ -114,11 +114,7 @@ tables['repeals'] = (
     CREATE TABLE repeals (
     parent_law int(10) NOT NULL,
     impacted_law int(10) NOT NULL,
-    INDEX (parent_law, impacted_law),
-    FOREIGN KEY (parent_law)
-    REFERENCES laws(law_id),
-    FOREIGN KEY (impacted_law)
-    REFERENCES laws(law_id)
+    INDEX (parent_law, impacted_law)
     )
     """
 )
