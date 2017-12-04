@@ -144,25 +144,25 @@ def build_query(query_str, agency_in, content_in, pub_year_in):
                        Term("content_type_tag", get_unicode(content_type)),
                        Term("pub_year", pub_year)])
   # 3. agency and content_type
-  elif agency and content_type:
+  elif agency and content_type and not pub_year:
     user_filter = And([Term("agency_tag", get_unicode(agency)),
                        Term("content_type_tag", get_unicode(content_type))])
-  # 4. agency and publication
-  elif agency and publication:
+  # 4. agency and pub_year
+  elif agency and pub_year and not content_type:
     user_filter = And([Term("agency_tag", get_unicode(agency)),
                        Term("pub_year", pub_year)])
-  # 5. agency and publication
-  elif content_type and agency:
+  # 5. content_type and pub_year
+  elif content_type and pub_year and not agency :
     user_filter = And([Term("content_type_tag", get_unicode(content_type)),
                        Term("pub_year", pub_year)])
   # 6. Agency alone
-  elif agency:
+  elif agency and not pub_year and not agency:
     user_filter = And([Term("agency_tag", get_unicode(agency))])
   # 7. Content rype alone
-  elif content_type:
+  elif content_type and not pub_year and not agency:
       user_filter = And([ Term("content_type_tag", get_unicode(content_type))])
-  # 8. Publication alone
-  elif publication:
+  # 8. Pub_year alone
+  elif pub_year and not agency and content_type:
       user_filter = And([Term("pub_year", pub_year)])
 
   
