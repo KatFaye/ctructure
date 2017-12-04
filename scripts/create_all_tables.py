@@ -7,27 +7,27 @@ import mysql.connector as mc
 from mysql.connector import errorcode
 import sys
 
-#define user connection
+# define user connection
 config = {
-    'user': 'kherring',
-    'password': '12faye',
-    'host': '129.74.250.99',
+    'user': 'amucungu',
+    'password': 'm90753',
+    'host': '0.0.0.0',
     'database': 'rwandanlaw'
 }
 
 tables = {}
 tables['agencies'] = (
-"""
+    """
     CREATE TABLE agencies (
     abbrev varchar(15) NOT NULL,
     long_name varchar(255) NOT NULL,
     PRIMARY KEY (abbrev)
     ) ENGINE=InnoDB
   """
-  )
+)
 
-tables['articles']=(
-   """
+tables['articles'] = (
+    """
     CREATE TABLE articles (
     law_id int(10) NOT NULL,
     article_num int NOT NULL,
@@ -61,7 +61,7 @@ tables['content_type'] = (
     authority int NOT NULL
     )
     """
-    )
+)
 
 tables['drafted_by'] = (
     """
@@ -94,10 +94,10 @@ tables['laws'] = (
     PRIMARY KEY (law_id)
     )
     """
-    )
+)
 
 tables['publications'] = (
-  """
+    """
     CREATE TABLE publications (
     pub_id int(10) NOT NULL AUTO_INCREMENT,
     var_num varchar(10) NOT NULL,
@@ -107,23 +107,19 @@ tables['publications'] = (
     PRIMARY KEY (pub_id)
     ) ENGINE=InnoDB
   """
-  )
+)
 
 tables['repeals'] = (
     """
     CREATE TABLE repeals (
     parent_law int(10) NOT NULL,
     impacted_law int(10) NOT NULL,
-    INDEX (parent_law, impacted_law),
-    FOREIGN KEY (parent_law)
-    REFERENCES laws(law_id),
-    FOREIGN KEY (impacted_law)
-    REFERENCES laws(law_id)
+    INDEX (parent_law, impacted_law)
     )
     """
 )
-tables['users']=(
-   """
+tables['users'] = (
+    """
     CREATE TABLE users (
     username varchar(30) NOT NULL,
     email varchar(20) NOT NULL,
@@ -133,7 +129,7 @@ tables['users']=(
     PRIMARY KEY(username)
     )ENGINE=InnoDB
    """
-   )
+)
 
 try:
     cnx = mc.connect(**config)
@@ -141,28 +137,28 @@ try:
     exit()
 except mc.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-        print "Err: Access Denied (Verify user and password)"
+        print("Err: Access Denied (Verify user and password)")
     elif err.errno == errorcode.ER_BAD_DB_ERROR:
-        print "Database not found"
+        print("Database not found")
     else:
-        print err
+        print(err)
     sys.exit(1)
 
-needed = dict(tables) # all tables need to be created
+needed = dict(tables)  # all tables need to be created
 while needed:
     for name, cmd in tables.iteritems():
-        if name in needed: # not already successfully created in loop
-            try: #create table
-        	print "Creating table {}:".format(name)
+        if name in needed:  # not already successfully created in loop
+            try:  # create table
+                print("Creating table {}:".format(name))
                 cursor.execute(cmd)
-                print "OK"
-                del needed[name] #success
+                print("OK")
+                del needed[name]  # success
             except mc.Error as err:
                 if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
-                    print "ALREADY EXISTS"
+                    print("ALREADY EXISTS")
                     del needed[name]
                 else:
-                    print err.msg
+                    print(err.msg)
 
 cursor.close()
 cnx.close()
