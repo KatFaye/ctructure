@@ -141,7 +141,7 @@ except mc.Error as err:
     elif err.errno == errorcode.ER_BAD_DB_ERROR:
         print ("Database not found")
     else:
-        print err
+        print (err)
     sys.exit(1)
 
 needed = dict(tables) # all tables need to be created
@@ -151,14 +151,14 @@ while needed:
             try: #create table
         	print ("Creating table {}:".format(name))
                 cursor.execute(cmd)
-                print "OK"
+                print ("OK")
                 del needed[name] #success
             except mc.Error as err:
                 if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
                     print ("ALREADY EXISTS")
                     del needed[name]
                 else:
-                    print err.msg
+                    print (err.msg)
 
 cursor.close()
 cnx.close()
