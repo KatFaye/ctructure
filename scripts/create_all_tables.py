@@ -9,8 +9,8 @@ import sys
 
 # define user connection
 config = {
-    'user': 'amucungu',
-    'password': 'm90753',
+    'user': 'kherring',
+    'password': '12faye',
     'host': '0.0.0.0',
     'database': 'rwandanlaw'
 }
