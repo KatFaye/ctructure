@@ -46,11 +46,11 @@ with open('repeals_mod.txt') as lawfile:
             if lawNumMatch is not None:
                 lawNum = lawNumMatch.group()
                 lawNumArray.append(lawNum)
-                print("parentLawNum:" + parentLawNum)
-                print("parentPublicationDate:" + parentPublicationDate)
+                print(parentLawNum)
+                print(parentPublicationDate)
 
-                print("lawNum:"+lawNumMatch.group())
-                print("publicationDate:" + publicationDateMatch.group())
+                print(lawNumMatch.group())
+                print(publicationDateMatch.group())
                 print("\n")
         previous_line = current_line
         i = i + 1
