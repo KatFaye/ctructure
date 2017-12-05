@@ -132,7 +132,7 @@ add_repeal = ("INSERT INTO repeals"
                     "VALUES (%s, %s, %s, %s)")
 
 repeal_list = []
-with open('repeals.txt') as f:
+with open('import_data/repeals.txt') as f:
     for line in f:
         line = line.rstrip()
         temp_list = line.split(",")

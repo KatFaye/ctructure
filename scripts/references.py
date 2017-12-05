@@ -40,9 +40,9 @@ for ref in os.listdir('demo_refs'):
                           if copy[k][j + 1][0].isdigit():
                               law_num = copy[k][j + 1]
                               law_date = copy[k][j + 3]
-                              print("parent law:")
+                              #print("parent law:")
                               print(parent_law_num, parent_law_date)
-                              print("references:")
+                              #print("references:")
                               print(law_num, law_date)
               print("\n")
 
