@@ -26,10 +26,9 @@ with open('repeals_mod.txt') as lawfile:
                 parentLawNumArray.append(parentLawNum)
             #print(lawName)
             #currentLawName = current_line
-            print(parentLawNum)
-            print(parentPublicationDate)
+
         elif (i == 1):
-            print(current_line)
+            #print(current_line)
             publicationDateMatch = re.search(r'\d{2}/\d{2}/\d{4}', current_line)
             lawNumMatch = re.search(r'\d{2}/\d{4}', current_line)
             if publicationDateMatch is not None:
@@ -42,12 +41,17 @@ with open('repeals_mod.txt') as lawfile:
                 lawNameArray.append(lawName)
                 publicationDate = publicationDateMatch.group()
                 publicationDateArray.append(publicationDate)
-                print(publicationDateMatch.group())
+
                 #print(lawNametoStore)
             if lawNumMatch is not None:
                 lawNum = lawNumMatch.group()
                 lawNumArray.append(lawNum)
-                print(lawNumMatch.group())
+                print("parentLawNum:" + parentLawNum)
+                print("parentPublicationDate:" + parentPublicationDate)
+
+                print("lawNum:"+lawNumMatch.group())
+                print("publicationDate:" + publicationDateMatch.group())
+                print("\n")
         previous_line = current_line
         i = i + 1
     print(articleNumArray)
