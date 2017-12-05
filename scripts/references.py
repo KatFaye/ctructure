@@ -41,9 +41,9 @@ for ref in os.listdir('demo_refs'):
                               law_num = copy[k][j + 1]
                               law_date = copy[k][j + 3]
                               #print("parent law:")
-                              print(parent_law_num, parent_law_date)
+                              print(parent_law_num+",",parent_law_date+",",law_num+",",law_date)
                               #print("references:")
-                              print(law_num, law_date)
-              print("\n")
+                              #print(law_num, law_date)
+
 
           i=i+1
