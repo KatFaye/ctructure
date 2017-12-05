@@ -18,7 +18,7 @@ for ref in os.listdir('demo_refs'):
           if (i == 2):
               new_obj = FixLawName(current_line)
               copy = new_obj.copy_list()
-              print(copy)
+              #print(copy)
 
               for k in range(len(copy)):
                   for j in range(len(copy[k]) - 4):
@@ -27,11 +27,11 @@ for ref in os.listdir('demo_refs'):
                           if copy[k][j + 1][0].isdigit():
                               parent_law_num = copy[k][j + 1]
                               parent_law_date = copy[k][j + 3]
-                              print(parent_law_num, parent_law_date)
+
           elif(i==3):
               new_obj = FixLawName(current_line)
               copy = new_obj.copy_list()
-              print(copy)
+              #print(copy)
 
               for k in range(len(copy)):
                   for j in range(len(copy[k])-4):
@@ -40,6 +40,10 @@ for ref in os.listdir('demo_refs'):
                           if copy[k][j + 1][0].isdigit():
                               law_num = copy[k][j + 1]
                               law_date = copy[k][j + 3]
+                              print("parent law:")
+                              print(parent_law_num, parent_law_date)
+                              print("references:")
                               print(law_num, law_date)
+              print("\n")
 
           i=i+1
