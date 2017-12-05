@@ -43,13 +43,12 @@ tables['articles'] = (
 tables['cites'] = (
     """
     CREATE TABLE cites (
-    parent_law int(10) NOT NULL,
-    cited_law int(10) NOT NULL,
-    PRIMARY KEY (parent_law, cited_law),
-    FOREIGN KEY (parent_law)
-    REFERENCES laws(law_id),
-    FOREIGN KEY (cited_law)
-    REFERENCES laws(law_id)
+    reference_id int(10) NOT NULL AUTO_INCREMENT,
+    parent_law_num varchar(35) NOT NULL,
+    parent_law_date date NOT NULL,
+    cited_law_num varchar(35) NOT NULL,
+    cited_law_date date NOT NULL,
+    PRIMARY KEY (reference_id)
     )
     """
 )
