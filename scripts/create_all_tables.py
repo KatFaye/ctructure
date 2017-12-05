@@ -137,7 +137,6 @@ tables['users'] = (
 try:
     cnx = mc.connect(**config)
     cursor = cnx.cursor()
-    print("We're here")
     #exit()
 except mc.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
