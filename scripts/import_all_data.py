@@ -126,6 +126,32 @@ cnx.commit()
 ### Foreign key constraints the "laws" table requires to commit
 ### Before we try to insert data into the table
 
+### IMPORT DATA for the "repeal" TABLE
+add_repeal = ("INSERT INTO repeals"
+                    "(parent_law_num, parent_law_date, impacted_law_num, impacted_law_date) "
+                    "VALUES (%s, %s, %s, %s)")
+
+repeal_list = []
+with open('repeals.txt') as f:
+    for line in f:
+        line = line.rstrip()
+        temp_list = line.split(",")
+        repeal_list.append(temp_list)
+
+# Insert attributes into the "repeal" table
+for a_law in repeal_list:
+    # var_num & pub_date are part of the key, at index 0 and 1
+    parent_law_num, parent_law_date = a_law[0], a_law[1]
+    p_day, p_month, p_year = [int(i) for i in parent_law_date.split('/')]
+    impacted_law_num, impacted_law_date = a_law[2], a_law[3]
+    i_day, i_month, i_year = [int(i) for i in impacted_law_date.split('/')]
+
+    cont_tuple = (parent_law_num, date(p_day, p_month, p_year), impacted_law_num, date(i_day, i_month, i_year))
+    cursor.execute(add_repeal, cont_tuple)
+### COMMIT THE ABOVE THE DATA TO THE DATABASE
+cnx.commit()
+
+
 ### IMPORT DATA into the "laws" TABLE
 add_law = ("INSERT INTO laws "
            "(law_num, exact_date, name, ending, pub_id, intro, content_type) "
