@@ -151,6 +151,31 @@ for a_law in repeal_list:
 ### COMMIT THE ABOVE THE DATA TO THE DATABASE
 cnx.commit()
 
+###IMPORT DATA into the "cites" TABLE
+add_cites = ("INSERT INTO cites"
+                    "(parent_law_num, parent_law_date, cited_law_num, cited_law_date) "
+                    "VALUES (%s, %s, %s, %s)")
+
+cite_list = []
+with open('import_data/references.txt') as f:
+    for line in f:
+        line = line.rstrip()
+        temp_list = line.split(", ")
+        cite_list.append(temp_list)
+
+# Insert attributes into the "cites" table
+for a_law in cite_list:
+    # var_num & pub_date are part of the key, at index 0 and 1
+    parent_law_num, parent_law_date = a_law[0], a_law[1]
+    p_day, p_month, p_year = [int(i) for i in parent_law_date.split('/')]
+    cited_law_num, cited_law_date = a_law[2], a_law[3]
+    c_day, c_month, c_year = [int(i) for i in cited_law_date.split('/')]
+
+    cont_tuple = (parent_law_num, date(p_day, p_month, p_year), cited_law_num, date(c_day, c_month, c_year))
+    cursor.execute(add_cites, cont_tuple)
+### COMMIT THE ABOVE THE DATA TO THE DATABASE
+cnx.commit()
+
 
 ### IMPORT DATA into the "laws" TABLE
 add_law = ("INSERT INTO laws "
