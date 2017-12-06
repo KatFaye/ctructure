@@ -93,14 +93,14 @@ for filename in law_files:
   with open(folder_of_laws +filename, 'r') as f:
     pub_name = f.read().split('\n')[3]
     publication_names.append(pub_name)
-    print(filename, pub_name)
+
 # dictionary of unique publications in law files
 unique_publications = {}
 
 
 # Extract publication table attributes from publication names
 for publication in publication_names:
-    if publication and type(publication) != type(None):
+    if publication:
       #print(publication)
       var_num, pub_date = get_pub_attrs(publication)
       # Make sure it's "of" not "0f" [zero instead of o]
