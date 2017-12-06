@@ -134,7 +134,9 @@ def query():
     kwargs = {}
     try:
         _search = request.form['search']
-        _year = request.form['year']
+        _year = request.form['pub-year-filter']
+        _content_type = request.form['content-type-filter']
+        _agency = request.form['agency-filter']
 
         conn = mysql.connect()
         cursor = conn.cursor()
