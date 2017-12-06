@@ -2,6 +2,8 @@ from flask import Flask, render_template, json, request, redirect
 from flaskext.mysql import MySQL
 from base import base_page
 from os import urandom
+from scripts import advanced_search
+from advanced_search import build_filters,get_results
 
 app = Flask(__name__)
 app.register_blueprint(base_page)
@@ -15,14 +17,6 @@ app.config['MYSQL_DATABASE_DB'] = 'rwandanlaw'
 app.config['MYSQL_DATABASE_HOST'] = '0.0.0.0'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
-
-
-@app.before_request
-def userCheck():
-    if request.path == '/login':
-        print("I'm fine")
-    if session.get('logged_in') and request.path == '/login':
-        return redirect('/updateinfo')
 
 
 @app.route('/login', methods=['POST'])
