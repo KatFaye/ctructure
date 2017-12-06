@@ -1552,4 +1552,8 @@ a.signup-span:hover{
 	margin: 3px 0px 0 30px;
 }
 
+.result-table tr:hover{
+	cursor: pointer;
+}
+
 
