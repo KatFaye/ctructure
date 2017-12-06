@@ -7,11 +7,11 @@ import os, os.path
 import datetime
 from whoosh import index
 from whoosh import query
-from whoosh.fields import Schema, TEXT, ID, STORED, DATETIME, KEYWORD 
+from whoosh.fields import Schema, TEXT, ID, STORED, DATETIME, KEYWORD, NUMERIC 
 from whoosh.analysis import StemmingAnalyzer
 from get_law_fields import list_from_file, get_fields
 from whoosh.qparser import QueryParser, MultifieldParser
-from whoosh.query import Query, Term
+from whoosh.query import Query, Term, And
 
 
 # import stopwords
@@ -42,7 +42,7 @@ schema = Schema(
                 agency_tag = KEYWORD(stored=True),
                 content_type_tag = KEYWORD(stored=True), 
 
-                pub_year = DATETIME(sortable=True, stored=True),
+                pub_year = NUMERIC(sortable=True, stored=True),
                 article_one_title = STORED,
                 article_one_str = STORED
                )
@@ -118,14 +118,14 @@ else:
 qp = MultifieldParser(["law_body", "law_name"], schema=index.schema)  
 
 
-def build_query(query_str, agency_in, content_in, pub_year_in):
+def build_filters(agency_in=[False, False], content_in=[False, False], pub_year_in=[False, False]):
   # build the search query given user selections
-  user_query = query_str
   agency =  content_type = pub_year = None 
   user_filter = None
 
   # if there is an agency filter
-  if agency_in[0]: 
+  if agency_in[0]:
+    print("&&&&&&&&&&&&") 
     agency = agency_in[1]
   # if there is a content_type filter
   if content_in[0]:
@@ -139,39 +139,44 @@ def build_query(query_str, agency_in, content_in, pub_year_in):
   if not agency and not content_type and not pub_year:
     user_filter = None
   # 2. All filters are selected. 
-  elif agency and content_type and pub_year:
+  if agency and content_type and pub_year:
     user_filter = And([Term("agency_tag", get_unicode(agency)),
                        Term("content_type_tag", get_unicode(content_type)),
                        Term("pub_year", pub_year)])
+
   # 3. agency and content_type
-  elif agency and content_type and not pub_year:
+  if agency and content_type and not pub_year:
     user_filter = And([Term("agency_tag", get_unicode(agency)),
                        Term("content_type_tag", get_unicode(content_type))])
   # 4. agency and pub_year
-  elif agency and pub_year and not content_type:
+  if agency and pub_year and not content_type:
     user_filter = And([Term("agency_tag", get_unicode(agency)),
                        Term("pub_year", pub_year)])
   # 5. content_type and pub_year
-  elif content_type and pub_year and not agency :
+  if content_type and pub_year and not agency :
     user_filter = And([Term("content_type_tag", get_unicode(content_type)),
                        Term("pub_year", pub_year)])
+
   # 6. Agency alone
-  elif agency and not pub_year and not agency:
+  if agency and not pub_year and not content_type:
     user_filter = And([Term("agency_tag", get_unicode(agency))])
-  # 7. Content rype alone
-  elif content_type and not pub_year and not agency:
+  # 7. Content_type alone
+  if content_type and not pub_year and not agency:
       user_filter = And([ Term("content_type_tag", get_unicode(content_type))])
-  # 8. Pub_year alone
-  elif pub_year and not agency and content_type:
+  # 8. pub_year alone
+  if pub_year and not agency and content_type:
       user_filter = And([Term("pub_year", pub_year)])
 
-  
-  
-  
+  return user_filter
+    
 
 with index.searcher() as searcher:
-  user_filter = query.Term('agency_tag', 'Agency2')
-  query = qp.parse("gender")
+  # agency_in = 
+  # pub_year = 
+  # content_type = 
+
+  user_filter = build_filters(pub_year_in=(True, 2008))
+  query = qp.parse("government")
   results = searcher.search(query, filter=user_filter)
   for res in results:
     print(res)
