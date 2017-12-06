@@ -26,13 +26,47 @@
                           <!-- section page -->
                           <div class="section-page" id="signup">
                             <form class="subscription-form mailchimp" method="post" id="mc-form">
-                              <input type="email" id="email" class="border-radius-22 bottom-margin" name="email" placeholder="Enter Your Email Address" />
-                              <button type="submit" id="subscribebtn" class="border-button no-bottom-margin">Subscribe</button>
+                              <input type="email" id="email" class="border-radius-22 bottom-margin" name="email" placeholder="Search" />
+                              <button type="submit" id="subscribebtn" class="border-button no-bottom-margin">Search</button>
                             </form>
-                            <p class="message-error"></p>
-                            <p class="message-success"></p>
                           </div>
                           <!-- /section page -->
+                          <select id="agency-filter">
+                              <option value="None" selected="selected">-----</option>
+                              <option value="MINICOM">MINICOM</option>
+                              <option value="MINECOFIN">MINECOFIN</option>
+                              <option value="RURA">RURA</option>
+                              <option value="BNR">BNR</option>
+                              <option value="RDB">RDB</option>
+                              <option value="MYICT">MYICT</option>
+                              <option value="RRA">RRA</option>
+                              <option value="REMA">REMA</option>
+                              <option value="MINEACOM">MINEACOM</option>
+                          </select>
+                          <select id="content-type-filter">
+                              <option value="None" selected="selected">-----</option>
+                              <option value="Constitution">Constitution</option>
+                              <option value="law">Law</option>
+                              <option value="Organic Law">Organic Law</option>
+                              <option value="Presidential Order">Presidential Order</option>
+                              <option value="Prime Minister Order">Prime Minister Order</option>
+                              <option value="Ministerial Order">Ministerial Order</option>
+                              <option value="Rule">Rule</option>
+                              <option value="Instruction">Instruction</option>
+                              <option value="Policy">Policy</option>
+                          </select>
+                          <select id="pub-year-filter">
+                              <option value="None" selected="selected">-----</option>
+                              <option value="2008">2008</option>
+                              <option value="2009">2009</option>
+                              <option value="2010">2010</option>
+                              <option value="2011">2011</option>
+                              <option value="2012">2012</option>
+                              <option value="2013">2013</option>
+                              <option value="2014">2014</option>
+                              <option value="2015">2015</option>
+                              <option value="2016">2016</option>
+                          </select>
                         </div>
                         <!-- /container form -->
                       </div>
