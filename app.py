@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request, redirect, flash, session, abort
+from flask import Flask, render_template, json, request, redirect, flash, session, abort, url_for
 from flaskext.mysql import MySQL
 from base import base_page
 from os import urandom
@@ -21,8 +21,8 @@ mysql.init_app(app)
 def check_login():
     if session.get('logged_in'):
         return redirect('/updateinfo')
-    else:
-        return render_template('/login')
+    if not session.get('logged_in') and request.path != '/login':
+        return redirect(url_for('check_login'))
 
 
 @app.route('/login', methods=['POST'])
