@@ -99,8 +99,7 @@ unique_publications = {}
 
 # Extract publication table attributes from publication names
 for publication in publication_names:
-    if publication:
-      print("Publication: ", publication)
+    if publication and type(publication) != type(None):
       var_num, pub_date = get_pub_attrs(publication)
       # Make sure it's "of" not "0f" [zero instead of o]
       split_pub = publication.split()
