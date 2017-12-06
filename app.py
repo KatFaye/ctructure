@@ -49,7 +49,7 @@ def do_admin_login():
         conn.close()
         return render_template('login.html', **kwargs)
     except Exception as e:
-        print (e)
+        print ("The Error is " + str(e))
         kwargs['message'] = "Error %s: %s" % (e[0], e[1])
         kwargs['messageType'] = "danger"
         return render_template('/login.html', **kwargs)
