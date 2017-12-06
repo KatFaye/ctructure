@@ -17,6 +17,12 @@ app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
 
 
+@app.route('/login')
+def check_login():
+    if session.get('logged_in'):
+        return redirect('/updateinfo')
+
+
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     kwargs = {}
@@ -106,7 +112,8 @@ def updateinfo():
         conn = mysql.connect()
 
         cursor = conn.cursor()
-        query_string="UPDATE users SET email= '" +_email +"', password= '" + _password +"' WHERE username='SampleUser'"
+        user = session.get('user')
+        query_string="UPDATE users SET email= '" +_email +"', password= '" + _password +"' WHERE username='" +user +"'"
         cursor.execute(query_string)
 
         data = cursor.fetchall()
