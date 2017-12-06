@@ -161,9 +161,10 @@ add_cites = ("INSERT INTO cites"
 cite_list = []
 with open('import_data/references.txt') as f:
     for line in f:
-        line = line.rstrip()
-        temp_list = line.split(", ")
-        cite_list.append(temp_list)
+        if str(line).split():
+            line = line.rstrip()
+            temp_list = line.split(", ")
+            cite_list.append(temp_list)
 
 # Insert attributes into the "cites" table
 for a_law in cite_list:
