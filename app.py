@@ -146,6 +146,8 @@ def query():
     kwargs = {}
     try:
         _search = request.form['search']
+
+        """
         _year = request.form['pub-year-filter']
         _content_type = request.form['content-type-filter']
         _agency = request.form['agency-filter']
@@ -155,18 +157,15 @@ def query():
         if (_content_type == "None"):
             _year = False
         if (_agency == "None"):
-            _year = False
-
-        print("The data is " + _search + " "+ _year +" " + _content_type + " " + agency)
-
-        build_filters,get_results
-
+            _year = Falss
         """
+
         conn = mysql.connect()
         cursor = conn.cursor()
-        query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
+        #query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
+        query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
         cursor.execute(query_string)
-        """
+        
         kwargs['data'] = cursor.fetchall()
 
     except Exception as e:
