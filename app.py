@@ -22,7 +22,7 @@ def check_login():
     if session.get('logged_in'):
         return redirect('/updateinfo')
     else:
-        return redirect('/login')
+        return render_template('/login')
 
 
 @app.route('/login', methods=['POST'])
