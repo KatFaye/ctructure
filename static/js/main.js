@@ -273,6 +273,24 @@
 })(jQuery);
 
 $( document ).ready(function(){
+	$("#searchbtn").click(function(){
+		$("#results").html(
+				'<table class="result-talbe">'+
+                        '<tr class="pointer-tr">'+
+                            '<td>N° 002/2016 OF 08/01/2016 DETERMINING THE RESPONSIBILITIES OF SCHOOL MANAGEMENT BOARD MEMBERS </td>'+
+                        '</tr>'+
+                        '<tr class="pointer-tr" id="best-tr">'+
+                            '<td>N° 006/2016 OF 08/01/2016 DETERMINING CURRICULUM, TEACHING HOURS AND THE LANGUAGE OF INSTRUCTION IN PRIMARY, SECONDARY AND SPECIALIZED SCHOOLS </td>'+
+                        '</tr><tr class="pointer-tr">'+
+                            '<td>001/2016 OF 08/01/2016 PROVIDING SANCTIONS AGAINST PARENTS WHO DO NOT SEND THEIR CHILDREN TO SCHOOL AND AGAINST OTHER PERSONS WHO EMPLOY CHILDREN IN WORK PREVENTING THEM FROM GOING TO OR ENCOURAGING THEM TO DROP OUT OF SCHOOLThe Prime Minister, the Minister of Public Service and Labour, the Minister of Internal Security and the Minister of Finance and Economic Planning are entrusted with the implementation of this Order.</td>'+
+                        '</tr><tr class="pointer-tr">'+
+                            '<td>003/2016 OF 08/01/2016 DETERMINING GENERAL RULES GOVERNING NURSERY, PRIMARY AND SECONDARY SCHOOLS AND FUNCTIONING OF SCHOOL GENERAL ASSEMBLY AND ITS SUBSIDIARY ORGANS </td>'+
+                        '</tr>'+
+                    '</table>'
+
+			)
+	})
+
 	$("#best-tr").click(function(){
 		alert("foo")
 	})

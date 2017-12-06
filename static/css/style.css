@@ -1556,9 +1556,9 @@ tr.pointer-tr:hover{
 	cursor: pointer;
 }
 
-tr.pointer-tr:nth-child(even) {
+tr:nth-child(even) {
 	background: #e9ecef42
 }
-tr.pointer-tr:nth-child(odd) {
+tr:nth-child(odd) {
 	background: #343a40cf
 }
