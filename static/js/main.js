@@ -273,7 +273,7 @@
 })(jQuery);
 
 $( document ).ready(function(){
-	$("#do-search").click(function(){
+	$("#searchbtn").click(function(){
 		alert("foo")
 	})
 	
