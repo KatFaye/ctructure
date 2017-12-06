@@ -26,19 +26,38 @@ def home():
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     kwargs = {}
-    user = request.form['username']
-    password = request.form['password']
     if session.get('logged_in') == True:
         kwargs['message'] = "You're logged in already!"
         kwargs['messageType'] = "warning"
-    elif password == 'password' and user == 'admin':
-        session['logged_in'] = True
-        kwargs['message'] = "%s Logged In Successfully!" % user
-        kwargs['messageType'] = "success"
-    else:
-        kwargs['message'] = "Error: Bad Password!"
+    try:
+        user = request.form['username']
+        password = request.form['password']
+
+        conn = mysql.connect()
+
+        cursor = conn.cursor()
+
+        query = """
+            SELECT username, password from users u WHERE
+            u.user = %s and u.password = %s;
+        """
+
+        isValid = cursor.execute(query, (user, password))
+        if isValid > 0: # not an empty SET
+            session['logged_in'] = True
+            session['user'] = user
+            kwargs['message'] = "%s Logged In Successfully!" % user
+            kwargs['messageType'] = "success"
+        else:
+            kwargs['message'] = "Error: Invalid user or password!"
+            kwargs['messageType'] = "danger"
+        cursor.close()
+        conn.close()
+        return render_template('login.html', **kwargs)
+    except Exception as e:
+        kwargs['message'] = "Error %s: %s" % (e[0], e[1])
         kwargs['messageType'] = "danger"
-    return render_template('login.html', **kwargs)
+        return render_template('/login.html', **kwargs)
 
 @app.route('/signup', methods=['POST'])
 def signup():
