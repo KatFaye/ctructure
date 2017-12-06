@@ -1539,8 +1539,8 @@ body.mobile .animated {
 }
 
 .search-filter{
-	margin: 30px 5px;
-    border-radius: 10px;
+	margin: 30px 10px;
+    border-radius: 6px;
     padding: 5px 10px 5px 10px;
 }
 
