@@ -13,6 +13,8 @@ base_page = Blueprint('base_page', __name__,
 @base_page.route('/<page>')
 def show(page):
     try:
+        if not session.get('logged_in'):
+            return render_template('login.html')
         return render_template('%s.html' % page)
     except TemplateNotFound:
         abort(404)

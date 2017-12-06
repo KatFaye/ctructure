@@ -16,13 +16,6 @@ app.config['MYSQL_DATABASE_HOST'] = '0.0.0.0'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
 
-@app.route('/')
-def home():
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    else:
-        return render_template('index.html')
-
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     kwargs = {}
