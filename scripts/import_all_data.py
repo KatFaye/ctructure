@@ -22,7 +22,7 @@ intro_files = [f for f in listdir(folder_of_intros) if isfile(join(folder_of_law
 
 # create connection to the database
 cnx = mysql.connector.connect(user='amucungu', password='m90753',
-                              host='localhost',
+                              host='0.0.0.0',
                               database='rwandanlaw')
 
 cursor = cnx.cursor()
