@@ -25,11 +25,12 @@
                       <div class="container-form">
                         <!-- section page -->
                         <div class="section-page" id="signup">
-                          <div class="filters-row">
-                            <form class="subscription-form mailchimp" name="query" action="/query" method="post" id="mc-form">
-                              <input type="search" id="search" class="border-radius-22 bottom-margin" name="search" placeholder="Search" />
-                              <input type="submit" value="submit" id="subscribebtn" class="border-button no-bottom-margin">
-                              <select name="agency-filter" class="search-filter">
+
+                          <form class="subscription-form mailchimp" name="query" action="/query" method="post" id="mc-form">
+                            <input type="search" id="search" class="border-radius-22 bottom-margin" name="search" placeholder="Search" />
+                            <input type="submit" value="submit" id="subscribebtn" class="border-button no-bottom-margin">
+                          </form>
+                          <select name="agency-filter" class="search-filter">
                               <option value="None" selected="selected">Agency</option>
                               <option value="MINICOM">MINICOM</option>
                               <option value="MINECOFIN">MINECOFIN</option>
@@ -41,7 +42,7 @@
                               <option value="REMA">REMA</option>
                               <option value="MINEACOM">MINEACOM</option>
                           </select>
-                              <select name="content-type-filter" class="search-filter">
+                          <select name="content-type-filter" class="search-filter">
                               <option value="None" selected="selected">Content Type</option>
                               <option value="Constitution">Constitution</option>
                               <option value="law">Law</option>
@@ -53,7 +54,7 @@
                               <option value="Instruction">Instruction</option>
                               <option value="Policy">Policy</option>
                           </select>
-                              <select name="pub-year-filter" class="search-filter">
+                          <select name="pub-year-filter" class="search-filter">
                               <option value="None" selected="selected">Publication Year</option>
                               <option value="2008">2008</option>
                               <option value="2009">2009</option>
@@ -65,9 +66,7 @@
                               <option value="2015">2015</option>
                               <option value="2016">2016</option>
                           </select>
-                          </div>
-                            </form>
-                          
+
                         </div>
                         <!-- /section page -->
                       </div>
