@@ -30,48 +30,46 @@
 
 
                         <!-- contact form -->
-                       <h1 class="text-center">Login</h1>
-<div class="alert alert-{{ messageType }}" >
-  {{ message }}
-</div>
+                        <div class="section-page" id="signup">
 
-<form style="width=50%" action="/login" method="POST" name="login">
-  <label for="username" class="sr-only">Username</label>
-  <input type="name" name="username" placeholder="Username" class="form-control" required autofocus>
-  <label for="password" class="sr-only">Password</label>
-  <input type="password" name="password" placeholder="Password" class="form-control" required autofocus>
-  <input type="submit" value="Log in!" class="btn btn-primary">
-</form>
-                        <!-- /contact form -->
-                      </div>
-                      <!-- /col-xs-12 col-md-6 -->
-
-                      <!-- maps section -->
-                      <div class="col-xs-12 col-md-6 maps-section animated bounceInRight" data-animation-delay="700">
-                        <div class="big-maps center">
-                     
-                          <div id="map1"></div>
+                          <form class="subscription-form mailchimp" style="width=50%" action="/login" method="POST" name="login">
+                            <label for="username" class="sr-only">Username</label>
+                            <input type="name" name="username" placeholder="Username" class="form-control" required autofocus>
+                            <label for="password" class="sr-only">Password</label>
+                            <input type="password" name="password" placeholder="Password" class="form-control" required autofocus>
+                            <input type="submit" value="Log in!" class="btn btn-primary">
+                          </form>
+                          <a href="signup"><span>Do not have an account? Sign up here!</span></a>
+                          <!-- /contact form -->
                         </div>
+                        <!-- /col-xs-12 col-md-6 -->
+
+                        <!-- maps section -->
+                        <div class="col-xs-12 col-md-6 maps-section animated bounceInRight" data-animation-delay="700">
+                          <div class="big-maps center">
+
+                            <div id="map1"></div>
+                          </div>
+                        </div>
+                        <!-- /maps section -->
                       </div>
-                      <!-- /maps section -->
+                      <!-- /row -->
+
                     </div>
-                    <!-- /row -->
-
+                    <!-- /content slide -->
                   </div>
-                  <!-- /content slide -->
                 </div>
+                <!-- /row -->
               </div>
-              <!-- /row -->
+              <!-- /container -->
             </div>
-            <!-- /container -->
-          </div>
-          <!-- /contact section -->
+            <!-- /contact section -->
 
+          </div>
+          <!-- /bt-carousel -->
         </div>
-        <!-- /bt-carousel -->
       </div>
     </div>
-  </div>
 </section>
 <!-- /section -->
 {% endblock %}
