@@ -16,7 +16,8 @@ app.config['MYSQL_DATABASE_HOST'] = '0.0.0.0'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
 
-@base_page.before_request():
+@base_page.before_request()
+def userCheck():
     if not session.get('logged_in'):
         return render_template('login.html')
 
@@ -155,4 +156,4 @@ def query():
 
 if __name__=="__main__":
     app.secret_key = urandom(12)
-    app.run(port=5009, host='0.0.0.0')
+    app.run(port=5019, host='0.0.0.0')
