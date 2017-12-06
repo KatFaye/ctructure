@@ -171,11 +171,11 @@ def query():
     except Exception as e:
         kwargs['message'] = "Error %s: %s" % (e[0], e[1])
         kwargs['messageType'] = "danger"
-        return render_template('query.html', **kwargs)
+        return render_template('index.html', **kwargs)
 
     cursor.close()
     conn.close()
-    return render_template('query.html', **kwargs)
+    return render_template('index.html', **kwargs)
 
 if __name__=="__main__":
     app.secret_key = urandom(12)
