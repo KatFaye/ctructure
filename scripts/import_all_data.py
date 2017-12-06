@@ -265,7 +265,7 @@ for law in law_files:
         article_text = law_doc[i+1]
 
         cont_tuple = (law_id, article_num, article_text, article_name)
-        print(law, "article #", article_num)
+    
         cursor.execute(add_article, cont_tuple)
 
 # commit last changes and close connections

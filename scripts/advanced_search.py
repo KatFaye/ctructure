@@ -118,21 +118,20 @@ else:
 qp = MultifieldParser(["law_body", "law_name"], schema=index.schema)  
 
 
-def build_filters(agency_in=[False, False], content_in=[False, False], pub_year_in=[False, False]):
+def build_filters(agency_in=None, content_type_in=None, pub_year_in=None):
   # build the search query given user selections
   agency =  content_type = pub_year = None 
   user_filter = None
 
   # if there is an agency filter
-  if agency_in[0]:
-    print("&&&&&&&&&&&&") 
-    agency = agency_in[1]
+  if agency_in:
+    agency = agency_in
   # if there is a content_type filter
-  if content_in[0]:
-    content_type = [1]
+  if content_type_in:
+    content_type = content_type_in
   # if there is a publication date filter
-  if pub_year_in[0]:
-    pub_year = pub_year_in[1]
+  if pub_year_in:
+    pub_year = pub_year_in
 
   # Do all combinations of the filters
   # 1. No filters selected
@@ -170,17 +169,23 @@ def build_filters(agency_in=[False, False], content_in=[False, False], pub_year_
   return user_filter
     
 
-with index.searcher() as searcher:
-  # agency_in = 
-  # pub_year = 
-  # content_type = 
+def get_results(_agency, _year, _content_type, user_query):
+  global index
+  with index.searcher() as searcher:
+    agency_in = _agency
+    pub_year_in = _year 
+    content_type_in = _content_type
 
-  user_filter = build_filters(pub_year_in=(True, 2008))
-  query = qp.parse("government")
-  results = searcher.search(query, filter=user_filter)
-  for res in results:
-    print(res)
-    print('\n\n')
+    user_filter = build_filters(agency_in = agency_in, \
+                                content_type_in = content_type_in, \
+                                pub_year_in = pub_year_in)
 
+    query = qp.parse(user_query)
+    results = searcher.search(query, filter=user_filter)
+  
+  return results
+   
+  
 
-
+build_filters(pub_year_in = 2010, agency_in='agency', content_type_in = 'law')
+print(get_results(None, None, None, 'gender'))
