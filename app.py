@@ -19,7 +19,7 @@ mysql.init_app(app)
 @app.before_request
 def userCheck():
     if not session.get('logged_in') and request.endpoint != 'login':
-        return render_template('login.html')
+        return redirect('/login')
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
