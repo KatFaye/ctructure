@@ -289,12 +289,10 @@ $( document ).ready(function(){
                     '</table>'
 
 			)
+		$("#results").find("#best-tr").click(function(){
+				alert("foo")
+		})
 	})
-
-	$("#best-tr").click(function(){
-		alert("foo")
-	})
-	
 
 
 })
