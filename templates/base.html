@@ -35,7 +35,7 @@
           <li id="signup"><a href="signup">Create Account</a></li>
           <li id="updateinfo"><a href="updateinfo">Update Information</a></li>
           {% if session['user'] is defined %}
-          <li> Welcome, {{ session['user'] }}! </li>
+          <li><a href="/"> Welcome, {{ session['user'] }}! </a></li>
           {% else %}
           <li id="login"><a href="login">Login</a></li>
           {% endif %}
