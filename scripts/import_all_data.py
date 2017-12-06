@@ -147,7 +147,7 @@ for a_law in repeal_list:
     p_day, p_month, p_year = [int(i) for i in parent_law_date.split('/')]
     impacted_law_num, impacted_law_date = a_law[2], a_law[3]
     i_day, i_month, i_year = [int(i) for i in impacted_law_date.split('/')]
-
+    print(p_day, p_month, p_year, i_day, i_month, i_year)
     cont_tuple = (parent_law_num, date(p_day, p_month, p_year), impacted_law_num, date(i_day, i_month, i_year))
     cursor.execute(add_repeal, cont_tuple)
 ### COMMIT THE ABOVE THE DATA TO THE DATABASE
