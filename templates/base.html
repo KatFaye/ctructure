@@ -6,7 +6,9 @@
   {% block head %}
   <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
   <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
-  <!--[if gt IE 8]><!--> <html class="no-js" lang="en-US">  <!--<![endif]-->
+  <!--[if gt IE 8]><!-->
+  <html class="no-js" lang="en-US">
+  <!--<![endif]-->
 
   <!-- META DATA -->
   <meta charset="utf-8">
@@ -20,7 +22,7 @@
 
   <!-- CSS Global Compulsory -->
   <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../static/css/style.css" >
+  <link rel="stylesheet" href="../static/css/style.css">
 
   <!-- CSS Implementing Plugins -->
   <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css" />
@@ -36,7 +38,7 @@
   <link href="../static/css/common.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- Fonts -->  
+  <!-- Fonts -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700,900' rel='stylesheet' type='text/css'>
 
@@ -50,71 +52,85 @@
 
 <body class="image-background">
   {% block nav %}
-    <!-- Preloader -->
-    <div id="preloader">
+  <!-- Preloader -->
+  <div id="preloader">
     <div id="loading-animation">&nbsp;</div>
-    </div>
-    <!-- /Preloader -->
+  </div>
+  <!-- /Preloader -->
 
-    <!-- Overlay -->
-    <div id="section-home" class="home-section-wrap center">
+  <!-- Overlay -->
+  <div id="section-home" class="home-section-wrap center">
     <div class="section-overlay"></div>
-    </div>
-    <!-- /Overlay -->
+  </div>
+  <!-- /Overlay -->
 
-    <!-- container -->
-    <div class="containers">
+  <!-- container -->
+  <div class="containers">
     <!-- menu -->
     <nav id="menu" class="menu">
-    <button class="menu__handle"><span>Menu</span></button>
-    <div class="menu__inner">
-    <ul>
-    <li><a href="index.html"><i class="fa fa-fw fa-home"></i><span>Home</span></a></li>
-    <li><a href="about.html"><i class="fa fa-fw fa-info"></i><span>About</span></a></li>
-    <li><a href="team.html"><i class="fa fa-fw fa-users"></i><span>Team</span></a></li>
-    <li><a href="services.html"><i class="fa fa-fw fa-gear"></i><span>Services</span></a></li>
-    <li><a href="portfolio.html"><i class="fa fa-fw fa-camera"></i><span>Portfolio</span></a></li>
-    <li><a href="contact.html"><i class="fa fa-fw fa-envelope"></i><span>Contact</span></a></li>
-    </ul>
+      <button class="menu__handle"><span>Menu</span></button>
+      <div class="menu__inner">
+        <ul>
+          <li><a href="index.html"><i class="fa fa-fw fa-home"></i><span>Home</span></a></li>
+          <li><a href="about.html"><i class="fa fa-fw fa-info"></i><span>About</span></a></li>
+          <li><a href="team.html"><i class="fa fa-fw fa-users"></i><span>Team</span></a></li>
+          <li><a href="services.html"><i class="fa fa-fw fa-gear"></i><span>Services</span></a></li>
+          <li><a href="portfolio.html"><i class="fa fa-fw fa-camera"></i><span>Portfolio</span></a></li>
+          <li><a href="contact.html"><i class="fa fa-fw fa-envelope"></i><span>Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="morph-shape" data-morph-open="M300-10c0,0,295,164,295,410c0,232-295,410-295,410" data-morph-close="M300-10C300-10,5,154,5,400c0,232,295,410,295,410">
+        <svg width="100%" height="100%" viewBox="0 0 600 800" preserveAspectRatio="none">
+  <path fill="none" d="M300-10c0,0,0,164,0,410c0,232,0,410,0,410"/>
+  </svg>
+      </div>
+    </nav>
+    <!-- /menu -->
+    {% endblock %}
+
+    <div class="main">
+      <!-- header -->
+      <header class="header-site">
+        <div class="logo-site animated bounceInDown" data-animation-delay="700">
+          <img class="img-responsive" src="../static/images/logo.png" data-at2x="../static/images/logo@2x.png" alt="Logo" />
+        </div>
+      </header>
+      <!-- /header -->
+      {% block content %} {% endblock %}
     </div>
-  {% endblock %}
 
-  <div class="container theme-showcase main" role="main">
-    {% block content %} {% endblock %}
-  </div>
+    {% block footer %}
+    <br>
+    <footer class="panel-footer text-center">
+      <div class="container-fluid">
 
-  {% block footer %}
-  <br>
-  <footer class="panel-footer text-center">
-    <div class="container-fluid">
-
-      <div class="footer-copyright">Made Using <a href="https://v4-alpha.getbootstrap.com/">Bootstrap</a>. Theme via <a href="https://bootswatch.com/">Bootswatch</a>.<br> Last updated 2017.</div>
-    </div>
-  </footer>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="../static/js/jquery-3.2.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-  <!-- JS -->
-  <script type="text/javascript" src="../static/js/jquery-1.11.3.min.js"></script>
-  <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../static/js/retina.min.js"></script>
-  <script type="text/javascript" src="../static/js/jquery.backstretch.min.js"></script>
-  <script type="text/javascript" src="../static/js/jquery.countdown.min.js"></script>
-  <script type="text/javascript" src="../static/js/jquery.parallaxify.min.js"></script>
-  <script type="text/javascript" src="../static/js/jquery.particleground.min.js"></script>
-  <script type="text/javascript" src="../static/js/vegas.min.js"></script>
-  <script type="text/javascript" src="../static/js/trianglify.min.js"></script>
-  <script type="text/javascript" src="../static/js/jquery.mb.YTPlayer.js"></script>
-  <script type="text/javascript" src="../static/js/jquery.nicescroll.min.js"></script>
-  <script type="text/javascript" src="../static/js/jquery.flexslider-min.js"></script>
-  <script type="text/javascript" src="../static/js/owl.carousel.min.js"></script>
-  <script type="text/javascript" src="../static/js/jquery.appear.js"></script>
-  <script type="text/javascript" src="../static/js/classie.js"></script>
-  <script type="text/javascript" src="../static/js/sidebar.js"></script>
-  <script type="text/javascript" src="../static/js/main.js"></script>
-  {% endblock %}
+        <div class="footer-copyright">Made Using <a href="https://v4-alpha.getbootstrap.com/">Bootstrap</a>. Theme via <a href="https://bootswatch.com/">Bootswatch</a>.<br> Last updated 2017.</div>
+      </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <!-- JS -->
+    <script type="text/javascript" src="../static/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/retina.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.backstretch.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.parallaxify.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.particleground.min.js"></script>
+    <script type="text/javascript" src="../static/js/vegas.min.js"></script>
+    <script type="text/javascript" src="../static/js/trianglify.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.mb.YTPlayer.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="../static/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.appear.js"></script>
+    <script type="text/javascript" src="../static/js/classie.js"></script>
+    <script type="text/javascript" src="../static/js/sidebar.js"></script>
+    <script type="text/javascript" src="../static/js/main.js"></script>
+    {% endblock %}
 </body>
 
 </html>

@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block content %}
+<!-- section -->
+<section class="section fullscreen site-main">
+  <div class="container-section">
+    <div class="container-table">
+      <div class="content-table">
+        <!-- bt-carousel -->
+        <div class="bt-carousel">
+
+          <!-- contact section -->
+          <div class="item-slide show">
+            <!-- container -->
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+
+                  <!-- header section -->
+                  <div class="header-section animated bounceInDown" data-animation-delay="700">
+                    <!-- title section -->
+                    <h2 class="title-section">Contact Us</h2>
+                    <!-- /title section -->
+                    <div class="line-separate line-white line-center"><span></span></div>
+                  </div>
+                  <!-- /header section -->
+
+                  <!-- content slide -->
+                  <div class="content-slide aboutus">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-6 animated bounceInLeft" data-animation-delay="700">
+                        <h3>Do You Have a Question ?</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+
+                        <!-- contact form -->
+                        <form method="post" action="../../send-mail.php" class="contact-form">
+
+                          <input type="text" name="name" placeholder="Name" class="required">
+
+                          <input type="email" name="email" placeholder="Email address" class="contact-form-email required">
+
+                          <input type="text" name="subject" placeholder="Subject" class="contact-form-subject">
+
+                          <textarea name="message" placeholder="Message" class="required" rows="7"></textarea>
+
+                          <div class="response-message"></div>
+                          <button class="border-button" type="submit" id="submit" name="submit">Send Message</button>
+
+                        </form>
+                        <!-- /contact form -->
+                      </div>
+                      <!-- /col-xs-12 col-md-6 -->
+
+                      <!-- maps section -->
+                      <div class="col-xs-12 col-md-6 maps-section animated bounceInRight" data-animation-delay="700">
+                        <div class="big-maps center">
+                          <ul>
+                            <li><span>address: </span> New York</li>
+                            <li><span>call us: </span><a href="tel:123456789">123 456 789</a></li>
+                            <li><span>Fax: </span><a href="tel:123456789">123 456 789</a></li>
+                            <li><span>email: </span><a href="#">support@mail.com</a></li>
+                            <li><span>Website: </span><a href="#">www.templatestock.cm</a></li>
+                          </ul>
+                          <div id="map1"></div>
+                        </div>
+                      </div>
+                      <!-- /maps section -->
+                    </div>
+                    <!-- /row -->
+
+                  </div>
+                  <!-- /content slide -->
+                </div>
+              </div>
+              <!-- /row -->
+            </div>
+            <!-- /container -->
+          </div>
+          <!-- /contact section -->
+
+        </div>
+        <!-- /bt-carousel -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /section -->
+{% endblock %}
