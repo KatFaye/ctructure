@@ -268,4 +268,4 @@ cnx.commit()
 cursor.close()
 cnx.close()
 
-print "Successfully imported all the data!"
+#print "Successfully imported all the data!"
