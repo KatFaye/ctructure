@@ -35,12 +35,14 @@
           <li id="signup"><a href="signup">Create Account</a></li>
           <li id="updateinfo"><a href="updateinfo">Update Information</a></li>
           {% if session['user'] is defined %}
-          <li class="navbar-text"> Welcome, {{ session['user'] }}! </li>
+          </ul>
+          <span class="navbar-text"> Welcome, {{ session['user'] }}! </span>
           {% else %}
           <li class="nav-item" id="login"><a href="login">Login</a></li>
+        </ul>
           {% endif %}
 
-        </ul>
+
       </div>
       <!--/.nav-collapse -->
     </div>
