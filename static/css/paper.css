@@ -124,15 +124,6 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
-button,
-input,
-optgroup,
-select,
-textarea {
-  color: inherit;
-  font: inherit;
-  margin: 0;
-}
 button {
   overflow: visible;
 }
@@ -1089,17 +1080,7 @@ th {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-html {
-  font-size: 18px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-body {
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1em;
-  line-height: 1.846;
-  color: #666666;
-  background-color: #ffffff;
-}
+
 input,
 button,
 select,
