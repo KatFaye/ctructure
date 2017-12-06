@@ -147,8 +147,8 @@ for a_law in repeal_list:
     p_day, p_month, p_year = [int(i) for i in parent_law_date.split('/')]
     impacted_law_num, impacted_law_date = a_law[2], a_law[3]
     i_day, i_month, i_year = [int(i) for i in impacted_law_date.split('/')]
-    print(p_day, p_month, p_year, i_day, i_month, i_year)
-    cont_tuple = (parent_law_num, date(p_day, p_month, p_year), impacted_law_num, date(i_day, i_month, i_year))
+    
+    cont_tuple = (parent_law_num, date(p_year, p_month, p_day), impacted_law_num, date(i_year, i_month, i_day))
     cursor.execute(add_repeal, cont_tuple)
 ### COMMIT THE ABOVE THE DATA TO THE DATABASE
 cnx.commit()
@@ -173,7 +173,7 @@ for a_law in cite_list:
     cited_law_num, cited_law_date = a_law[2], a_law[3]
     c_day, c_month, c_year = [int(i) for i in cited_law_date.split('/')]
 
-    cont_tuple = (parent_law_num, date(p_day, p_month, p_year), cited_law_num, date(c_day, c_month, c_year))
+    cont_tuple = (parent_law_num, date(p_year, p_month, p_day), cited_law_num, date(c_year, c_month, c_day))
     cursor.execute(add_cites, cont_tuple)
 ### COMMIT THE ABOVE THE DATA TO THE DATABASE
 cnx.commit()
