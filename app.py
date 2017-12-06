@@ -22,7 +22,10 @@ def check_login():
     if session.get('logged_in'):
         return redirect('/updateinfo')
     else:
-        return redirect(url_for('check_login'))
+        kwargs = {}
+        kwargs['message'] = ""
+        kwargs['messageType'] = ""
+        return render_template('/login.html', **kwargs)
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
