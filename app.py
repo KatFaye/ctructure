@@ -2,7 +2,8 @@ from flask import Flask, render_template, json, request, redirect
 from flaskext.mysql import MySQL
 from base import base_page
 from os import urandom
-from .scripts.advanced_search import build_filters, get_results
+from scripts import advanced_search
+from advanced_search import build_filters, get_results
 
 app = Flask(__name__)
 app.register_blueprint(base_page)
