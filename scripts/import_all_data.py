@@ -161,17 +161,19 @@ add_cites = ("INSERT INTO cites"
 cite_list = []
 with open('import_data/references.txt') as f:
     for line in f:
-        line = line.rstrip()
-        temp_list = line.split(", ")
-        cite_list.append(temp_list)
+        if str(line).split():
+            line = line.rstrip()
+            temp_list = line.split(", ")
+            cite_list.append(temp_list)
 
 # Insert attributes into the "cites" table
 for a_law in cite_list:
-    # var_num & pub_date are part of the key, at index 0 and 1
-    parent_law_num, parent_law_date = a_law[0], a_law[1]
-    p_day, p_month, p_year = [int(i) for i in parent_law_date.split('/')]
-    cited_law_num, cited_law_date = a_law[2], a_law[3]
-    c_day, c_month, c_year = [int(i) for i in cited_law_date.split('/')]
+    if a_law:
+        # var_num & pub_date are part of the key, at index 0 and 1
+        parent_law_num, parent_law_date = a_law[0], a_law[1]
+        p_day, p_month, p_year = [int(i) for i in parent_law_date.split('/')]
+        cited_law_num, cited_law_date = a_law[2], a_law[3]
+        c_day, c_month, c_year = [int(i) for i in cited_law_date.split('/')]
 
     cont_tuple = (parent_law_num, date(p_year, p_month, p_day), cited_law_num, date(c_year, c_month, c_day))
     cursor.execute(add_cites, cont_tuple)
@@ -205,7 +207,7 @@ for law in law_files:
     pub_var_num, pub_date = get_pub_attrs(publication)
     ending = "N/A" # place_holder for now
     agency = "RRA"   # placeholder for now
-
+    print(law_name)
     # exact date i.e. the date in the law's name or "exact_date" attribute
     e_day, e_month, e_year = [int(j) for j in law_name.split()[3].split('/')]
     # publication date i.e. "pub_date" attribute
