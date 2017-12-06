@@ -2,6 +2,8 @@ from flask import Flask, render_template, json, request, redirect
 from flaskext.mysql import MySQL
 from base import base_page
 from os import urandom
+from scripts import advanced_search
+from advanced_search import build_filters,get_results
 
 app = Flask(__name__)
 app.register_blueprint(base_page)
@@ -15,6 +17,14 @@ app.config['MYSQL_DATABASE_DB'] = 'rwandanlaw'
 app.config['MYSQL_DATABASE_HOST'] = '0.0.0.0'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
+
+
+@app.before_request
+def userCheck():
+    if session.get('logged_in') and request.path = '/login':
+        print("I'm fine")
+    if session.get('logged_in') and request.path = '/login':
+        return redirect('/updateinfo')
 
 
 @app.route('/login', methods=['POST'])
@@ -91,7 +101,7 @@ def signup():
 
     cursor.close()
     conn.close()
-    return redirect('/search')
+    return redirect('/index')
 
 @app.route('/updateinfo', methods=['POST'])
 def updateinfo():
@@ -138,10 +148,23 @@ def query():
         _content_type = request.form['content-type-filter']
         _agency = request.form['agency-filter']
 
+        if (_year == "None"):
+            _year = False
+        if (_content_type == "None"):
+            _year = False
+        if (_agency == "None"):
+            _year = False
+
+        print("The data is " + _search + " "+ _year +" " + _content_type + " " + agency)
+
+        build_filters,get_results
+
+        """
         conn = mysql.connect()
         cursor = conn.cursor()
         query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
         cursor.execute(query_string)
+        """
         kwargs['data'] = cursor.fetchall()
 
     except Exception as e:
