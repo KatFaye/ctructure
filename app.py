@@ -22,8 +22,7 @@ def check_login():
     if session.get('logged_in'):
         return redirect('/updateinfo')
     else:
-        return render_template('/login.html', {})
-
+        return redirect(url_for('check_login'))
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
