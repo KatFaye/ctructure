@@ -33,10 +33,10 @@ def get_fields(file_lines):
   fields["law_num_date"] = law_num_date 
  
   # Get Official Gazette from 4th line (4rd index)
-  pub_date_raw = file_lines[3].split()[-1]
-  day, month, year = [int(i) for i in pub_date_raw.split('/')]
-  pub_date = datetime.datetime(year, month, day)
-  fields["pub_date"] = pub_date
+  pub_year_raw = file_lines[3].split()[-1]
+  day, month, year = [int(i) for i in pub_year_raw.split('/')]
+  pub_year = datetime.datetime(year, month, day)
+  fields["pub_year"] = pub_year.year
   
   fields["agency_tag"] = file_lines[4]
 
