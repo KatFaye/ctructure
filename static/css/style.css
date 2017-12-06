@@ -1544,7 +1544,7 @@ body.mobile .animated {
     padding: 5px 10px 5px 10px;
 }
 
-.signup-span:hover{
+a.signup-span:hover{
 	color: #4286f4;
 }
 
