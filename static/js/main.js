@@ -273,7 +273,7 @@
 })(jQuery);
 
 $( document ).ready(function(){
-	$("#searchbtn").click(function(){
+	$("#best-tr").click(function(){
 		alert("foo")
 	})
 	
