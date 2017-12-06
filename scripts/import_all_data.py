@@ -207,7 +207,7 @@ for law in law_files:
     pub_var_num, pub_date = get_pub_attrs(publication)
     ending = "N/A" # place_holder for now
     agency = "RRA"   # placeholder for now
-    print(law_name)
+   
     # exact date i.e. the date in the law's name or "exact_date" attribute
     e_day, e_month, e_year = [int(j) for j in law_name.split()[3].split('/')]
     # publication date i.e. "pub_date" attribute
@@ -265,6 +265,7 @@ for law in law_files:
         article_text = law_doc[i+1]
 
         cont_tuple = (law_id, article_num, article_text, article_name)
+        print(law, "article #", article_num)
         cursor.execute(add_article, cont_tuple)
 
 # commit last changes and close connections
