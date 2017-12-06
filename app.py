@@ -21,8 +21,8 @@ mysql.init_app(app)
 def check_login():
     if session.get('logged_in'):
         return redirect('/updateinfo')
-    if not session.get('logged_in') and request.path != '/login':
-        return redirect(url_for('check_login'))
+    else:
+        return render_template('/login.html', {})
 
 
 @app.route('/login', methods=['POST'])
