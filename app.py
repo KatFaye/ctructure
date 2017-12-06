@@ -39,7 +39,7 @@ def do_admin_login():
 
         query = """
             SELECT username, password from users u WHERE
-            u.user = %s and u.password = %s;
+            u.username = %s and u.password = %s;
         """
 
         isValid = cursor.execute(query, (user, password))
