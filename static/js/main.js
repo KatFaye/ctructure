@@ -290,7 +290,26 @@ $( document ).ready(function(){
 
 			)
 		$("#results").find("#best-tr").click(function(){
-				alert("foo")
+				$("#results").html(
+					'<h5> Articles </h5>'+
+                    '<ol><li>Purpose of this Order </li><li>Curriculum and teaching hours in primary and secondary schools </li>li>Curriculum and teaching hours in specialized schools </li>'+
+                        '<li>Language of instruction in the first cycle of primary education</li><li>Language of instruction in the second cycle of primary education </li>'+
+                        '<li>Language of secondary schools </li><li>Language of specialized schools </li><li>Repealing provision </li><li>Commencement</li></ol>'+
+				'<table class="result-talbe">'+
+						'<tr>'+
+                            '<th>Repeals</th>'+
+                        '</tr>'+
+                        '<tr>'+
+                            '<td>N° 002/2016 OF 08/01/2016 DETERMINING THE RESPONSIBILITIES OF SCHOOL MANAGEMENT BOARD MEMBERS</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                            '<th>Reference</th>'+
+                        '</tr>'+
+                        '<tr>'+
+                            '<td>003/2016 OF 08/01/2016 DETERMINING GENERAL RULES GOVERNING NURSERY, PRIMARY AND SECONDARY SCHOOLS AND FUNCTIONING OF SCHOOL GENERAL ASSEMBLY AND ITS SUBSIDIARY ORGANS</td>'+
+                        '</tr>'+
+                    '</table>'
+			)
 		})
 	})
 
