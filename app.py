@@ -21,9 +21,9 @@ mysql.init_app(app)
 
 @app.before_request
 def userCheck():
-    if session.get('logged_in') and request.path = '/login':
+    if request.path == '/login':
         print("I'm fine")
-    if session.get('logged_in') and request.path = '/login':
+    if session.get('logged_in') and request.path == '/login':
         return redirect('/updateinfo')
 
 
