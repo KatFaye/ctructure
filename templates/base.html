@@ -35,9 +35,9 @@
           <li id="signup"><a href="signup">Create Account</a></li>
           <li id="updateinfo"><a href="updateinfo">Update Information</a></li>
           {% if session['user'] is defined %}
-          <li><a href="/"> Welcome, {{ session['user'] }}! </a></li>
+          <li class="navbar-text"> Welcome, {{ session['user'] }}! </li>
           {% else %}
-          <li id="login"><a href="login">Login</a></li>
+          <li class="nav-item" id="login"><a href="login">Login</a></li>
           {% endif %}
 
         </ul>
