@@ -18,7 +18,7 @@ mysql.init_app(app)
 
 @app.before_request
 def userCheck():
-    if not session.get('logged_in') and request.path != 'login':
+    if not session.get('logged_in') and request.path != '/login':
         return redirect('/login')
 
 @app.route('/login', methods=['POST'])
