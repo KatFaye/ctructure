@@ -17,7 +17,7 @@
                   <!-- header section -->
                   <div class="header-section animated bounceInDown" data-animation-delay="700">
                     <!-- title section -->
-                    <h2 class="title-section">Contact Us</h2>
+                    <h2 class="title-section">Login</h2>
                     <!-- /title section -->
                     <div class="line-separate line-white line-center"><span></span></div>
                   </div>
@@ -27,25 +27,21 @@
                   <div class="content-slide aboutus">
                     <div class="row">
                       <div class="col-xs-12 col-md-6 animated bounceInLeft" data-animation-delay="700">
-                        <h3>Do You Have a Question ?</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
 
                         <!-- contact form -->
-                        <form method="post" action="../../send-mail.php" class="contact-form">
+                       <h1 class="text-center">Login</h1>
+<div class="alert alert-{{ messageType }}" >
+  {{ message }}
+</div>
 
-                          <input type="text" name="name" placeholder="Name" class="required">
-
-                          <input type="email" name="email" placeholder="Email address" class="contact-form-email required">
-
-                          <input type="text" name="subject" placeholder="Subject" class="contact-form-subject">
-
-                          <textarea name="message" placeholder="Message" class="required" rows="7"></textarea>
-
-                          <div class="response-message"></div>
-                          <button class="border-button" type="submit" id="submit" name="submit">Send Message</button>
-
-                        </form>
+<form style="width=50%" action="/login" method="POST" name="login">
+  <label for="username" class="sr-only">Username</label>
+  <input type="name" name="username" placeholder="Username" class="form-control" required autofocus>
+  <label for="password" class="sr-only">Password</label>
+  <input type="password" name="password" placeholder="Password" class="form-control" required autofocus>
+  <input type="submit" value="Log in!" class="btn btn-primary">
+</form>
                         <!-- /contact form -->
                       </div>
                       <!-- /col-xs-12 col-md-6 -->
@@ -53,13 +49,7 @@
                       <!-- maps section -->
                       <div class="col-xs-12 col-md-6 maps-section animated bounceInRight" data-animation-delay="700">
                         <div class="big-maps center">
-                          <ul>
-                            <li><span>address: </span> New York</li>
-                            <li><span>call us: </span><a href="tel:123456789">123 456 789</a></li>
-                            <li><span>Fax: </span><a href="tel:123456789">123 456 789</a></li>
-                            <li><span>email: </span><a href="#">support@mail.com</a></li>
-                            <li><span>Website: </span><a href="#">www.templatestock.cm</a></li>
-                          </ul>
+                     
                           <div id="map1"></div>
                         </div>
                       </div>
