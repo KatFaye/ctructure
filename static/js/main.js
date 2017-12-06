@@ -271,3 +271,11 @@
 
 
 })(jQuery);
+
+$( document ).ready(){
+	$("#do-search").click(){
+		alert("foo")
+	}
+
+
+}
