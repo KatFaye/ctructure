@@ -164,6 +164,7 @@ def query():
         query_results = get_results(_agency, _content_type, _year,_search)
         print("I'M HERE!!!!!!!!!!!!!!!!!!!!!\n")
         print(query_results)
+        print(len(query_results))
         #print(query_results[0])
         print(type(query_results))
         for i in range(len(query_results)):
