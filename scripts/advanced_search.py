@@ -182,8 +182,10 @@ def get_results(_agency, _year, _content_type, user_query):
 
     query = qp.parse(user_query)
     results = searcher.search(query, filter=user_filter)
+    print("I'M IN GET_RESULT!!!!!!!!!!!!!!!!!!!!!\n")
     new_list = []
     for r in results:
       new_list.append(r)
   
   return new_list
+   
