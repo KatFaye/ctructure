@@ -28,6 +28,7 @@ def check_login():
         kwargs['messageType'] = ""
         return render_template('/login.html', **kwargs)
 
+
 @app.route('/login', methods=['POST'])
 def do_admin_login():
     kwargs = {}
@@ -48,7 +49,7 @@ def do_admin_login():
         """
 
         isValid = cursor.execute(query, (user, password))
-        if isValid > 0: # not an empty SET
+        if isValid > 0:  # not an empty SET
             session['logged_in'] = True
             session['user'] = user
             kwargs['message'] = "%s Logged In Successfully!" % user
@@ -60,7 +61,7 @@ def do_admin_login():
         conn.close()
         return render_template('login.html', **kwargs)
     except Exception as e:
-        print ("The Error is " + str(e))
+        print("The Error is " + str(e))
         kwargs['message'] = "Error %s: %s" % (e[0], e[1])
         kwargs['messageType'] = "danger"
         return render_template('/login.html', **kwargs)
@@ -71,18 +72,19 @@ def signup():
     kwargs = {}
     val_status = False
     try:
-    # read the posted values from the UI
+        # read the posted values from the UI
         _firstname = request.form['input_firstname']
         _lastname = request.form['input_lastname']
         _username = request.form['input_username']
         _email = request.form['input_email']
         _password = request.form['input_password']
 
-          # all fields are filled
+        # all fields are filled
         conn = mysql.connect()
 
         cursor = conn.cursor()
-        cursor.callproc('sp_createUser', (_firstname, _lastname, _username, _email, _password))
+        cursor.callproc('sp_createUser', (_firstname,
+                                          _lastname, _username, _email, _password))
 
         data = cursor.fetchall()
 
@@ -105,6 +107,7 @@ def signup():
     conn.close()
     return redirect('/index')
 
+
 @app.route('/updateinfo', methods=['POST'])
 def updateinfo():
     kwargs = {}
@@ -118,7 +121,8 @@ def updateinfo():
 
         cursor = conn.cursor()
         user = session.get('user')
-        query_string="UPDATE users SET email= '" +_email +"', password= '" + _password +"' WHERE username='" +user +"'"
+        query_string = "UPDATE users SET email= '" + _email + \
+            "', password= '" + _password + "' WHERE username='" + user + "'"
         cursor.execute(query_string)
 
         data = cursor.fetchall()
@@ -154,22 +158,22 @@ def query():
         if (_year == "None"):
             _year = False
         if (_content_type == "None"):
-            _content_type  = False
+            _content_type = False
         if (_agency == "None"):
             _agency = False
 
         conn = mysql.connect()
         cursor = conn.cursor()
 
-        query_results = get_results(_agency, _content_type, _year,_search)
+        query_results = get_results(_agency, _content_type, _year, _search)
         print("I'M HERE!!!!!!!!!!!!!!!!!!!!!\n")
         print(query_results)
         print(type(query_results))
-        
+
         #query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
         #query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
-        #cursor.execute(query_string)
-        
+        # cursor.execute(query_string)
+
         #kwargs['data'] = cursor.fetchall()
         kwargs['message'] = query_results
         kwargs['messageType'] = "success"
@@ -183,6 +187,7 @@ def query():
     conn.close()
     return render_template('index.html', **kwargs)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     app.secret_key = urandom(12)
     app.run(port=5019, host='0.0.0.0')
