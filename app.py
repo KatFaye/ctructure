@@ -165,7 +165,7 @@ def query():
         print("I'M HERE!!!!!!!!!!!!!!!!!!!!!\n")
         print(query_results)
         print(type(query_results))
-        print(query_results.items())
+        print(query_results.items()[0])
         
         #query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
         query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
