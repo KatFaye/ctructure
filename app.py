@@ -167,7 +167,10 @@ def query():
         query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
         cursor.execute(query_string)
         
-        kwargs['data'] = cursor.fetchall()
+        #kwargs['data'] = cursor.fetchall()
+        kwargs['data'] = query_results
+
+
 
     except Exception as e:
         kwargs['message'] = "Error " + str(e)
