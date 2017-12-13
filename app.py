@@ -168,7 +168,8 @@ def query():
         cursor.execute(query_string)
         
         #kwargs['data'] = cursor.fetchall()
-        kwargs['data'] = query_results
+        kwargs['message'] = query_results
+        kwargs['messageType'] = "success"
 
 
 
