@@ -185,7 +185,6 @@ def get_results(_agency, _year, _content_type, user_query):
     new_list = []
     for r in results:
       new_list.append(r)
-      print(r)
   
     return new_list
    
