@@ -186,7 +186,7 @@ def get_results(_agency, _year, _content_type, user_query):
     for r in results:
       print(r)
   
-  return results
+  return list(results)
    
   
 
