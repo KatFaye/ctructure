@@ -15,7 +15,7 @@ from whoosh.query import Query, Term, And
 
 
 # import stopwords
-with open("search_static/stopwords.txt", 'r') as f:
+with open("scripts/search_static/stopwords.txt", 'r') as f:
   stopwords = sorted(list(f.read().split('\n')))
 
 lang_ana = StemmingAnalyzer(stoplist = stopwords)
@@ -55,15 +55,15 @@ stored without being indexed... just to show up search results.
 """  
 
 # To create (or open existing) index directory
-if os.path.exists("indexdir"):
-  index = index.open_dir("indexdir")
+if os.path.exists("scripts/indexdir"):
+  index = index.open_dir("scripts/indexdir")
 
 else:
-  os.mkdir("indexdir")
-  index = index.create_in("indexdir", schema)
+  os.mkdir("scripts/indexdir")
+  index = index.create_in("scripts/indexdir", schema)
 
 # start indexing documents
-file_list = os.listdir("demo_laws")
+file_list = os.listdir("scripts/demo_laws")
 
 def get_unicode(string):
   return unicode(string, 'utf-8')
@@ -71,19 +71,19 @@ def get_unicode(string):
 # MAIN_WRITELOCK file gets created after initiating the writer object (below)
 # it's a simple way to know that we have already indexed documents
 
-if not os.path.exists("indexdir/MAIN_WRITELOCK"):
+if not os.path.exists("scripts/indexdir/MAIN_WRITELOCK"):
 
   writer = index.writer()
 
   for doc in file_list:
     if doc[0] == '.': continue # skip hidden files
-    if os.path.isfile("demo_laws/" + doc):
+    if os.path.isfile("scripts/demo_laws/" + doc):
       """
       The list_from_file function returns the raw file as 
       a list of lines. 
       The get_fields func returns a dictionary with field values
       """
-      file_lines = list_from_file("demo_laws/"+doc)
+      file_lines = list_from_file("scripts/demo_laws/"+doc)
       file_fields = get_fields(file_lines)
     
       law_name = file_fields["law_name"]

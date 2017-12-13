@@ -2,6 +2,7 @@ from flask import Flask, render_template, json, request, redirect, flash, sessio
 from flaskext.mysql import MySQL
 from base import base_page
 from os import urandom
+from scripts.advanced_search import build_filters,get_results
 
 app = Flask(__name__)
 app.register_blueprint(base_page)
@@ -179,4 +180,4 @@ def query():
 
 if __name__=="__main__":
     app.secret_key = urandom(12)
-    app.run(port=5009, host='0.0.0.0')
+    app.run(port=5019, host='0.0.0.0')
