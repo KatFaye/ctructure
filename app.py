@@ -2,7 +2,7 @@ from flask import Flask, render_template, json, request, redirect, flash, sessio
 from flaskext.mysql import MySQL
 from base import base_page
 from os import urandom
-from scripts.advanced_search import build_filters,get_results
+from scripts.advanced_search import get_results
 
 app = Flask(__name__)
 app.register_blueprint(base_page)
@@ -147,8 +147,6 @@ def query():
     kwargs = {}
     try:
         _search = request.form['search']
-
-        """
         _year = request.form['pub-year-filter']
         _content_type = request.form['content-type-filter']
         _agency = request.form['agency-filter']
@@ -156,13 +154,16 @@ def query():
         if (_year == "None"):
             _year = False
         if (_content_type == "None"):
-            _year = False
+            _content_type  = False
         if (_agency == "None"):
-            _year = Falss
-        """
+            _agency = False
+        
 
         conn = mysql.connect()
         cursor = conn.cursor()
+
+        query_results = get_results(_agency, _content_type, _year,user_query)
+        print(query_results)
         #query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
         query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
         cursor.execute(query_string)
