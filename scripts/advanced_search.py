@@ -189,8 +189,3 @@ def get_results(_agency, _year, _content_type, user_query):
       print(r)
   
   return new_list
-   
-  
-
-build_filters(pub_year_in = 2010, agency_in='agency', content_type_in = 'law')
-print(get_results(None, None, None, 'gender'))
