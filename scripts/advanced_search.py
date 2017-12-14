@@ -190,7 +190,7 @@ def get_results(_agency, _year, _content_type, user_query):
     for r in results:
       print("Type of result item ^^^^^^^^^")
       print(type(r))
-      new_list.append(r)
+      new_list.append(dict(r))
       print(r)
 
     return new_list
