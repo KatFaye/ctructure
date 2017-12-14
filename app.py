@@ -2,7 +2,8 @@ from flask import Flask, render_template, json, request, redirect, flash, sessio
 from flaskext.mysql import MySQL
 from base import base_page
 from os import urandom
-import re,json
+import re
+import json
 import unicodedata
 from scripts.advanced_search import get_results
 
@@ -157,16 +158,13 @@ def query():
         print("Type q_in 2", type(query_input))
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
 
-
         new_input = {}
         for k in query_input:
-            b = k.encode('ascii','ignore')
-            
-            new_input[b] = query_input[k].encode('ascii','ignore')
-            
+            b = k.encode('ascii', 'ignore')
+
+            new_input[b] = query_input[k].encode('ascii', 'ignore')
 
         print(new_input)
-
 
         _search = new_input['search']
         _year = new_input['year']
@@ -190,20 +188,20 @@ def query():
 
         law_info = {}
         for res in query_results:
-        	law_info[res["law_num_date"].encode('ascii','ignore')]
+            law_info[res["law_num_date"].encode('ascii', 'ignore')]
             for field in res:
                 if field !="law_num_date":
                     law_info[res["law_num_date"][field] = res[field].encode('ascii','ignore')
 
         print(law_info)
 
-        #query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
-        #query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
+        # query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
+        # query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
         # cursor.execute(query_string)
 
-        #kwargs['data'] = cursor.fetchall()
-        #kwargs['message'] = law_names
-        #kwargs['messageType'] = "success"
+        # kwargs['data'] = cursor.fetchall()
+        # kwargs['message'] = law_names
+        # kwargs['messageType'] = "success"
         law_info = json.dumps(law_info)
         return law_info
 
@@ -216,7 +214,7 @@ def query():
 
     cursor.close()
     conn.close()
-    #return render_template('index.html', **kwargs)
+    # return render_template('index.html', **kwargs)
 
 
 if __name__ == "__main__":
