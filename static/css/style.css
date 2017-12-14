@@ -1548,9 +1548,15 @@ a.signup-span:hover{
 	color: #4286f4;
 }
 
-input#do-search{
+input[type="search"].big_search_bar{
 	widows: 100%;
+	display: block;
 }
+
+div.search_filter{\
+	display: block;
+}
+
 
 #searchbtn{
 	margin: 3px 0px 0 30px;
