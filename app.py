@@ -174,6 +174,9 @@ def query():
         _agency = new_input['agency']
 
         print(_search)
+        print(_year)
+        print(_content_type)
+        print(_agency)
 
         if (_year == "None"):
             _year = False
@@ -181,9 +184,6 @@ def query():
             _content_type = False
         if (_agency == "None"):
             _agency = False
-
-        conn = mysql.connect()
-        cursor = conn.cursor()
 
         query_results = get_results(_agency, _content_type, _year, _search)
         print(query_results)
