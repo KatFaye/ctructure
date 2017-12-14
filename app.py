@@ -213,9 +213,12 @@ def get_detail_page():
 
         conn = mysql.connect()  
         cursor = conn.cursor()
-        query_string = "SELECT impacted_law_num, impacted_law_date from repeals WHERE parent_law_num= '" + law_num +"', parent_law_date= '" + exact_date 
-        cursor.execute(query_string)
-        data = cursor.fetchall()
+        query = """
+            SELECT impacted_law_num, impacted_law_date from repeals WHERE
+            parent_law_num = %s and parent_law_date = %s;
+        """
+        data = cursor.execute(query_string,(law_num, exact_date))
+        
 
         print("!!!!!!!!!")
         print(data)
