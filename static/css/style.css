@@ -1548,6 +1548,10 @@ a.signup-span:hover{
 	color: #4286f4;
 }
 
+input#do-search{
+	widows: 100%;
+}
+
 #searchbtn{
 	margin: 3px 0px 0 30px;
 }
