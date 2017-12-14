@@ -217,8 +217,9 @@ def get_detail_page():
             SELECT impacted_law_num, impacted_law_date from repeals WHERE
             parent_law_num = %s and parent_law_date = %s;
         """
-        data = cursor.execute(query_string,(law_num, exact_date))
-        
+        cursor.execute(query_string,(law_num, exact_date))
+        data = cursor.fetchall()
+        conn.commit()
 
         print("!!!!!!!!!")
         print(data)
