@@ -224,6 +224,10 @@ def get_detail_page():
         """
         cursor.execute(query_string,(law_num, exact_date))
         data = cursor.fetchall()
+        print("!!!!!!!!!!!!!!!!!!")
+        print(data)
+
+
         if(len(data) == 0):
             output["repeal_law"]= ""
         else:
