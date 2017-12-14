@@ -185,6 +185,7 @@ def query():
 
         query_results = get_results(_agency, _content_type, _year, _search)
         print(query_results)
+        print("\n\n")
 
         law_info = {}
         for res in query_results:
