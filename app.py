@@ -219,7 +219,22 @@ def get_detail_page():
         """
         cursor.execute(query_string,(law_num, exact_date))
         data = cursor.fetchall()
-        conn.commit()
+        if(len(data) == 0){
+            output["repeal_law"]= ""
+        }else{
+            conn.commit()
+            conn = mysql.connect()  
+            cursor = conn.cursor()
+            query_string = """
+                SELECT name from laws WHERE
+                law_num = %s and exact_date = %s;
+            """
+            cursor.execute(query_string,(law_num, exact_date)) #?????
+            data = cursor.fetchall()
+        }
+        
+
+
 
         print("!!!!!!!!!")
         print(data)
