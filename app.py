@@ -154,27 +154,17 @@ def query():
     kwargs = {}
     try:
         query_input = request.get_json(force=True)
-        print(query_input)
-        print("Type q_in 2", type(query_input))
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
-
         new_input = {}
+
         for k in query_input:
             b = k.encode('ascii', 'ignore')
 
             new_input[b] = query_input[k].encode('ascii', 'ignore')
 
-        print(new_input)
-
         _search = new_input['search']
         _year = new_input['year']
         _content_type = new_input['content_type']
         _agency = new_input['agency']
-
-        print(_search)
-        print(_year)
-        print(_content_type)
-        print(_agency)
 
         if (_year == "None"):
             _year = False

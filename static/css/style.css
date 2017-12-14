@@ -1565,8 +1565,10 @@ tr.pointer-tr:hover{
 }
 
 tr:nth-child(even) {
-	background: #e9ecef42
+	background: #f8f9fa;
+	color: #343a40;
 }
 tr:nth-child(odd) {
-	background: #343a40cf
+	background: #343a40;
+	color: #f8f9fa;
 }
