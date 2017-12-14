@@ -191,7 +191,7 @@ def query():
             law_info[res["law_num_date"].encode('ascii', 'ignore')]
             for field in res:
                 if field !="law_num_date":
-                    law_info[res["law_num_date"][field] = res[field].encode('ascii','ignore')
+                    law_info[res["law_num_date"]][field] = res[field].encode('ascii','ignore')
 
         print(law_info)
 
