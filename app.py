@@ -147,7 +147,7 @@ def updateinfo():
     conn.close()
 
 
-@app.route('/query', methods=['POST'])
+@app.route('/query/', methods=['POST'])
 def query():
     kwargs = {}
     try:
