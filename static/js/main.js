@@ -278,7 +278,7 @@ $( document ).ready(function(){
 		var query_string = {
 	        "query": $("#do-search").val(),
 	        "year": $("#agency-filter option:selected").attr("value"),
-	        "content_type": $("#content-type-filter option:selected").attr("value")
+	        "content_type": $("#content-type-filter option:selected").attr("value"),
 	        "pub_year": $("#pub-year-filter option:selected").attr("value")
 	    }
 	    query_string = JSON.stringify(query_string)
