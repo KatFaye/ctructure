@@ -334,7 +334,7 @@ $( document ).ready(function(){
 		    xhr.open("POST","http://dsg1.crc.nd.edu:5020/details",true)  
 
 		    xhr.onload = function(e){
-		        details = xhr.responseText
+		        details = JSON.parse(xhr.responseText)
 		        buildResult(details)
 		    }
 		    xhr.onerror = function(e){
