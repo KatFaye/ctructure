@@ -272,7 +272,7 @@ def get_detail_page():
             output["articles"]= ""
         else:
             print("!!!!!!!!!!!!!!!!!!")
-            print(data[0])
+            print(data)
 
             cursor = conn.cursor()
             repeal_string = """
@@ -284,8 +284,8 @@ def get_detail_page():
             if(len(articles) == 0):
                 output["articles"]= ""
             else:
-                print("!!!!!!!!!!!!!!!!!!")
-                print(data[0])
+                print("???????????????")
+                print(articles)
                 output["articles"]= articles[0]  
         
 
