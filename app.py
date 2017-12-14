@@ -227,8 +227,7 @@ def get_detail_page():
         else:
             print("!!!!!!!!!!!!!!!!!!")
             print(data[0])
-            conn.commit()
-            law_num = data[0][0].encode('ascii', 'ignore')
+            law_num = data[0][0]
 
             cursor = conn.cursor()
             repeal_string = """
