@@ -188,12 +188,14 @@ def query():
         query_results = get_results(_agency, _content_type, _year, _search)
         print(query_results)
 
-        law_names = []
+        law_info = {}
         for res in query_results:
-        	law_names.append(res["law_name"].encode('ascii','ignore'))
+        	law_info[res["law_num_date"].encode('ascii','ignore')]=
+            for field in res:
+                if field !="law_num_date":
+                    law_info[res["law_num_date"][field] = res[field].encode('ascii','ignore')
 
-        print(law_names)
-        
+        print(law_info)
 
         #query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
         #query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
@@ -202,7 +204,8 @@ def query():
         #kwargs['data'] = cursor.fetchall()
         #kwargs['message'] = law_names
         #kwargs['messageType'] = "success"
-        return law_names
+        law_info = json.dumps(law_info)
+        return law_info
 
     except Exception as e:
         kwargs['message'] = "Error " + str(e)
