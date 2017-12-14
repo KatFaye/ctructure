@@ -166,15 +166,17 @@ def query():
         cursor = conn.cursor()
 
         query_results = get_results(_agency, _content_type, _year, _search)
-        print("I'M HERE!!!!!!!!!!!!!!!!!!!!!\n")
-        print(query_results[0]["law_name"])
+        law_names = []
+        for res in query_results:
+        	law_names.append(res["law_name"])
+        
 
         #query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
         #query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
         # cursor.execute(query_string)
 
         #kwargs['data'] = cursor.fetchall()
-        kwargs['message'] = query_results
+        kwargs['message'] = law_names
         kwargs['messageType'] = "success"
 
     except Exception as e:
