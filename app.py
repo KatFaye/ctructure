@@ -2,6 +2,7 @@ from flask import Flask, render_template, json, request, redirect, flash, sessio
 from flaskext.mysql import MySQL
 from base import base_page
 from os import urandom
+import re,json
 from scripts.advanced_search import get_results
 
 app = Flask(__name__)
