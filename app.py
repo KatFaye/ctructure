@@ -210,6 +210,15 @@ def get_detail_page():
         print(law_num)
         print(law_date)
 
+        """conn = mysql.connect()
+                        
+                                cursor = conn.cursor()
+                                query_string = "SELECT repeals WHERE parent_law_num= '" + _email + \
+                                    "', password= '" + _password + "' WHERE username='" + user + "'"
+                                cursor.execute(query_string)
+                        
+                                data = cursor.fetchall()"""
+
         return {}
 
     except Exception as e:
