@@ -151,7 +151,7 @@ def updateinfo():
 def query():
     kwargs = {}
     try:
-        query_input = request.get_json(force=True)
+        query_input = request.data(force=True)
         query_input = json.load(query_input)
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
         print(query_input)
