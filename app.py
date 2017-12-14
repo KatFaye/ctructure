@@ -185,6 +185,7 @@ def query():
         #kwargs['data'] = cursor.fetchall()
         kwargs['message'] = law_names
         kwargs['messageType'] = "success"
+        return law_names
 
     except Exception as e:
         kwargs['message'] = "Error " + str(e)
