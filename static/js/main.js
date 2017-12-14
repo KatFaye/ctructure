@@ -289,7 +289,7 @@ $( document ).ready(function(){
 	    xhr.onload = function(e){
 	        console.log(xhr.responseText)
 	        var law_info = JSON.parse(xhr.responseText)
-	        if(jQuery.isEmptyObject(law_info);){
+	        if(jQuery.isEmptyObject(law_info)){
 	        	$("#results").html('Currently no result.')
 	        }else{
 	        	buildTable(law_info)
