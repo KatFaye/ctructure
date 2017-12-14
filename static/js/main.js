@@ -287,7 +287,6 @@ $( document ).ready(function(){
 	    xhr.open("POST","http://dsg1.crc.nd.edu:5020/query",true)  
 
 	    xhr.onload = function(e){
-	        console.log(xhr.responseText)
 	        var law_info = JSON.parse(xhr.responseText)
 	        if(jQuery.isEmptyObject(law_info)){
 	        	$("#results").html('Currently no result.')
@@ -349,8 +348,22 @@ $( document ).ready(function(){
                         '</tr>'+
                     '</table>'
 			)*/
-			alert($(this).parent().parent().parent().attr("date_num"))
-		})
+			query_string = $(this).parent().parent().parent().attr("date_num")
+			query_string = JSON.stringify(query_string)
+	    
+		    var xhr = new XMLHttpRequest()
+		    xhr.open("POST","http://dsg1.crc.nd.edu:5020/details",true)  
+
+		    xhr.onload = function(e){
+		        console.log(xhr.responseText)
+		        var law_info = JSON.parse(xhr.responseText)
+
+		    }
+		    xhr.onerror = function(e){
+		        console.error(xhr.statusText);
+		    }
+		    xhr.send(query_string)
+			})
 	}
 
 

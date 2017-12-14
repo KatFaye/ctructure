@@ -200,6 +200,29 @@ def query():
     # return render_template('index.html', **kwargs)
 
 
+@app.route('/details', methods=['POST'])
+def get_detail_page():
+    kwargs = {}
+    try:
+        query_input = request.get_json(force=True)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(query_input)
+
+        law_info = json.dumps(law_info)
+        return law_info
+
+    except Exception as e:
+        kwargs['message'] = "Error " + str(e)
+        kwargs['messageType'] = "danger"
+        print("ERROR!!!!!!!!!!!!!!")
+        print(e)
+        return render_template('index.html', **kwargs)
+
+    cursor.close()
+    conn.close()
+
+
+
 if __name__ == "__main__":
     app.secret_key = urandom(12)
     app.run(port=5020, host='0.0.0.0')
