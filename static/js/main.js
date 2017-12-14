@@ -288,8 +288,7 @@ $( document ).ready(function(){
 
 	    xhr.onload = function(e){
 	        alert("results!")
-	        var temp = JSON.parse(xhr.responseText)
-	        console.log(temp)
+	        console.log(xhr.responseText)
 	    }
 	    xhr.onerror = function(e){
 	        console.error(xhr.statusText);
