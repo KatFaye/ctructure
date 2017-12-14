@@ -327,27 +327,6 @@ $( document ).ready(function(){
 		});
 
 		$(".result-talbe").find(".pointer-th").click(function(){
-			/*
-				$("#results").html(
-					'<h5> Articles </h5>'+
-                    '<ol><li>Purpose of this Order </li><li>Curriculum and teaching hours in primary and secondary schools </li>li>Curriculum and teaching hours in specialized schools </li>'+
-                        '<li>Language of instruction in the first cycle of primary education</li><li>Language of instruction in the second cycle of primary education </li>'+
-                        '<li>Language of secondary schools </li><li>Language of specialized schools </li><li>Repealing provision </li><li>Commencement</li></ol>'+
-				'<table class="result-talbe">'+
-						'<tr>'+
-                            '<th>Repeals</th>'+
-                        '</tr>'+
-                        '<tr>'+
-                            '<td>N° 002/2016 OF 08/01/2016 DETERMINING THE RESPONSIBILITIES OF SCHOOL MANAGEMENT BOARD MEMBERS</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                            '<th>Reference</th>'+
-                        '</tr>'+
-                        '<tr>'+
-                            '<td>003/2016 OF 08/01/2016 DETERMINING GENERAL RULES GOVERNING NURSERY, PRIMARY AND SECONDARY SCHOOLS AND FUNCTIONING OF SCHOOL GENERAL ASSEMBLY AND ITS SUBSIDIARY ORGANS</td>'+
-                        '</tr>'+
-                    '</table>'
-			)*/
 			query_string = $(this).parent().parent().parent().attr("date_num")
 			query_string = JSON.stringify(query_string)
 	    
@@ -355,14 +334,65 @@ $( document ).ready(function(){
 		    xhr.open("POST","http://dsg1.crc.nd.edu:5020/details",true)  
 
 		    xhr.onload = function(e){
-		        console.log(xhr.responseText)
-
+		        details = xhr.responseText
+		        buildResult(details)
 		    }
 		    xhr.onerror = function(e){
 		        console.error(xhr.statusText);
 		    }
 		    xhr.send(query_string)
 			})
+	}
+
+	function buildResult(details){
+		$("#results").html('')
+		repeal_law = details["repeal_law"]
+		if(details["repeal_law"] ==""){
+			repeal_law = "No repeal laws."
+		}
+		cited_law = details["cited_law"]
+		if(details["cited_law"] ==""){
+			cited_law = "No cited laws."
+		}
+
+		$("#results").append(
+				'<table class="result-talbe">'+
+                        '<tr class="law_name"><th class="pointer-th bold_th">'+
+                            'Repeal Laws: '+ 
+                        '</th></tr>'+
+                        '<tr><td>'+
+                        	repeal_law+
+                        '</td></tr>'+
+                    '</table>'
+			)
+
+		$("#results").append(
+				'<table class="result-talbe">'+
+                        '<tr class="law_name"><th class="pointer-th bold_th">'+
+                            'Cited Laws: '+ 
+                        '</th></tr>'+
+                        '<tr><td>'+
+                        	cited+
+                        '</td></tr>'+
+                    '</table>'
+			)
+
+		$.each( details["articles"], function(index, value ) {
+		  $("#results").append(
+				'<table class="result-talbe" >'+
+                        '<tr class="law_name"><th class="pointer-th bold_th">'+
+                            'Article : '+ value[0]+
+                        '</th></tr>'+
+                        '<tr><td>'+
+                        	'Article Name: '+ value[2]+
+                        '</td></tr><tr><td>'+
+                        	'Content: '+ 
+                        '</td></tr><tr><td>'+
+                        	value[1]+
+                        '</td></tr>'+
+                    '</table>'
+			)
+		});
 	}
 
 
