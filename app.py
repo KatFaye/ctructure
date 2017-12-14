@@ -226,6 +226,32 @@ def get_detail_page():
             output["repeal_law"]= ""
         else:
             print("!!!!!!!!!!!!!!!!!!")
+            print(data[0])
+            conn.commit()
+            law_num = data[0][0].encode('ascii', 'ignore')
+
+            cursor = conn.cursor()
+            repeal_string = """
+                SELECT name from laws WHERE
+                law_num = %s and exact_date = %s;
+            """
+            cursor.execute(repeal_string,(law_num, data[0][1]))
+            repeal_law_name = cursor.fetchall()
+            print(repeal_law_name)
+        
+
+        # Get reference
+        query_string = """
+            SELECT cited_law_num, cited_law_date from cites WHERE
+            parent_law_num = %s and parent_law_date = %s;
+        """
+        cursor.execute(query_string,(law_num, exact_date))
+        data = cursor.fetchall()
+
+        if(len(data) == 0):
+            output["repeal_law"]= ""
+        else:
+            print("!!!!!!!!!!!!!!!!!!")
             
             print(data[0])
             conn.commit()
@@ -241,15 +267,6 @@ def get_detail_page():
             cursor.execute(query_string,(law_num, data[0][1]))
             repeal_law_name = cursor.fetchall()
             print(repeal_law_name)
-        
-
-        # Get reference
-        query_string = """
-            SELECT impacted_law_num, impacted_law_date from cites WHERE
-            parent_law_num = %s and parent_law_date = %s;
-        """
-        cursor.execute(query_string,(law_num, exact_date))
-        data = cursor.fetchall()
       
 
         # Get articles
