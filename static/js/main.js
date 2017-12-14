@@ -372,7 +372,7 @@ $( document ).ready(function(){
                             'Cited Laws: '+ 
                         '</th></tr>'+
                         '<tr><td>'+
-                        	cited+
+                        	cited_law+
                         '</td></tr>'+
                     '</table>'
 			)
