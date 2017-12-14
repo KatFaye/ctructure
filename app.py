@@ -211,9 +211,6 @@ def get_detail_page():
         day, month, year = [int(i) for i in law_date.split('/')]
         exact_date = date(year, month, day)
 
-        print(law_num)
-        print(exact_date)
-
         conn = mysql.connect()  
         cursor = conn.cursor()
 
@@ -225,6 +222,7 @@ def get_detail_page():
         cursor.execute(query_string,(law_num, exact_date))
         data = cursor.fetchall()
         print("!!!!!!!!!!!!!!!!!!")
+        print(type(data))
         print(data)
 
 
