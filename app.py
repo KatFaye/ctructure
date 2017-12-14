@@ -189,4 +189,4 @@ def query():
 
 if __name__ == "__main__":
     app.secret_key = urandom(12)
-    app.run(port=5019, host='0.0.0.0')
+    app.run(port=5020, host='0.0.0.0')
