@@ -295,7 +295,7 @@ $( document ).ready(function(){
 	    }
 	    xhr.send(query_string)
 
-
+	    /*
 		$("#results").html(
 				'<table class="result-talbe">'+
                         '<tr class="pointer-tr">'+
@@ -332,7 +332,7 @@ $( document ).ready(function(){
                         '</tr>'+
                     '</table>'
 			)
-		})
+		})*/
 	})
 
 
