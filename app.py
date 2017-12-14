@@ -205,11 +205,12 @@ def get_detail_page():
     kwargs = {}
     try:
         query_input = request.get_json(force=True)
+        law_num, late_date = query_input.split("_")
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print(query_input)
+        print(law_num)
+        print(law_date)
 
-        law_info = json.dumps(law_info)
-        return law_info
+        return {}
 
     except Exception as e:
         kwargs['message'] = "Error " + str(e)
