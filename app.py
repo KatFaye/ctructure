@@ -228,9 +228,9 @@ def get_detail_page():
             print("!!!!!!!!!!!!!!!!!!")
             
             print(data[0])
-            print(data[0][1])
             conn.commit()
             law_num = data[0][0].encode('ascii', 'ignore')
+            print(law_num)
 
             conn = mysql.connect()  
             cursor = conn.cursor()
