@@ -171,6 +171,8 @@ def query():
         _content_type = new_input['content_type']
         _agency = new_input['agency']
 
+        print(_search)
+
         if (_year == "None"):
             _year = False
         if (_content_type == "None"):
