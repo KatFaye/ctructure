@@ -1566,7 +1566,7 @@ table.result-talbe tr{
 
 th.pointer-th:hover{
 	cursor: pointer;
-	color: red;
+	color: #009fff;
 }
 
 th.bold_th{

@@ -289,7 +289,11 @@ $( document ).ready(function(){
 	    xhr.onload = function(e){
 	        console.log(xhr.responseText)
 	        var law_info = JSON.parse(xhr.responseText)
-	        buildTable(law_info)
+	        if(law_info){
+	        	buildTable(law_info)
+	        }else{
+	        	$("#results").html('Currently no result.')
+	        }
 
 	    }
 	    xhr.onerror = function(e){
@@ -345,7 +349,7 @@ $( document ).ready(function(){
                         '</tr>'+
                     '</table>'
 			)*/
-			alert(this.attr("date_num"))
+			alert($(this).attr("date_num"))
 		})
 	}
 
