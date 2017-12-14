@@ -63,7 +63,7 @@ def do_admin_login():
             kwargs['messageType'] = "danger"
         cursor.close()
         conn.close()
-        return render_template('login.html', **kwargs)
+        return render_template('index.html', **kwargs)
     except Exception as e:
         print("The Error is " + str(e))
         kwargs['message'] = "Error %s: %s" % (e[0], e[1])
@@ -96,7 +96,7 @@ def signup():
             conn.commit()
             kwargs['message'] = "User Created Successfully!"
             kwargs['messageType'] = "success"
-            return render_template('/signup.html', **kwargs)
+            return render_template('/login.html', **kwargs)
         else:
             kwargs['message'] = "Error: Unknown Error"
             kwargs['messageType'] = "danger"
