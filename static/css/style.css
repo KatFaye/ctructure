@@ -1552,6 +1552,10 @@ a.signup-span:hover{
 	margin: 3px 0px 0 30px;
 }
 
+#results{
+	background: #000;
+}
+
 table.result-talbe{
 	margin: 10px 0 30px 0;
 }
@@ -1560,8 +1564,12 @@ table.result-talbe tr{
 	text-align: left;
 }
 
-tr.pointer-tr:hover{
+th.pointer-th:hover{
 	cursor: pointer;
+}
+
+th.bold-th{
+	font-weight: bold; ;
 }
 
 tr:nth-child(even) {

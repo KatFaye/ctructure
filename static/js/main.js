@@ -328,7 +328,7 @@ $( document ).ready(function(){
 		$.each( law_info, function( key, value ) {
 		  $("#results").append(
 				'<table class="result-talbe" date_num="'+key+'">'+
-                        '<tr class="law_name"><th class="pointer-tr">'+
+                        '<tr class="law_name"><th class="pointer-th bold_th">'+
                             'Law Name: '+ value['law_name']+
                         '</th></tr>'+
                         '<tr><td>'+
