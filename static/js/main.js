@@ -349,7 +349,7 @@ $( document ).ready(function(){
                         '</tr>'+
                     '</table>'
 			)*/
-			alert($(this)parent().parent().attr("date_num"))
+			alert($(this).parent().parent().attr("date_num"))
 		})
 	}
 
