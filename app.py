@@ -213,7 +213,7 @@ def get_detail_page():
 
         conn = mysql.connect()  
         cursor = conn.cursor()
-        query = """
+        query_string = """
             SELECT impacted_law_num, impacted_law_date from repeals WHERE
             parent_law_num = %s and parent_law_date = %s;
         """
