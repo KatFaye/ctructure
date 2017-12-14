@@ -166,6 +166,7 @@ def query():
         cursor = conn.cursor()
 
         query_results = get_results(_agency, _content_type, _year, _search)
+        print(query_results)
         law_names = []
         for res in query_results:
         	law_names.append(res["law_name"])
