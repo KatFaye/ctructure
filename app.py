@@ -271,9 +271,6 @@ def get_detail_page():
         if(len(data) == 0):
             output["articles"]= ""
         else:
-            print("!!!!!!!!!!!!!!!!!!")
-            print(data)
-
             cursor = conn.cursor()
             repeal_string = """
                 SELECT article_num,article_text,name from articles WHERE
@@ -286,7 +283,10 @@ def get_detail_page():
             else:
                 print("???????????????")
                 print(articles)
-                output["articles"]= articles[0]  
+                output["articles"]= articles
+
+        output = json.dumps(output)
+        return output 
         
 
     except Exception as e:
