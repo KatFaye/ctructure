@@ -152,11 +152,9 @@ def query():
     kwargs = {}
     try:
         query_input = request.get_json(force=True)
-        print("Type q_in 1", type(query_input))
-        query_input = json.load(query_input)
+        print(query_input)
         print("Type q_in 2", type(query_input))
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
-        print(query_input)
 
         _search = query_input['search']
         _year = int(query_input['year'])
