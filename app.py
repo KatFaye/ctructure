@@ -152,7 +152,9 @@ def query():
     kwargs = {}
     try:
         query_input = request.json
+        print("Type q_in 1", type(query_input))
         query_input = json.load(query_input)
+        print("Type q_in 2", type(query_input))
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
         print(query_input)
 
