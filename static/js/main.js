@@ -284,7 +284,7 @@ $( document ).ready(function(){
 	    query_string = JSON.stringify(query_string)
 	    
 	    var xhr = new XMLHttpRequest()
-	    xhr.open("POST","http://dsg1.crc.nd.edu:5020/query/",true)  
+	    xhr.open("POST","http://dsg1.crc.nd.edu:5020/query",true)  
 
 	    xhr.onload = function(e){
 	        alert("results!")
