@@ -328,22 +328,22 @@ $( document ).ready(function(){
 		$.each( law_info, function( key, value ) {
 		  $("#results").append(
 				'<table class="result-talbe" date_num="'+key+'">'+
-                        '<th class="pointer-tr law_name">'+
+                        '<tr class="pointer-tr law_name"><th>'+
                             'Law Name: '+ value['law_name']+
-                        '</th>'+
-                        '<tr class="pointer-tr" >'+
+                        '</th></tr>'+
+                        '<tr class="pointer-tr" ><td>'+
                         	'Content Type: '+ value['content_type_tag']+
-                        '</tr><tr class="pointer-tr">'+
+                        '</td></tr><tr class="pointer-tr">'+
                         	'Publication Year: '+ value['pub_year']+
-                        '</tr><tr class="pointer-tr">'+
+                        '</td></tr><tr class="pointer-tr"><td>'+
                         	'Agency: '+ value['agency_tag']+
-                        '</tr>'+
-                        '</tr><tr class="pointer-tr">'+
+                        '</td></tr>'+
+                        '<tr class="pointer-tr"><td>'+
                         	'First Article: '+ 
-                        '</tr>'+
-                        '</tr><tr class="pointer-tr">'+
+                        '</td></tr>'+
+                        '<tr class="pointer-tr"><td>'+
                         	value['article_one_str']+
-                        '</tr>'+
+                        '</td></tr>'+
                     '</table>'
 			)
 		});
