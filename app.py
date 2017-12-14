@@ -183,18 +183,19 @@ def query():
         # cursor.execute(query_string)
 
         #kwargs['data'] = cursor.fetchall()
-        kwargs['message'] = law_names
-        kwargs['messageType'] = "success"
+        #kwargs['message'] = law_names
+        #kwargs['messageType'] = "success"
         return law_names
 
     except Exception as e:
         kwargs['message'] = "Error " + str(e)
         kwargs['messageType'] = "danger"
+        print("ERROR!!!!!!!!!!!!!!")
         return render_template('index.html', **kwargs)
 
     cursor.close()
     conn.close()
-    return render_template('index.html', **kwargs)
+    #return render_template('index.html', **kwargs)
 
 
 if __name__ == "__main__":
