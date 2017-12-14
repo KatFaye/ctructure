@@ -356,7 +356,6 @@ $( document ).ready(function(){
 
 		    xhr.onload = function(e){
 		        console.log(xhr.responseText)
-		        var law_info = JSON.parse(xhr.responseText)
 
 		    }
 		    xhr.onerror = function(e){
