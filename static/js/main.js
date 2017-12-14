@@ -358,7 +358,7 @@ $( document ).ready(function(){
 		$("#results").append(
 				'<table class="result-talbe">'+
                         '<tr class="law_name"><th class="pointer-th bold_th">'+
-                            'Repeal Laws: '+ 
+                            'Laws repealing this law: '+ 
                         '</th></tr>'+
                         '<tr><td>'+
                         	repeal_law+
@@ -380,7 +380,7 @@ $( document ).ready(function(){
 		$.each( details["articles"], function(index, value ) {
 		  $("#results").append(
 				'<table class="result-talbe" >'+
-                        '<tr class="law_name"><th class="pointer-th bold_th">'+
+                        '<tr class="law_name"><th class="bold_th">'+
                             'Article : '+ value[0]+
                         '</th></tr>'+
                         '<tr><td>'+
