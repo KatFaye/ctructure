@@ -196,13 +196,6 @@ def query():
 
         print(law_info)
 
-        # query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
-        # query_string="SELECT l.name FROM laws l  WHERE  l.name like '%" + _search + "%'"
-        # cursor.execute(query_string)
-
-        # kwargs['data'] = cursor.fetchall()
-        # kwargs['message'] = law_names
-        # kwargs['messageType'] = "success"
         law_info = json.dumps(law_info)
         return law_info
 
@@ -211,7 +204,6 @@ def query():
         kwargs['messageType'] = "danger"
         print("ERROR!!!!!!!!!!!!!!")
         print(e)
-        return render_template('index.html', **kwargs)
 
     cursor.close()
     conn.close()
