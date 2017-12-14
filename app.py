@@ -225,19 +225,17 @@ def get_detail_page():
         if(len(data) == 0):
             output["repeal_law"]= ""
         else:
-            print("!!!!!!!!!!!!!!!!!!")
-            print(data[0])
-            law_num = data[0][0]
-
             cursor = conn.cursor()
             repeal_string = """
                 SELECT name from laws WHERE
                 law_num = %s and exact_date = %s;
             """
-            cursor.execute(repeal_string,('02/2016', '2016-06-24'))
+            cursor.execute(repeal_string,(data[0][0], data[0][1]))
             repeal_law_name = cursor.fetchall()
-            print(repeal_law_name)
-        
+            if(len(repeal_law_name) == 0):
+                output["repeal_law"]= ""
+            else:
+                output["repeal_law"]= repeal_law_name[0][0]        
 
         # Get reference
         query_string = """
@@ -246,38 +244,50 @@ def get_detail_page():
         """
         cursor.execute(query_string,(law_num, exact_date))
         data = cursor.fetchall()
-
+        
         if(len(data) == 0):
-            output["repeal_law"]= ""
+            output["cited_law"]= ""
         else:
-            print("!!!!!!!!!!!!!!!!!!")
-            
-            print(data[0])
-            conn.commit()
-            law_num = data[0][0].encode('ascii', 'ignore')
-            print(law_num)
-
-            conn = mysql.connect()  
             cursor = conn.cursor()
-            query_string = """
+            repeal_string = """
                 SELECT name from laws WHERE
                 law_num = %s and exact_date = %s;
             """
-            cursor.execute(query_string,(law_num, data[0][1]))
-            repeal_law_name = cursor.fetchall()
-            print(repeal_law_name)
-      
+            cursor.execute(repeal_string,(data[0][0], data[0][1]))
+            cited_law = cursor.fetchall()
+            if(len(cited_law) == 0):
+                output["cited_law"]= ""
+            else:
+                output["cited_law"]= cited_law[0][0]  
 
         # Get articles
         query_string = """
-            SELECT impacted_law_num, impacted_law_date from repeals WHERE
-            parent_law_num = %s and parent_law_date = %s;
+            SELECT law_id from laws WHERE
+            law_num = %s and exact_date = %s;
         """
         cursor.execute(query_string,(law_num, exact_date))
         data = cursor.fetchall()
         
+        if(len(data) == 0):
+            output["articles"]= ""
+        else:
+            print("!!!!!!!!!!!!!!!!!!")
+            print(data[0])
 
-        return {}
+            cursor = conn.cursor()
+            repeal_string = """
+                SELECT article_num,article_text,name from articles WHERE
+                law_id = %s;
+            """
+            cursor.execute(repeal_string,(data[0][0]))
+            articles = cursor.fetchall()
+            if(len(articles) == 0):
+                output["articles"]= ""
+            else:
+                print("!!!!!!!!!!!!!!!!!!")
+                print(data[0])
+                output["articles"]= articles[0]  
+        
 
     except Exception as e:
         kwargs['message'] = "Error " + str(e)
