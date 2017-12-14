@@ -3,6 +3,7 @@ from flaskext.mysql import MySQL
 from base import base_page
 from os import urandom
 import re,json
+import unicodedata
 from scripts.advanced_search import get_results
 
 app = Flask(__name__)
@@ -156,10 +157,19 @@ def query():
         print("Type q_in 2", type(query_input))
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
 
-        _search = query_input['search']
-        _year = int(query_input['year'])
-        _content_type = query_input['content_type']
-        _agency = query_input['agency']
+
+        new_input = {}
+        for k in query_input:
+            b = k.encode('ascii','ignore')
+            new_input[b] = query_input[k]
+
+        print(new_input)
+
+
+        _search = new_input['search']
+        _year = int(new_input['year'])
+        _content_type = new_input['content_type']
+        _agency = new_input['agency']
 
         if (_year == "None"):
             _year = False
