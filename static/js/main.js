@@ -275,21 +275,7 @@
 $( document ).ready(function(){
 	$("#searchbtn").click(function(){
 
-		var xhr = new XMLHttpRequest()
-	    xhr.open("POST","http://dsg1.crc.nd.edu:5020/query",true)  
-
-	    xhr.onload = function(e){
-	        alert("Result!")
-	        var temp = JSON.parse(xhr.responseText)
-	        console.log(temp)
-	    }
-	    xhr.onerror = function(e){
-	        console.error(xhr.statusText);
-	    }
-	    xhr.send()	
-
-
-
+		alert("We'er here")
 		$("#results").html(
 				'<table class="result-talbe">'+
                         '<tr class="pointer-tr">'+
