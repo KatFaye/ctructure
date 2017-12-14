@@ -331,17 +331,17 @@ $( document ).ready(function(){
                         '<tr class="pointer-tr law_name"><th>'+
                             'Law Name: '+ value['law_name']+
                         '</th></tr>'+
-                        '<tr class="pointer-tr" ><td>'+
+                        '<tr><td>'+
                         	'Content Type: '+ value['content_type_tag']+
-                        '</td></tr><tr class="pointer-tr">'+
+                        '</td></tr><tr><td>'+
                         	'Publication Year: '+ value['pub_year']+
-                        '</td></tr><tr class="pointer-tr"><td>'+
+                        '</td></tr><tr><td>'+
                         	'Agency: '+ value['agency_tag']+
                         '</td></tr>'+
-                        '<tr class="pointer-tr"><td>'+
+                        '<tr><td>'+
                         	'First Article: '+ 
                         '</td></tr>'+
-                        '<tr class="pointer-tr"><td>'+
+                        '<tr><td>'+
                         	value['article_one_str']+
                         '</td></tr>'+
                     '</table>'
