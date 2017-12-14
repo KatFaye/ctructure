@@ -1549,7 +1549,7 @@ a.signup-span:hover{
 }
 
 input[type="search"].big_search_bar{
-	widows: 100%;
+	width: 100%!important;
 	display: block;
 }
 
