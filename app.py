@@ -5,6 +5,7 @@ from os import urandom
 import re
 import json
 import unicodedata
+from datetime import date
 from scripts.advanced_search import get_results
 
 app = Flask(__name__)
@@ -204,20 +205,21 @@ def query():
 def get_detail_page():
     kwargs = {}
     try:
+        output= {}
         query_input = request.get_json(force=True)
         law_num, law_date = query_input.split("_")
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print(law_num)
-        print(law_date)
+        day, month, year = [int(i) for i in law_date.split('/')]
+        exact_date = date(year, month, day)
 
-        """conn = mysql.connect()
-                        
-                                cursor = conn.cursor()
-                                query_string = "SELECT repeals WHERE parent_law_num= '" + _email + \
-                                    "', password= '" + _password + "' WHERE username='" + user + "'"
-                                cursor.execute(query_string)
-                        
-                                data = cursor.fetchall()"""
+        conn = mysql.connect()  
+        cursor = conn.cursor()
+        query_string = "SELECT impacted_law_num, impacted_law_date from repeals WHERE parent_law_num= '" + law_num + 
+            "', parent_law_date= '" + exact_date 
+        cursor.execute(query_string)
+        data = cursor.fetchall()
+
+        print("!!!!!!!!!")
+        print(data)
 
         return {}
 
