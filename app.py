@@ -223,11 +223,12 @@ def get_detail_page():
         data = cursor.fetchall()
         print("!!!!!!!!!!!!!!!!!!")
         print(type(data))
-        print(data)
+        print(data[0])
 
 
         if(len(data) == 0):
             output["repeal_law"]= ""
+            print("NOOOOOOOOO")
         else:
             conn.commit()
             conn = mysql.connect()  
