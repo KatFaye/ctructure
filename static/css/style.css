@@ -1566,9 +1566,10 @@ table.result-talbe tr{
 
 th.pointer-th:hover{
 	cursor: pointer;
+	color: red;
 }
 
-th.bold-th{
+th.bold_th{
 	font-weight: bold; ;
 }
 
