@@ -151,10 +151,15 @@ def updateinfo():
 def query():
     kwargs = {}
     try:
-        _search = request.form['search']
-        _year = int(request.form['pub-year-filter'])
-        _content_type = request.form['content-type-filter']
-        _agency = request.form['agency-filter']
+        query_input = request.get_json(force=True)
+        query_input = json.load(query_input)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+        print(query_input)
+
+        _search = query_input['search']
+        _year = int(query_input['year'])
+        _content_type = query_input['content_type']
+        _agency = query_input['agency']
 
         if (_year == "None"):
             _year = False

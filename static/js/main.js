@@ -276,28 +276,25 @@ $( document ).ready(function(){
 	$("#searchbtn").click(function(){
 
 		var query_string = {
-	        "query": $("#do-search").val(),
-	        "year": $("#agency-filter option:selected").attr("value"),
+	        "search": $("#do-search").val(),
+	        "agency": $("#agency-filter option:selected").attr("value"),
 	        "content_type": $("#content-type-filter option:selected").attr("value"),
-	        "pub_year": $("#pub-year-filter option:selected").attr("value")
+	        "year": $("#pub-year-filter option:selected").attr("value")
 	    }
 	    query_string = JSON.stringify(query_string)
-	    alert(query_string)
-
-	    /*
+	    
 	    var xhr = new XMLHttpRequest()
 	    xhr.open("POST","http://dsg1.crc.nd.edu:5020/query",true)  
 
 	    xhr.onload = function(e){
+	        alert("results!")
 	        var temp = JSON.parse(xhr.responseText)
-	        player_id =  temp["id"]
-	        updatePlayer(player_id,name, age,2000)
-	        alert("user added")
+	        console.log(temp)
 	    }
 	    xhr.onerror = function(e){
 	        console.error(xhr.statusText);
 	    }
-	    xhr.send(query_string)*/
+	    xhr.send(query_string)
 
 
 		$("#results").html(
