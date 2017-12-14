@@ -221,15 +221,12 @@ def get_detail_page():
         """
         cursor.execute(query_string,(law_num, exact_date))
         data = cursor.fetchall()
-        print(data)
         
-
         if(len(data) == 0):
             output["repeal_law"]= ""
-            print("NOOOOOOOOO")
         else:
             print("!!!!!!!!!!!!!!!!!!")
-            print(type(data))
+            
             print(data[0])
             print(data[0][1])
             conn.commit()
@@ -241,8 +238,9 @@ def get_detail_page():
                 SELECT name from laws WHERE
                 law_num = %s and exact_date = %s;
             """
-            cursor.execute(query_string,(law_num, data[1]))
-            data = cursor.fetchall()
+            cursor.execute(query_string,(law_num, data[0][1]))
+            repeal_law_name = cursor.fetchall()
+            print(repeal_law_name)
         
 
         # Get reference
