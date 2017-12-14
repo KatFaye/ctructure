@@ -187,9 +187,12 @@ def query():
 
         query_results = get_results(_agency, _content_type, _year, _search)
         print(query_results)
+
         law_names = []
         for res in query_results:
-        	law_names.append(res["law_name"])
+        	law_names.append(res["law_name"].encode('ascii','ignore'))
+
+        print(law_names)
         
 
         #query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
