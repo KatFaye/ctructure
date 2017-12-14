@@ -211,8 +211,13 @@ def get_detail_page():
         day, month, year = [int(i) for i in law_date.split('/')]
         exact_date = date(year, month, day)
 
+        print(law_num)
+        print(exact_date)
+
         conn = mysql.connect()  
         cursor = conn.cursor()
+
+        # Get repeals
         query_string = """
             SELECT impacted_law_num, impacted_law_date from repeals WHERE
             parent_law_num = %s and parent_law_date = %s;
@@ -232,12 +237,49 @@ def get_detail_page():
             cursor.execute(query_string,(law_num, exact_date)) #?????
             data = cursor.fetchall()
         }
+
+        # Get reference
+        query_string = """
+            SELECT impacted_law_num, impacted_law_date from cites WHERE
+            parent_law_num = %s and parent_law_date = %s;
+        """
+        cursor.execute(query_string,(law_num, exact_date))
+        data = cursor.fetchall()
+        if(len(data) == 0){
+            output["repeal_law"]= ""
+        }else{
+            conn.commit()
+            conn = mysql.connect()  
+            cursor = conn.cursor()
+            query_string = """
+                SELECT name from laws WHERE
+                law_num = %s and exact_date = %s;
+            """
+            cursor.execute(query_string,(law_num, exact_date)) #?????
+            data = cursor.fetchall()
+        }
         
 
-
-
-        print("!!!!!!!!!")
-        print(data)
+        # Get articles
+        query_string = """
+            SELECT impacted_law_num, impacted_law_date from repeals WHERE
+            parent_law_num = %s and parent_law_date = %s;
+        """
+        cursor.execute(query_string,(law_num, exact_date))
+        data = cursor.fetchall()
+        if(len(data) == 0){
+            output["repeal_law"]= ""
+        }else{
+            conn.commit()
+            conn = mysql.connect()  
+            cursor = conn.cursor()
+            query_string = """
+                SELECT name from laws WHERE
+                law_num = %s and exact_date = %s;
+            """
+            cursor.execute(query_string,(law_num, exact_date)) #?????
+            data = cursor.fetchall()
+        }
 
         return {}
 
