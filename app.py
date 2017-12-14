@@ -167,7 +167,7 @@ def query():
 
 
         _search = new_input['search']
-        _year = int(new_input['year'])
+        _year = new_input['year']
         _content_type = new_input['content_type']
         _agency = new_input['agency']
 
