@@ -152,7 +152,7 @@ def query():
     kwargs = {}
     try:
         _search = request.form['search']
-        _year = request.form['pub-year-filter']
+        _year = int(request.form['pub-year-filter'])
         _content_type = request.form['content-type-filter']
         _agency = request.form['agency-filter']
 
