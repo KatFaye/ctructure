@@ -162,8 +162,9 @@ def query():
         for k in query_input:
             b = k.encode('ascii','ignore')
             if (b!="year"):
-                c= query_input[k].encode('ascii','ignore')
-            new_input[b] = c
+                new_input[b] = query_input[k].encode('ascii','ignore')
+            else:
+                new_input[b] = query_input[k]
 
         print(new_input)
 
