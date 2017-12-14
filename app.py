@@ -232,9 +232,9 @@ def get_detail_page():
             cursor = conn.cursor()
             repeal_string = """
                 SELECT name from laws WHERE
-                law_num = '02/2016' and exact_date = '2016-06-24';
+                law_num = %s and exact_date = %s;
             """
-            cursor.execute(repeal_string,(law_num, data[0][1]))
+            cursor.execute(repeal_string,('02/2016', '2016-06-24'))
             repeal_law_name = cursor.fetchall()
             print(repeal_law_name)
         
