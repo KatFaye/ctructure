@@ -274,8 +274,6 @@
 
 $( document ).ready(function(){
 	$("#searchbtn").click(function(){
-
-		alert("We'er here")
 		$("#results").html(
 				'<table class="result-talbe">'+
                         '<tr class="pointer-tr">'+
