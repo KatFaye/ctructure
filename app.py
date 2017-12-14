@@ -205,7 +205,7 @@ def get_detail_page():
     kwargs = {}
     try:
         query_input = request.get_json(force=True)
-        law_num, late_date = query_input.split("_")
+        law_num, law_date = query_input.split("_")
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         print(law_num)
         print(law_date)
