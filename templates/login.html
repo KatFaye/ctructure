@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block content %}
+<!-- section -->
+<section class="section fullscreen site-main">
+  <div class="container-section">
+    <div class="container-table">
+      <div class="content-table">
+        <!-- bt-carousel -->
+        <div class="bt-carousel">
+
+          <!-- contact section -->
+          <div class="item-slide show">
+            <!-- container -->
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+
+                  <!-- header section -->
+                  <div class="header-section animated bounceInDown" data-animation-delay="700">
+                    <!-- title section -->
+                    <h2 class="title-section">Login</h2>
+                    <!-- /title section -->
+                    <div class="line-separate line-white line-center"><span></span></div>
+                  </div>
+                  <!-- /header section -->
+                  <div class="alert alert-{{ messageType }}" >
+                    {{ message }}
+                  </div>
+                  <!-- content slide -->
+                  <div class="content-slide aboutus">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-12 animated bounceInLeft" data-animation-delay="700">
+
+
+                        <!-- contact form -->
+                        <div class="section-page" id="signup">
+
+                          <form class="subscription-form mailchimp" style="width=50%" action="/login" method="POST" name="login">
+                            <label for="username" class="sr-only">Username</label>
+                            <input type="name" name="username" placeholder="Username" class="form-control" required autofocus>
+                            <label for="password" class="sr-only">Password</label>
+                            <input type="password" name="password" placeholder="Password" class="form-control" required autofocus>
+                            <input type="submit" value="Log in!" class="btn btn-primary">
+                          </form>
+                          <a href="signup" class="signup-span"><span>Do not have an account? Sign up here!</span></a>
+                          <!-- /contact form -->
+                        </div>
+                        <!-- /col-xs-12 col-md-6 -->
+
+                        <!-- maps section -->
+                        <div class="col-xs-12 col-md-6 maps-section animated bounceInRight" data-animation-delay="700">
+                          <div class="big-maps center">
+
+                            <div id="map1"></div>
+                          </div>
+                        </div>
+                        <!-- /maps section -->
+                      </div>
+                      <!-- /row -->
+
+                    </div>
+                    <!-- /content slide -->
+                  </div>
+                </div>
+                <!-- /row -->
+              </div>
+              <!-- /container -->
+            </div>
+            <!-- /contact section -->
+
+          </div>
+          <!-- /bt-carousel -->
+        </div>
+      </div>
+    </div>
+</section>
+<!-- /section -->
+{% endblock %}

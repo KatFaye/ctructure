@@ -1,6 +1,12 @@
-from flask import Flask, render_template, json, request, redirect
+from flask import Flask, render_template, json, request, redirect, flash, session, abort, url_for
 from flaskext.mysql import MySQL
 from base import base_page
+from os import urandom
+import re
+import json
+import unicodedata
+from datetime import date
+from scripts.advanced_search import get_results
 
 app = Flask(__name__)
 app.register_blueprint(base_page)
@@ -15,23 +21,74 @@ app.config['MYSQL_DATABASE_HOST'] = '0.0.0.0'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
 
+
+@app.route('/login')
+def check_login():
+    if session.get('logged_in'):
+        return redirect('/updateinfo')
+    else:
+        kwargs = {}
+        kwargs['message'] = ""
+        kwargs['messageType'] = ""
+        return render_template('/login.html', **kwargs)
+
+
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+    kwargs = {}
+    if session.get('logged_in') == True:
+        kwargs['message'] = "You're logged in already!"
+        kwargs['messageType'] = "warning"
+    try:
+        user = request.form['username']
+        password = request.form['password']
+
+        conn = mysql.connect()
+
+        cursor = conn.cursor()
+
+        query = """
+            SELECT username, password from users u WHERE
+            u.username = %s and u.password = %s;
+        """
+
+        isValid = cursor.execute(query, (user, password))
+        if isValid > 0:  # not an empty SET
+            session['logged_in'] = True
+            session['user'] = user
+            kwargs['message'] = "%s Logged In Successfully!" % user
+            kwargs['messageType'] = "success"
+        else:
+            kwargs['message'] = "Error: Invalid user or password!"
+            kwargs['messageType'] = "danger"
+        cursor.close()
+        conn.close()
+        return render_template('index.html', **kwargs)
+    except Exception as e:
+        print("The Error is " + str(e))
+        kwargs['message'] = "Error %s: %s" % (e[0], e[1])
+        kwargs['messageType'] = "danger"
+        return render_template('/login.html', **kwargs)
+
+
 @app.route('/signup', methods=['POST'])
 def signup():
     kwargs = {}
     val_status = False
     try:
-    # read the posted values from the UI
+        # read the posted values from the UI
         _firstname = request.form['input_firstname']
         _lastname = request.form['input_lastname']
         _username = request.form['input_username']
         _email = request.form['input_email']
         _password = request.form['input_password']
 
-          # all fields are filled
+        # all fields are filled
         conn = mysql.connect()
 
         cursor = conn.cursor()
-        cursor.callproc('sp_createUser', (_firstname, _lastname, _username, _email, _password))
+        cursor.callproc('sp_createUser', (_firstname,
+                                          _lastname, _username, _email, _password))
 
         data = cursor.fetchall()
 
@@ -39,7 +96,7 @@ def signup():
             conn.commit()
             kwargs['message'] = "User Created Successfully!"
             kwargs['messageType'] = "success"
-            return render_template('/signup.html', **kwargs)
+            return render_template('/login.html', **kwargs)
         else:
             kwargs['message'] = "Error: Unknown Error"
             kwargs['messageType'] = "danger"
@@ -52,7 +109,8 @@ def signup():
 
     cursor.close()
     conn.close()
-    return redirect('/search')
+    return redirect('/index')
+
 
 @app.route('/updateinfo', methods=['POST'])
 def updateinfo():
@@ -66,7 +124,9 @@ def updateinfo():
         conn = mysql.connect()
 
         cursor = conn.cursor()
-        query_string="UPDATE users SET email= '" +_email +"', password= '" + _password +"' WHERE username='SampleUser'"
+        user = session.get('user')
+        query_string = "UPDATE users SET email= '" + _email + \
+            "', password= '" + _password + "' WHERE username='" + user + "'"
         cursor.execute(query_string)
 
         data = cursor.fetchall()
@@ -94,23 +154,153 @@ def updateinfo():
 def query():
     kwargs = {}
     try:
-        _search = request.form['search']
-        _year = request.form['year']
+        query_input = request.get_json(force=True)
+        new_input = {}
 
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        query_string="SELECT l.name FROM laws l, publications p  WHERE l.pub_id=p.pub_id and l.name like '%" + _search + "%' and EXTRACT(YEAR FROM p.pub_date) ="+_year+""
-        cursor.execute(query_string)
-        kwargs['data'] = cursor.fetchall()
+        for k in query_input:
+            b = k.encode('ascii', 'ignore')
+
+            new_input[b] = query_input[k].encode('ascii', 'ignore')
+
+        _search = new_input['search']
+        _year = new_input['year']
+        _content_type = new_input['content_type']
+        _agency = new_input['agency']
+
+        if (_year == "None"):
+            _year = False
+        if (_content_type == "None"):
+            _content_type = False
+        if (_agency == "None"):
+            _agency = False
+
+        query_results = get_results(_agency, _content_type, _year, _search)
+        #print(query_results)
+        #print("\n\n")
+
+        law_info = {}
+        for res in query_results:
+            law_info[res["law_num_date"].encode('ascii', 'ignore')] = {}
+            for field in res:
+                if field !="law_num_date":
+                    law_info[res["law_num_date"]][field] = res[field]
+
+        #print(law_info)
+
+        law_info = json.dumps(law_info)
+        return law_info
 
     except Exception as e:
-        kwargs['message'] = "Error %s: %s" % (e[0], e[1])
+        kwargs['message'] = "Error " + str(e)
         kwargs['messageType'] = "danger"
-        return render_template('query.html', **kwargs)
+        print("ERROR: ", e)
+        
 
     cursor.close()
     conn.close()
-    return render_template('query.html', **kwargs)
+    # return render_template('index.html', **kwargs)
 
-if __name__=="__main__":
-  app.run(port=5009, host='0.0.0.0')
+
+@app.route('/details', methods=['POST'])
+def get_detail_page():
+    kwargs = {}
+    try:
+        output= {}
+        query_input = request.get_json(force=True)
+        law_num, law_date = query_input.split("_")
+        day, month, year = [int(i) for i in law_date.split('/')]
+        exact_date = date(year, month, day)
+
+        conn = mysql.connect()  
+        cursor = conn.cursor()
+
+        # Get repeals
+        query_string = """
+            SELECT impacted_law_num, impacted_law_date from repeals WHERE
+            parent_law_num = %s and parent_law_date = %s;
+        """
+        cursor.execute(query_string,(law_num, exact_date))
+        data = cursor.fetchall()
+        
+        if(len(data) == 0):
+            output["repeal_law"]= ""
+        else:
+            cursor = conn.cursor()
+            repeal_string = """
+                SELECT name from laws WHERE
+                law_num = %s and exact_date = %s;
+            """
+            cursor.execute(repeal_string,(data[0][0], data[0][1]))
+            repeal_law_name = cursor.fetchall()
+            if(len(repeal_law_name) == 0):
+                output["repeal_law"]= ""
+            else:
+                output["repeal_law"]= repeal_law_name[0][0]        
+
+        # Get reference
+        query_string = """
+            SELECT cited_law_num, cited_law_date from cites WHERE
+            parent_law_num = %s and parent_law_date = %s;
+        """
+        cursor.execute(query_string,(law_num, exact_date))
+        data = cursor.fetchall()
+        
+        if(len(data) == 0):
+            output["cited_law"]= ""
+        else:
+            cursor = conn.cursor()
+            repeal_string = """
+                SELECT name from laws WHERE
+                law_num = %s and exact_date = %s;
+            """
+            cursor.execute(repeal_string,(data[0][0], data[0][1]))
+            cited_law = cursor.fetchall()
+            if(len(cited_law) == 0):
+                output["cited_law"]= ""
+            else:
+                output["cited_law"]= cited_law[0][0]  
+
+        # Get articles
+        query_string = """
+            SELECT law_id from laws WHERE
+            law_num = %s and exact_date = %s;
+        """
+        cursor.execute(query_string,(law_num, exact_date))
+        data = cursor.fetchall()
+        
+        if(len(data) == 0):
+            output["articles"]= ""
+        else:
+            cursor = conn.cursor()
+            repeal_string = """
+                SELECT article_num,article_text,name from articles WHERE
+                law_id = %s;
+            """
+            cursor.execute(repeal_string,(data[0][0]))
+            articles = cursor.fetchall()
+            if(len(articles) == 0):
+                output["articles"]= ""
+            else:
+                #print("???????????????")
+                #print(articles)
+                output["articles"]= articles
+
+        output = json.dumps(output)
+        return output 
+        
+
+    except Exception as e:
+        kwargs['message'] = "Error " + str(e)
+        kwargs['messageType'] = "danger"
+        print("ERROR:", e)
+       
+        return render_template('index.html', **kwargs)
+
+    cursor.close()
+    conn.close()
+
+
+
+if __name__ == "__main__":
+    app.secret_key = urandom(12)
+    app.run(port=5020, host='0.0.0.0')
