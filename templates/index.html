@@ -1,44 +1,120 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
+<!-- section -->
+<section class="section fullscreen site-main">
+  <div class="container-section">
+    <div class="container-table">
+      <div class="content-table">
+        <!-- bt-carousel -->
+        <div class="bt-carousel">
 
-<h1 class="text-center">Ctructure</h1>
-<em><p>Bringing the most up-to-date legal information to Rwandan!</p></em>
+          <!-- home section -->
+          <div class="item-slide show">
+            <!-- container -->
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
 
-<h2 class="text-center">Application Domain</h2>
+                  <!-- content slide -->
+                  <div class="content-slide">
 
-<p>The goal of the project is to create a database system that lawyers can use to retrieve legal information based on a set of attributes (e.g. publication year, type or section of legal document, etc). The database will only include Rwandan laws. In additional to retrieving information, lawyers will be able to manage cases using the web application. That is, they will be able to create a topic (i.e. legal case) and add links to the laws and/or sections of the laws that are relevant to the legal case.</p>
+                    <h3 class="color-white top-margin animated bounceInDown" data-animation-delay="700">Bringing the most accurate and up-to-date legal information on commercial & business law in Rwanda.</h3>
 
-<h2 class="text-center">Usefulness</h2>
+                    <!-- Subscribe Form -->
+                    <div class="form animated bounceInUp" data-animation-delay="700">
+                      <!-- container form -->
+                      <div class="container-form">
+                        <!-- section page -->
+                        <div class="section-page" id="signup">
 
-<p>As of now, Rwandan laws are only available as PDF documents and hard copies (unstructured data). As such, our project will be the first effort to turn Rwandan laws into structured data that can be queried using a set of attributes. We hope that this will reduce the amount of time lawyers spend on legal research. In addition, by showing additional information such as amended and repealed laws, we hope to increase the accuracy of legal information.</p>
 
-<h2 class="text-center">Realness</h2>
+                          <input type="search" id="do-search" class="border-radius-22 bottom-margin big_search_bar" name="search" placeholder="Search" />
 
-<p>We downloaded the data from the Office of the Prime Minister of Rwanda’s website (https://goo.gl/gxEvnc). The data was downloaded PDF documents, which were later converted into text files. The raw files have been cleaned and converted into structured data.</p>
+                          <div class="search_filter">
 
-<h2 class="text-center">Functionality</h2>
+                          <select name="agency-filter" id="agency-filter" class="search-filter">
+                              <option value="None" selected="selected">Agency</option>
+                              <!--<option value="MINICOM">MINICOM</option>
+                              <option value="MINECOFIN">MINECOFIN</option>
+                              <option value="RURA">RURA</option>-->
+                              <option value="BNR">BNR</option>
+                              <option value="RDB">RDB</option>
+                              <option value="MYICT">MYICT</option>
+                              <!--<option value="RRA">RRA</option>
+                              <option value="REMA">REMA</option>
+                              <option value="MINEACOM">MINEACOM</option>-->
+                          </select>
+                          <select name="content-type-filter" id="content-type-filter" class="search-filter">
+                              <option value="None" selected="selected">Content Type</option>
+                              <!--<option value="Constitution">Constitution</option>-->
+                              <option value="Ministerial Order">Ministerial Order</option>
+                              <option value="Presidential Order">Presidential Order</option>
+                              <option value="Regulation">Regulation</option>
+                              <option value="Law">Law</option>
+                              <!--<option value="Organic Law">Organic Law</option>-->
+                              <!--<option value="Prime Minister Order">Prime Minister Order</option>-->
+                              <!--<option value="Rule">Rule</option>
+                              <option value="Instruction">Instruction</option>
+                              <option value="Policy">Policy</option>-->
+                          </select>
+                          <select name="pub-year-filter" id="pub-year-filter" class="search-filter">
+                              <option value="None" selected="selected">Publication Year</option>
+                              <!--<option value="2004">2008</option>
+                              <option value="2005">2008</option>
+                              <option value="2006">2008</option>
+                              <option value="2007">2008</option>-->
+                              <option value="2008">2008</option>
+                              <option value="2009">2009</option>
+                              <!--<option value="2010">2010</option>
+                              <option value="2011">2011</option>
+                              <option value="2012">2012</option>
+                              <option value="2013">2013</option>
+                              <option value="2014">2014</option>-->
+                              <option value="2015">2015</option>
+                              <option value="2016">2016</option>
+                              <!--<option value="2017">2008</option>-->
+                          </select>
 
-<p>Description of the functionality that you plan to offer. This is where you talk about how to meet the functionality requirements. There are two types of functions you need to offer:</p>
+                          <input type="submit" value="submit" id="searchbtn" class="border-button no-bottom-margin">
+                        </div>
 
-<h3 class="text-center">Basic</h3>
+                        </div>
+                        <!-- /section page -->
+                      </div>
+                      <!-- /container form -->
+                    </div>
+                    <!-- /Subscribe Form -->
+                    <div class="alert alert-{{ messageType }}">
+                      {{ message }}
+                    </div>
+                    <div id="results">
+                      <!--<p>{{ data }}</p>-->
+                    </div>
 
-<p>Users will be able search laws based on a set of attributes including law name, publication date, law number, type of law, etc.</p>
-<p>Users will be able to create, update, and delete legal cases and associated information (“insert”, “update”, and “delete” functionalities).</p>
 
-<h3 class="text-center">Advanced</h3>
+                    <!-- copyright -->
+                    <footer class="copy-right animated bounceInUp" data-animation-delay="700">
+                      <div class="copyright">
+                        © 2017 <a href="http://ctructure.com">Ctructure</a> - All Rights Reserved
+                      </div>
+                    </footer>
+                    <!-- /copyright -->
 
-<p>Showing laws that are no longer up-date specifically laws that have been repealed or amended. This feature will attempt to facilitate lawyers to know which laws have been invalidated. Sometimes the language is explicit when repealing previous laws (e.g. “law # 090 of 2005 is hereby repealed…”) and sometimes the language is vague (e.g. “alls previous laws that contradict this law are hereby repealed…”). So, we will try to use NLP techniques to (at least) point out which previous law are referenced (or significantly related) to a subsequent/more recent law.</p>
-<p>Advanced keyword search: we will implement n-gram and tf-idf algorithms to enable users to search using natural language queries.</p>
-<p>We also aim to implement a user authentication system.</p>
-<p>Lastly, we would like to add a feature for laws auto-querying. That is, if a law is referenced in the text, a user should be able to click on and go to the page with that law.</p>
+                  </div>
+                  <!-- /content slide -->
+                </div>
+              </div>
+              <!-- /row -->
+            </div>
+            <!-- /container -->
+          </div>
+          <!-- /home section -->
 
-<h2 class="text-center">Entity Relationship Diagram</h2>
-<img src="../static/imgs/erdv5.png" alt="ERD Graphic" style="width: 100%">
+        </div>
+        <!-- /bt-carousel -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /section -->
 
-<h2>Assumptions</h2>
-
-<p>We made the assumption that for each case, if the user adds a law or an article from a law, they can only have one note/comment associated with it. Additionally, tags are private to the user's cases. We decided to give each account a type, as in the future, additional account types (beyond legal professionals) might be implemented.</p>
-
-<p>Currently, this database only implements storage for statutory laws, but we note the type of law in that table, because in the future case law would likely be included as reference material. Similarly, though our database currently only will store the English version of laws, many are written in multiple languages so that could potentially be stored in the future as well (especially since case law is not available in English).</p>
-</div>
 {% endblock %}

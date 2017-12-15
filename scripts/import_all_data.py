@@ -22,7 +22,7 @@ intro_files = [f for f in listdir(folder_of_intros) if isfile(join(folder_of_law
 
 # create connection to the database
 cnx = mysql.connector.connect(user='amucungu', password='m90753',
-                              host='localhost',
+                              host='0.0.0.0',
                               database='rwandanlaw')
 
 cursor = cnx.cursor()
@@ -97,9 +97,11 @@ for filename in law_files:
 # dictionary of unique publications in law files
 unique_publications = {}
 
+
 # Extract publication table attributes from publication names
 for publication in publication_names:
     if publication:
+      #print(publication)
       var_num, pub_date = get_pub_attrs(publication)
       # Make sure it's "of" not "0f" [zero instead of o]
       split_pub = publication.split()
@@ -125,6 +127,59 @@ for pub in unique_publications:
 cnx.commit()
 ### Foreign key constraints the "laws" table requires to commit
 ### Before we try to insert data into the table
+
+### IMPORT DATA for the "repeal" TABLE
+add_repeal = ("INSERT INTO repeals"
+                    "(parent_law_num, parent_law_date, impacted_law_num, impacted_law_date) "
+                    "VALUES (%s, %s, %s, %s)")
+
+repeal_list = []
+with open('import_data/repeals.txt') as f:
+    for line in f:
+        line = line.rstrip()
+        temp_list = line.split(",")
+        repeal_list.append(temp_list)
+
+# Insert attributes into the "repeal" table
+for a_law in repeal_list:
+    # var_num & pub_date are part of the key, at index 0 and 1
+    parent_law_num, parent_law_date = a_law[0], a_law[1]
+    p_day, p_month, p_year = [int(i) for i in parent_law_date.split('/')]
+    impacted_law_num, impacted_law_date = a_law[2], a_law[3]
+    i_day, i_month, i_year = [int(i) for i in impacted_law_date.split('/')]
+    
+    cont_tuple = (parent_law_num, date(p_year, p_month, p_day), impacted_law_num, date(i_year, i_month, i_day))
+    cursor.execute(add_repeal, cont_tuple)
+### COMMIT THE ABOVE THE DATA TO THE DATABASE
+cnx.commit()
+
+###IMPORT DATA into the "cites" TABLE
+add_cites = ("INSERT INTO cites"
+                    "(parent_law_num, parent_law_date, cited_law_num, cited_law_date) "
+                    "VALUES (%s, %s, %s, %s)")
+
+cite_list = []
+with open('import_data/references.txt') as f:
+    for line in f:
+        if str(line).split():
+            line = line.rstrip()
+            temp_list = line.split(", ")
+            cite_list.append(temp_list)
+
+# Insert attributes into the "cites" table
+for a_law in cite_list:
+    if a_law:
+        # var_num & pub_date are part of the key, at index 0 and 1
+        parent_law_num, parent_law_date = a_law[0], a_law[1]
+        p_day, p_month, p_year = [int(i) for i in parent_law_date.split('/')]
+        cited_law_num, cited_law_date = a_law[2], a_law[3]
+        c_day, c_month, c_year = [int(i) for i in cited_law_date.split('/')]
+
+    cont_tuple = (parent_law_num, date(p_year, p_month, p_day), cited_law_num, date(c_year, c_month, c_day))
+    cursor.execute(add_cites, cont_tuple)
+### COMMIT THE ABOVE THE DATA TO THE DATABASE
+cnx.commit()
+
 
 ### IMPORT DATA into the "laws" TABLE
 add_law = ("INSERT INTO laws "
@@ -152,7 +207,7 @@ for law in law_files:
     pub_var_num, pub_date = get_pub_attrs(publication)
     ending = "N/A" # place_holder for now
     agency = "RRA"   # placeholder for now
-
+   
     # exact date i.e. the date in the law's name or "exact_date" attribute
     e_day, e_month, e_year = [int(j) for j in law_name.split()[3].split('/')]
     # publication date i.e. "pub_date" attribute
@@ -210,6 +265,7 @@ for law in law_files:
         article_text = law_doc[i+1]
 
         cont_tuple = (law_id, article_num, article_text, article_name)
+    
         cursor.execute(add_article, cont_tuple)
 
 # commit last changes and close connections
@@ -217,4 +273,4 @@ cnx.commit()
 cursor.close()
 cnx.close()
 
-print "Successfully imported all the data!"
+#print "Successfully imported all the data!"
