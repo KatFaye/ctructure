@@ -358,7 +358,7 @@ $( document ).ready(function(){
 		$("#results").append(
 				'<table class="result-talbe">'+
                         '<tr class="law_name"><th class="pointer-th bold_th">'+
-                            'Laws repealing this law: '+ 
+                            'Repeals from this document: '+ 
                         '</th></tr>'+
                         '<tr><td>'+
                         	repeal_law+
