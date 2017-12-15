@@ -175,8 +175,8 @@ def query():
             _agency = False
 
         query_results = get_results(_agency, _content_type, _year, _search)
-        print(query_results)
-        print("\n\n")
+        #print(query_results)
+        #print("\n\n")
 
         law_info = {}
         for res in query_results:
@@ -185,7 +185,7 @@ def query():
                 if field !="law_num_date":
                     law_info[res["law_num_date"]][field] = res[field]
 
-        print(law_info)
+        #print(law_info)
 
         law_info = json.dumps(law_info)
         return law_info
@@ -193,8 +193,8 @@ def query():
     except Exception as e:
         kwargs['message'] = "Error " + str(e)
         kwargs['messageType'] = "danger"
-        print("ERROR!!!!!!!!!!!!!!")
-        print(e)
+        print("ERROR: ", e)
+        
 
     cursor.close()
     conn.close()
@@ -281,8 +281,8 @@ def get_detail_page():
             if(len(articles) == 0):
                 output["articles"]= ""
             else:
-                print("???????????????")
-                print(articles)
+                #print("???????????????")
+                #print(articles)
                 output["articles"]= articles
 
         output = json.dumps(output)
@@ -292,8 +292,8 @@ def get_detail_page():
     except Exception as e:
         kwargs['message'] = "Error " + str(e)
         kwargs['messageType'] = "danger"
-        print("ERROR!!!!!!!!!!!!!!")
-        print(e)
+        print("ERROR:", e)
+       
         return render_template('index.html', **kwargs)
 
     cursor.close()
