@@ -14,8 +14,8 @@ app.register_blueprint(base_page)
 mysql = MySQL()
 
 # MySQL configurations
-app.config['MYSQL_DATABASE_USER'] = 'kherring'
-app.config['MYSQL_DATABASE_PASSWORD'] = '12faye'
+app.config['MYSQL_DATABASE_USER'] = 'amucunguzi'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'mysqlpass'
 app.config['MYSQL_DATABASE_DB'] = 'rwandanlaw'
 app.config['MYSQL_DATABASE_HOST'] = '0.0.0.0'
 app.config['MYSQL_DATABASE_PORT'] = 3306
