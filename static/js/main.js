@@ -284,7 +284,7 @@ $( document ).ready(function(){
 	    query_string = JSON.stringify(query_string)
 	    
 	    var xhr = new XMLHttpRequest()
-	    xhr.open("POST","http://dsg1.crc.nd.edu:5020/query",true)  
+	    xhr.open("POST","http://ec2-35-153-185-134.compute-1.amazonaws.com/query",true)  
 
 	    xhr.onload = function(e){
 	        var law_info = JSON.parse(xhr.responseText)
@@ -331,7 +331,7 @@ $( document ).ready(function(){
 			query_string = JSON.stringify(query_string)
 	    
 		    var xhr = new XMLHttpRequest()
-		    xhr.open("POST","http://dsg1.crc.nd.edu:5020/details",true)  
+		    xhr.open("POST","http://ec2-35-153-185-134.compute-1.amazonaws.com/query",true)  
 
 		    xhr.onload = function(e){
 		        details = JSON.parse(xhr.responseText)
